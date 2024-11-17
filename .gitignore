@@ -7,6 +7,15 @@
 *.o
 *.obj
 
+# Documentation
+docs/documentation.aux
+docs/documentation.bbl
+docs/documentation.blg
+docs/documentation.dvi
+docs/documentation.log
+docs/documentation.ps
+docs/documentation.toc
+
 # Precompiled Headers
 *.gch
 *.pch
