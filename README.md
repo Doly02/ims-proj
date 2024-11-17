@@ -1,4 +1,4 @@
-# IMP Project: Model of Electromobility in Brno
+# IMS Project: Model of Electromobility in Brno
 - Author: Tomáš Dolák, Monika Zahradníková
 - Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220), xzahra33
 - Email: <xdolak09@stud.fit.vutbr.cz>, <xzahra33@stud.fit.vutbr.cz>
