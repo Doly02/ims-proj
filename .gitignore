@@ -16,7 +16,8 @@ docs/documentation.log
 docs/documentation.ps
 docs/documentation.toc
 
-# Compiled Projectsim
+# Compiled Project
+sim
 
 # Precompiled Headers
 *.gch
