@@ -2,7 +2,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[czech]{babel}
 \usepackage[top=3cm, left=2cm, textwidth=17cm, textheight=24cm]{geometry}
 \usepackage{multirow}
 \usepackage[ruled, czech, linesnumbered, noline, longend]{algorithm2e}
@@ -38,7 +38,7 @@
         \vspace*{\stretch{0.618}}
     \end{center}
     
-    {\Large \today \hfill Tomáš Dolák (xdolak09), Monika Zahradníková (xzahra33)}
+    {\large \today \hfill Tomáš Dolák (xdolak09), Monika Zahradníková (xzahra33)}
 \end{titlepage}
 
 \newpage
@@ -60,6 +60,61 @@ se elektromobily v Brně pohybují. Model bude schopen simulovat chování elekt
 v závislosti na různých parametrech, jako je například počet elektromobilů, počet nabíjecích 
 stanic, dostupnost nabíjecích stanic, atd. Model bude sloužit k analýze a optimalizaci 
 elektromobility v Brně.
+
+\section{Rozbor tématu a použitých metod/technologií}
+Pro korektní modelování elektromobility je potřeba si nejprve uvědomit, jak elektromobily fungují, 
+jaké jsou jejich vlastnosti/parametry, které v modelu budou definovat transakce. Mezi hlavní aspekty,
+ovlivňující chování elektromobilů, patří v prvé řadě jejich motor a akumulátor/baterie.
+
+\subsection{Elektromotor}
+U každého vozidla je nejdůležitější jeho pohon a palivo. Pro elektromobily je pohon zajištěn 
+elektromotorem, který je základní součástí elektrického hnacího systému. Elektromotor přeměňuje 
+elektrickou energii z baterie na mechanickou energii potřebnou pro pohyb vozidla a skládá se 
+primárně ze dvou hlavních částí -- rotoru a statoru. \cite{typy_elektromotoru}
+
+Rotor je pohyblivá část elektromotoru. Jedná se o součást, která se otáčí a přenáší mechanickou 
+energii na hnací ústrojí vozidla. Pohyb rotoru je vyvolán magnetickými silami, které vznikají mezi 
+ním a statorem. Rotor může být vyroben z permanentních magnetů (v motorech s permanentními magnety) 
+nebo z vodivých materiálů, které reagují na elektromagnetické pole statoru (v asynchronních motorech). \cite{elektromotor}
+
+Stator je naopak pevná část elektromotoru, která obklopuje rotor. Obsahuje sady cívek, které jsou 
+napájeny elektrickým proudem z baterie. Když těmito cívkami prochází proud, vytváří elektromagnetické 
+pole. Toto pole interaguje s magnetickým polem rotoru a vytváří točivý moment, který pohání rotor. \cite{elektromotor}
+
+\begin{figure}[H]
+    \centering
+    \scalebox{0.25}{
+        \includegraphics{synchroni-elektromotor.eps}
+    }
+    \caption{Schéma synchronního elektromotoru}
+    \label{figure:synchroni-elektromotor}
+\end{figure}
+
+\subsection{Baterie}
+
+\subsection{Typy nabíjení}
+Elektromobil, lze nabíjet hned několika způsoby, faktorů je mnoho, výkon elektrostanice, typ proudu, konektor,...
+My jsme se v našem modelu rozhodli zachovat pouze podstatné parametry, které v našem případě budou mít největší 
+vliv na chování elektromobilů a to nabíjecí výkon a druh proudu. Elektromobil, zde obvykle nabíjet jak 
+stejnosměrným proudem, tak střídavým proudem. 
+Rozdíl ale je v jejich efektivitě, u nabíjení střídavým proudem nezáleží pouze na výkonu nabíjecí stanice, 
+ale také na samotném vozidle. Baterie alektromobilu je schopna pracovat pouze se stejnosměrným proudem, 
+proto je potřeba mít v elektromobilu vestavěný měnič (palubní nabíječka), který střídavý proud převede 
+na stejnosměrný. Palubní nabíječka obvykle pracuje s výkonem 3,6 kW, 7,2 kW, 11 kW nebo 22 kW,
+který obvykle limituje nabíjení elektromobilu, daleko víc než výkon nabíjecí stanice. \cite{nabijeni_ev}
+Zato nabíjení stejnosměrným proudem je mnohem efektivnější, nemusí se měnit typ proud a nabíjení není limitováno
+vůbec výkonem palubní nabíječky. Tyto nabíjecí stanice obvykle poskytují výkon 50 kW, 150 kW nebo až 350 kW.\cite{nabijeni_ev, data_brno}
+
+\begin{figure}[H]
+    \centering
+    \scalebox{0.25}{
+        \includegraphics{ac-dc-charging-efficency.eps}
+    }
+    \caption{Efektivita AC a DC nabíjení}
+    \label{figure:ac-dc-charging-efficency}
+\end{figure}
+
+\subsection{Jak je na tom s elektrnabíjecími stanicemi Brno?}
 
 \newpage
 \bibliographystyle{unsrt}

@@ -18,10 +18,16 @@ The goal of this project in the subject Modeling and Simulations was to create a
 
 [6] "techradar: EV battery size, charge speeds and range explained" [online]. [cited 2024-10-28]. Available at [https://www.techradar.com/news/ev-battery-size-charge-speeds-and-range-explained](https://www.techradar.com/news/ev-battery-size-charge-speeds-and-range-explained)
 
-[7] "Teplárny Brno příští rok vybudují dalších 50 nabíječek pro elektroauta" [online]. [cited 2024-10-28]. Available at [https://www.seznamzpravy.cz/clanek/regiony-zpravy-jihomoravsky-kraj-teplarny-brno-pristi-rok-vybuduji-dalsich-50-nabijecek-pro-elektroauta-241833](https://www.seznamzpravy.cz/clanek/regiony-zpravy-jihomoravsky-kraj-teplarny-brno-pristi-rok-vybuduji-dalsich-50-nabijecek-pro-elektroauta-241833)
+[7] "Přehledně: Všechny typy elektromotorů! Čím se liší? A jaké mají výhody/nevýhody? [online]. [cited 2024-10-28]. Available at [https://www.auto.cz/prehledne-vsechny-typy-elektromotoru-cim-se-lisi-a-jake-maji-vyhody-nevyhody-141704](https://www.auto.cz/prehledne-vsechny-typy-elektromotoru-cim-se-lisi-a-jake-maji-vyhody-nevyhody-141704)
 
-[8] "Jaká je degradace baterie elektromobilu po ujetých 224 tisících km?" [online]. [cited 2024-10-28]. Available at [https://www.autonabijecka.cz/jaka-je-degradace-baterie-elektromobilu-po-ujetych-224-tisicich-km/](https://www.autonabijecka.cz/jaka-je-degradace-baterie-elektromobilu-po-ujetych-224-tisicich-km/)
+[8] "Techmania: Elektromotory" [online]. [cited 2024-10-28]. Available at [http://edu.techmania.cz/cs/encyklopedie/fyzika/elektromagneticka-indukce/elektromotory](http://edu.techmania.cz/cs/encyklopedie/fyzika/elektromagneticka-indukce/elektromotory) 
 
-[9] "Víte, jak se v zimě správně postarat o elektromobil?" [online]. [cited 2024-10-28]. Available at [https://www.essox.cz/blog/stories/vite-jak-se-v-zime-spravne-postarat-o-elektromobil](https://www.essox.cz/blog/stories/vite-jak-se-v-zime-spravne-postarat-o-elektromobil)
+[9] "AC vs. DC nabíjecí stanice elektromobilů" [online]. [cited 2024-10-28]. Available at [https://www.kalkulator.cz/clanky/112/ac-vs-dc-nabijeci-stanice-elektromobilu](https://www.kalkulator.cz/clanky/112/ac-vs-dc-nabijeci-stanice-elektromobilu)
 
-[10] "Teplarny: Teplárny Brno ve spolupráci s TSB instalovaly první nabíjecí stanici na stožáru veřejného osvětlení" [online]. [cited 2024-10-28]. Available at [https://www.teplarny.cz/cs/teplarny-brno-ve-spolupraci-s-tsb-instalovaly-prvni-nabijeci-stanici-na-stozaru-verejneho-osvetleni](https://www.teplarny.cz/cs/teplarny-brno-ve-spolupraci-s-tsb-instalovaly-prvni-nabijeci-stanici-na-stozaru-verejneho-osvetleni)
+[8] "Teplárny Brno příští rok vybudují dalších 50 nabíječek pro elektroauta" [online]. [cited 2024-10-28]. Available at [https://www.seznamzpravy.cz/clanek/regiony-zpravy-jihomoravsky-kraj-teplarny-brno-pristi-rok-vybuduji-dalsich-50-nabijecek-pro-elektroauta-241833](https://www.seznamzpravy.cz/clanek/regiony-zpravy-jihomoravsky-kraj-teplarny-brno-pristi-rok-vybuduji-dalsich-50-nabijecek-pro-elektroauta-241833)
+
+[9] "Jaká je degradace baterie elektromobilu po ujetých 224 tisících km?" [online]. [cited 2024-10-28]. Available at [https://www.autonabijecka.cz/jaka-je-degradace-baterie-elektromobilu-po-ujetych-224-tisicich-km/](https://www.autonabijecka.cz/jaka-je-degradace-baterie-elektromobilu-po-ujetych-224-tisicich-km/)
+
+[10] "Víte, jak se v zimě správně postarat o elektromobil?" [online]. [cited 2024-10-28]. Available at [https://www.essox.cz/blog/stories/vite-jak-se-v-zime-spravne-postarat-o-elektromobil](https://www.essox.cz/blog/stories/vite-jak-se-v-zime-spravne-postarat-o-elektromobil)
+
+[11] "Teplarny: Teplárny Brno ve spolupráci s TSB instalovaly první nabíjecí stanici na stožáru veřejného osvětlení" [online]. [cited 2024-10-28]. Available at [https://www.teplarny.cz/cs/teplarny-brno-ve-spolupraci-s-tsb-instalovaly-prvni-nabijeci-stanici-na-stozaru-verejneho-osvetleni](https://www.teplarny.cz/cs/teplarny-brno-ve-spolupraci-s-tsb-instalovaly-prvni-nabijeci-stanici-na-stozaru-verejneho-osvetleni)
