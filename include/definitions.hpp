@@ -57,6 +57,25 @@ typedef enum
 /*                   Definitions                */
 /************************************************/
 
+/**
+ * @brief Number of 12kWh AC Charging Stations.
+ */
+#define NUM_12_KWH_AC_STATIONS              (12)
+
+/**
+ * @brief Number of 22kWh AC Charging Stations.
+ */
+#define NUM_22_KWH_AC_STATIONS              (58)
+
+/**
+ * @brief Number of 50kWh DC Charging Stations.
+ */
+#define NUM_50_KWH_DC_STATIONS              (22)
+
+/**
+ * @brief Number of 108kWh DC Charging Stations.
+ */
+#define NUM_108_KWH_DC_STATIONS             (10)
 
 
 #endif // DEFINITIONS_HPP
