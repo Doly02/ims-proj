@@ -23,9 +23,35 @@
 /************************************************/
 /*                   Main                       */
 /************************************************/
+void print_usage(void)
+{
+    printf("Usage: ./ims_project [OPTIONS]\n");
+}
+
+bool parse_args(int argc, char *argv[])
+{
+    for (int i = 1; i < argc; ++i)
+    {
+        if (0 == strcmp(argv[i], "-h"))
+        {
+            print_usage();
+        }
+        else if (0 == strcmp(argv[i], "day"))
+        {
+            return true;
+        }
+        else if (0 == strcmp(argv[i], "night"))
+        {
+            return false;
+        }
+    }
+}
+
 int main(int argc, char *argv[]) 
 {
-    (void)argc;
-    (void)argv;
+    bool retVal;
+    
+    /* Parse Arguments */
+    retVal = parse_args(argc, argv);
     return 0;
 }
