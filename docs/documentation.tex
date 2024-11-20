@@ -96,7 +96,17 @@ pole. Toto pole interaguje s magnetickým polem rotoru a vytváří točivý mom
 Elektromobil, lze nabíjet hned několika způsoby, faktorů je mnoho, výkon elektrostanice, typ proudu, konektor,...
 My jsme se v našem modelu rozhodli zachovat pouze podstatné parametry, které v našem případě budou mít největší 
 vliv na chování elektromobilů a to nabíjecí výkon a druh proudu. Elektromobil, zde obvykle nabíjet jak 
-stejnosměrným proudem, tak střídavým proudem. 
+stejnosměrným proudem, tak střídavým proudem.
+
+\begin{figure}[H]
+    \centering
+    \scalebox{0.2}{
+        \includegraphics{difference-between-ac-and-cd-charging-ev.eps}
+    }
+    \caption{Rozdíl mezi nabíjením střídavým a stejnosměrným proudem \cite{rozdil_mezi_ac_dc_nabijenim}}
+    \label{figure:difference-between-ac-and-cd-charging-ev}
+\end{figure}
+
 Rozdíl ale je v jejich efektivitě, u nabíjení střídavým proudem nezáleží pouze na výkonu nabíjecí stanice, 
 ale také na samotném vozidle. Baterie alektromobilu je schopna pracovat pouze se stejnosměrným proudem, 
 proto je potřeba mít v elektromobilu vestavěný měnič (palubní nabíječka), který střídavý proud převede 
@@ -105,16 +115,53 @@ který obvykle limituje nabíjení elektromobilu, daleko víc než výkon nabíj
 Zato nabíjení stejnosměrným proudem je mnohem efektivnější, nemusí se měnit typ proud a nabíjení není limitováno
 vůbec výkonem palubní nabíječky. Tyto nabíjecí stanice obvykle poskytují výkon 50 kW, 150 kW nebo až 350 kW.\cite{nabijeni_ev, data_brno}
 
+\newpage
+
+U nabíjení stejnosměrným proudem se standardně cyklus nabíjení skládá ze tří fází (tzv. SoC -- State of Charge), první
+fáze se pohybuje v rozmezí 0 až 20\% kapacity baterie, zde pomalu výkon narůstá, tato fáze je omezena komunikací
+mezi nabíjecí stanicí a elektromobilem a také teplotou baterie. Druhá fáze začíná na 20\% až 80\% zde se na začátku
+stavu dosáhne maximální výkon stanice (většínou stanice jelikož elektromobily mají zpravidla povolený větší maximální výkon
+než dnešní stanice standardně nabízejí) a následně začíná pokles, tento sestupný trend nastává jak se baterie plní a
+zároveň se přehřívá. Poslední fází je rozsah mezi 80\% až 100\%, zde se výkon nabíjení opět snižuje, jelikož
+dochází k protekci před přebitím baterie a i chemický proces, ke kterému dochází v baterii je méně efektivní 
+při vyšších úrovních nabití, což má za následek že stejný nabíjecí proud má menší dopad na zvýšení kapacity.\cite{nabijeci_krivka}
+
 \begin{figure}[H]
     \centering
     \scalebox{0.25}{
         \includegraphics{ac-dc-charging-efficency.eps}
     }
-    \caption{Efektivita AC a DC nabíjení}
+    \caption{Efektivita AC a DC nabíjení \cite{rozdil_mezi_ac_dc_nabijenim_graf}}
     \label{figure:ac-dc-charging-efficency}
 \end{figure}
 
+U nabíjení na střídavý proud je situace jiná, tím, že je výkon primárně limitován elektromobilem -- tedy palubní nabíječkou 
+(OBC - On-Board Charger), výrobce automobilu zaručuje, že baterie je schopna pracovat s určitým výkonem, který externí
+nabíjecí stanice schopna poskytnout. TODO Dopsat!
+
 \subsection{Jak je na tom s elektrnabíjecími stanicemi Brno?}
+
+
+Prumerny nabijeci vykon nabijecky
+\smallskip
+
+\begin{center}
+    \vspace{0.5cm} % Space before table
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
+        \hline
+        12kWh AC  &  9kWh    & 12kWh & 9kWh  \\
+        \hline
+        22kWh AC  &  16.5kWh & 22kWh & 16.5kWh  \\
+        \hline
+        50kWh DC  &  26kWh   & 42kWh & 17kWh    \\
+        \hline
+        108kWh DC &  54kWh   & 90kWh & 36.72Kwh \\
+        \hline
+    \end{tabular}
+    \vspace{0.5cm} % Space after table
+\end{center}
 
 \newpage
 \bibliographystyle{unsrt}
