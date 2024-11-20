@@ -53,5 +53,18 @@ int main(int argc, char *argv[])
     
     /* Parse Arguments */
     retVal = parse_args(argc, argv);
+
+    printf("Modeling & Simulation Project - Electromobility in Brno 2024\n");
+    Init(0, DAY_TIME);
+
+    if (1 == retVal)    /* Simulation Of Day */
+    {
+
+    }
+    else                /* Simulation Of Night */
+    {
+
+    }
+
     return 0;
 }

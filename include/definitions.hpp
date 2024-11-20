@@ -57,6 +57,8 @@ typedef enum
 /*                   Definitions                */
 /************************************************/
 
+
+#define DAY_TIME                            (40000)
 /**
  * @brief Number of 12kWh AC Charging Stations.
  */
