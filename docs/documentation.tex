@@ -86,11 +86,17 @@ pole. Toto pole interaguje s magnetickým polem rotoru a vytváří točivý mom
     \scalebox{0.25}{
         \includegraphics{synchroni-elektromotor.eps}
     }
-    \caption{Schéma synchronního elektromotoru}
+    \caption{Schéma synchronního elektromotoru \cite{elektromotor}}
     \label{figure:synchroni-elektromotor}
 \end{figure}
 
 \subsection{Baterie}
+Baterie je další důležitou součástí elektromobilu. Stejně jako existuje více typů elektromotorů, 
+liší se i baterie, používané jednotlivými výrobci. V zásadě se ale jedná o lithium-iontové baterie
+(varianty LIB a Li-NMC), poskytující přijatelný poměr mezi kapacitou, hmotností a prostorem, který 
+zabírají.\cite{baterie_ev_wiki} Liší se však v použitelné kapacitě této baterie, které se pohybuje 
+v rozmezí od 123 kWh, po 21.3 kWh na základě dat z webové stránky www.ev-database.org\cite{ev_database}, 
+poskytující databázi o elektromobilech.
 
 \subsection{Typy nabíjení}
 Elektromobil, lze nabíjet hned několika způsoby, faktorů je mnoho, výkon elektrostanice, typ proudu, konektor,...
@@ -115,8 +121,6 @@ který obvykle limituje nabíjení elektromobilu, daleko víc než výkon nabíj
 Zato nabíjení stejnosměrným proudem je mnohem efektivnější, nemusí se měnit typ proud a nabíjení není limitováno
 vůbec výkonem palubní nabíječky. Tyto nabíjecí stanice obvykle poskytují výkon 50 kW, 150 kW nebo až 350 kW.\cite{nabijeni_ev, data_brno}
 
-\newpage
-
 U nabíjení stejnosměrným proudem se standardně cyklus nabíjení skládá ze tří fází (tzv. SoC -- State of Charge), první
 fáze se pohybuje v rozmezí 0 až 20\% kapacity baterie, zde pomalu výkon narůstá, tato fáze je omezena komunikací
 mezi nabíjecí stanicí a elektromobilem a také teplotou baterie. Druhá fáze začíná na 20\% až 80\% zde se na začátku
@@ -137,10 +141,23 @@ při vyšších úrovních nabití, což má za následek že stejný nabíjecí
 
 U nabíjení na střídavý proud je situace jiná, tím, že je výkon primárně limitován elektromobilem -- tedy palubní nabíječkou 
 (OBC - On-Board Charger), výrobce automobilu zaručuje, že baterie je schopna pracovat s určitým výkonem, který externí
-nabíjecí stanice schopna poskytnout. TODO Dopsat!
+nabíjecí stanice schopna poskytnout. % TODO: Dopsat!
 
-\subsection{Jak je na tom s elektrnabíjecími stanicemi Brno?}
+\subsection{Elektronabíjecí stanice}
 
+\subsubsection{Jak je na tom s elektrno stanicemi Brno?}
+V Brně je celkem 102 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
+na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
+My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/} v souboru \texttt{brno\_charging\_stations.xl}.
+V zásadě Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
+celkově 130.
+
+% TODO: tabulka rozdeleni elektrostanic
+
+\subsubsection{Zpracování datasetu}
+Text
+
+% TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
 
 Prumerny nabijeci vykon nabijecky
 \smallskip
