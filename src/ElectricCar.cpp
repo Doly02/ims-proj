@@ -22,8 +22,23 @@
 #include "../include/definitions.hpp"
 
 /************************************************/
+/*                   Statistics                 */
+/************************************************/
+/**
+ * @brief Number of Charged Car Per Period (Day/Night).
+ */
+double num_charged_cars_per_period = 0.0;   
+/**
+ * @brief Average Time That Car Spends In The System.
+ */
+double avg_time_in_system = 0.0;            
+/************************************************/
 /*                   Implementation             */
 /************************************************/
+
+/**
+ * @brief Implementation of Electric Cars That Are Transactions In The Model.
+ */
 class ElectricCar : public Process
 {
         char_state_t char_state;

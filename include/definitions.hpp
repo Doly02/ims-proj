@@ -59,6 +59,10 @@ typedef enum
 
 
 #define DAY_TIME                            (40000)
+
+#define PERIOD_DAYTIME                      (true)
+
+#define PERIOD_NIGHTTIME                    (false)
 /**
  * @brief Number of 12kWh AC Charging Stations.
  */
