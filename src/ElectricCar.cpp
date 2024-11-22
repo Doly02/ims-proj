@@ -160,13 +160,131 @@ class ElectricCar : public Process
                 // TODO: Continue With 20% - 80% Charging
 
             }
-
-
-
         }
 
+        void charge_battery_in_stage_20_80(void)
+        {
+            double time_spend_charging = 0.0;
+
+            if (POW_STATION_AC_12_KWH == pow_station)
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_AC_12KWH, 1);
+
+                /* Generate Time In Uniform Distribution */
+                time_spend_charging = Uniform(0, MAX_TIME_12_KWH_AC_STATIONS_20_80);
+
+                /* Charging */
+                Wait(time_spend_charging);
+
                 /* Leave The Space In Charging Station */
-                // Leave(CHAR_STATION_DC_108KWH, 1);
+                Leave(CHAR_STATION_AC_12KWH, 1);
+
+            }
+            else if (POW_STATION_AC_22_KWH == pow_station)
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_AC_22KWH, 1);
+
+                time_spend_charging = Uniform(0, MAX_TIME_22_KWH_AC_STATIONS_20_80);
+
+                /* Charging */
+                Wait(time_spend_charging);
+
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_AC_22KWH, 1);
+
+            }
+            else if (POW_STATION_DC_50_KWH == pow_station)
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_DC_50KWH, 1);
+
+                time_spend_charging = Uniform(0, MAX_TIME_50_KWH_DC_STATIONS_20_80);
+
+                /* Charging */
+                Wait(time_spend_charging);
+                
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_DC_50KWH, 1);
+            }
+            else
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_DC_108KWH, 1);
+
+                time_spend_charging = Uniform(0, MAX_TIME_108_KWH_DC_STATIONS_0_20);
+
+                /* Charging */
+                Wait(time_spend_charging);
+
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_DC_108KWH, 1);
+
+            }
+        }
+
+        void charge_battery_in_stage_80_100(void)
+        {
+            double time_spend_charging = 0.0;
+
+            if (POW_STATION_AC_12_KWH == pow_station)
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_AC_12KWH, 1);
+
+                /* Generate Time In Uniform Distribution */
+                time_spend_charging = Uniform(0, MAX_TIME_12_KWH_AC_STATIONS_80_100);
+
+                /* Charging */
+                Wait(time_spend_charging);
+
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_AC_12KWH, 1);
+
+            }
+            else if (POW_STATION_AC_22_KWH == pow_station)
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_AC_22KWH, 1);
+
+                time_spend_charging = Uniform(0, MAX_TIME_22_KWH_AC_STATIONS_80_100);
+
+                /* Charging */
+                Wait(time_spend_charging);
+
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_AC_22KWH, 1);
+
+            }
+            else if (POW_STATION_DC_50_KWH == pow_station)
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_DC_50KWH, 1);
+
+                time_spend_charging = Uniform(0, MAX_TIME_50_KWH_DC_STATIONS_80_100);
+
+                /* Charging */
+                Wait(time_spend_charging);
+                
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_DC_50KWH, 1);
+            }
+            else
+            {
+                /* Will Take Up One Place In The Store or Will Wait */
+                Enter(CHAR_STATION_DC_108KWH, 1);
+
+                time_spend_charging = Uniform(0, MAX_TIME_108_KWH_DC_STATIONS_80_100);
+
+                /* Charging */
+                Wait(time_spend_charging);
+
+                /* Leave The Space In Charging Station */
+                Leave(CHAR_STATION_DC_108KWH, 1);
+
+            }
+        }
 
         /**
          * @brief Defines behavior of process EletricCar.
@@ -182,20 +300,26 @@ class ElectricCar : public Process
                 /* Choose Charging Station */
                 choose_battery_station();
 
-                /* Charge The Car*/
+                /* Charge The Car In Stage 2 [0 - 20 %]*/
                 charge_battery_in_stage_0_20();
                 
             }
             else if (CHAR_STATE_20_80 == char_state)
             {
                 choose_battery_station();   /* Choose Charging Station */
-                time_spend_charging = 0.25; /* Charging Time */
+                
+                /* Charge The Car In Stage 2 [20 - 80 %]*/
+                charge_battery_in_stage_20_80();
             }
             else
             {
                 choose_battery_station();   /* Choose Charging Station */
-                time_spend_charging = 0.1;  /* Charging Time */
+                
+                /* Charge The Car In Stage 2 [80 - 100 %]*/
+                charge_battery_in_stage_80_100();
             }        
-            Terminate();                    /* Terminate Process */
+            
+            /* Terminate Process */
+            Terminate();
         }
 };
