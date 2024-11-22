@@ -23,6 +23,12 @@
 /************************************************/
 /*                   Implementation             */
 /************************************************/
+
+/**
+ * @brief Flag With Information If Actual Period Is Daytime or Nighttime 
+ */
+bool curr_period;
+
 class GeneratorDay : public Event
 {
 
@@ -33,7 +39,13 @@ class GeneratorDay : public Event
      */
     void Behavior() override
     {
+        /* Model Time In Local Form */
         current_time = Time;
+
+        if (PERIOD_NIGHTTIME == current_time)
+        {
+            Cancel(); /* Stops The Generator */
+        }
 
     }
 };
