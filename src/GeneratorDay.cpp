@@ -18,34 +18,90 @@
 /************************************************/
 /*                  Libraries                   */
 /************************************************/
-#include "../include/definitions.hpp"
-
+#include "../include/GeneratorDay.hpp"
+#include "../include/ElectricVehicle.hpp"
 /************************************************/
-/*                   Implementation             */
+/*                   Global Variables           */
 /************************************************/
-
 /**
  * @brief Flag With Information If Actual Period Is Daytime or Nighttime 
  */
 bool curr_period;
+/**
+ * @brief Number of Generated Cars. 
+ */
+int num_generated_cars = 0;
 
-class GeneratorDay : public Event
+/**
+ * @brief Flag With Information If Model Is Active.
+ * @details If Model Is Not Active, The Generator Will Stop Generating Cars.
+ */
+bool model_active = true;
+/************************************************/
+/*                   Implementation             */
+/************************************************/
+
+/************************************************/
+/*             TransactionDay Methods           */
+/************************************************/
+
+/**
+ * @brief Timer of The Day. Switches Between Daytime and Nighttime.
+ */
+TransactionDay::TransactionDay(double dayLenght) : day_lenght(dayLenght) {}
+
+void TransactionDay::Behavior()
 {
+    model_active = true;
+    double night_lenght = WHOLE_DAY_TIME - day_lenght;
+    
+    /* Simulate Daytime */
+    curr_period = PERIOD_DAYTIME;
+    Wait(day_lenght);
 
-    double current_time = 0.0; /**< Current simulation time. */
+    /* Simulate Nighttime */
+    curr_period = PERIOD_NIGHTTIME;
+    Wait(night_lenght); 
 
-    /**
-     * @brief Behavior function override from Event class.
-     */
-    void Behavior() override
+    model_active = false;
+    Cancel(); // End of The Day
+}
+
+
+/**
+ * @brief Generator of The EV Transaction In The Day Time.
+ */
+/************************************************/
+/*             GeneratorDay Methods             */
+/************************************************/
+GeneratorDay::GeneratorDay() : current_time(0.0) {}
+
+void GeneratorDay::Behavior()
+{
+    current_time = Time; // Model Time In Local Form
+
+    if (!model_active)
     {
-        /* Model Time In Local Form */
-        current_time = Time;
-
-        if (PERIOD_NIGHTTIME == current_time)
-        {
-            Cancel(); /* Stops The Generator */
-        }
-
+        Cancel(); // Stops The Generator
     }
-};
+    else
+    {
+        (new ElectricVehicle)->Activate();
+        
+        // Generate New EV (new ElectricCar)->Activate();
+        num_generated_cars++;
+
+        if (current_time < DAYTIME_LENGTH)
+        {
+            Activate(Time + Exponential(8));
+        }
+        else if (current_time < NIGHTTIME_LENGTH)
+        {
+            Activate(Time + Exponential(12)); 
+        }
+        else
+        {
+            Cancel();
+        }
+    }
+}
