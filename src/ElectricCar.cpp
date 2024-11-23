@@ -107,8 +107,12 @@ class ElectricCar : public Process
 
         void charge_battery_in_stage_0_20(void)
         {
-        
-            double time_spend_charging = 0.0;
+            double t_start_charging     = Time;
+
+            double t_charging_0_20_on_ac12     = 0.0;
+            double t_charging_0_20_on_ac22     = 0.0;
+            double t_charging_0_20_on_dc50     = 0.0;
+            double t_charging_0_20_on_dc108    = 0.0;
 
             if (POW_STATION_AC_12_KWH == pow_station)
             {
@@ -118,8 +122,13 @@ class ElectricCar : public Process
                 /* Generate Time In Uniform Distribution */
                 time_spend_charging = Uniform(0, MAX_TIME_12_KWH_AC_STATIONS_0_20);
 
+                /* Statistics - Current Time When Charging Started */
+                t_start_charging = Time;
                 /* Charging */
                 Wait(time_spend_charging);
+
+                /* Statistics - Time of Charging on AC 12kWh Charger In Stage 1 (0-20%) */
+                t_charging_0_20_on_ac12 = Time - t_start_charging;
 
                 // TODO: Continue With 20% - 80% Charging
             }
@@ -130,8 +139,14 @@ class ElectricCar : public Process
 
                 time_spend_charging = Uniform(0, MAX_TIME_22_KWH_AC_STATIONS_0_20);
 
+                /* Statistics - Current Time When Charging Started */
+                t_start_charging = Time;
+
                 /* Charging */
                 Wait(time_spend_charging);
+
+                /* Statistics - Time of Charging on AC 22kWh Charger In Stage 1 (0-20%) */
+                t_charging_0_20_on_ac22 = Time - t_start_charging;
 
                 // TODO: Continue With 20% - 80% Charging
             }
@@ -142,9 +157,15 @@ class ElectricCar : public Process
 
                 time_spend_charging = Uniform(0, MAX_TIME_50_KWH_DC_STATIONS_0_20);
 
+                /* Statistics - Current Time When Charging Started */
+                t_start_charging = Time;
+
                 /* Charging */
                 Wait(time_spend_charging);
 
+                /* Statistics - Time of Charging on DC 50kWh Charger In Stage 1 (0-20%) */
+                t_charging_0_20_on_dc50 = Time - t_start_charging;
+                
                 // TODO: Continue With 20% - 80% Charging
             }
             else
@@ -154,9 +175,15 @@ class ElectricCar : public Process
 
                 time_spend_charging = Uniform(0, MAX_TIME_108_KWH_DC_STATIONS_0_20);
 
+                /* Statistics - Current Time When Charging Started */
+                t_start_charging = Time;
+
                 /* Charging */
                 Wait(time_spend_charging);
 
+                /* Statistics - Time of Charging on DC 108kWh Charger In Stage 1 (0-20%) */
+                t_charging_0_20_on_dc108 = Time - t_start_charging;
+                
                 // TODO: Continue With 20% - 80% Charging
 
             }
@@ -318,7 +345,7 @@ class ElectricCar : public Process
                 /* Charge The Car In Stage 2 [80 - 100 %]*/
                 charge_battery_in_stage_80_100();
             }        
-            
+
             /* Terminate Process */
             Terminate();
         }
