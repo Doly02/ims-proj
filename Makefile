@@ -18,13 +18,13 @@ CFLAGS = -std=c++17 -Wall -Wextra -Iinclude
 DEBUG_CFLAGS = -fsanitize=address -g -std=c++17 -Wall -Wextra -Werror -Wshadow -Wnon-virtual-dtor -pedantic
 
 # Header Files
-HEADERS = include/definitions.hpp
+HEADERS = include/definitions.hpp include/ElectricVehicle.hpp include/GeneratorDay.hpp
 
 # Libraries
 LIBS = -lm -lsimlib
 
 # Source Files
-SOURCES = src/main.cpp
+SOURCES = src/ElectricVehicle.cpp src/GeneratorDay.cpp src/main.cpp
 # Object Files 
 OBJECTS = $(SOURCES:.cpp=.o)
 

@@ -52,7 +52,7 @@ typedef enum
     CHAR_STATE_20_80,
     CHAR_STATE_80_100
 
-} char_state_t
+} char_state_t;
 /************************************************/
 /*                   Definitions                */
 /************************************************/
@@ -121,75 +121,87 @@ typedef enum
 #define NUM_108_KWH_DC_STATIONS             (10)
 
 /**
- * @brief Max. Time For Charging on AC 12 kWh Charger,
- *        In First Stage of Charging (0% - 20%).
+ * @brief   Max. Time For Charging on AC 12 kWh Charger,
+ *          In First Stage of Charging (0% - 20%).
+ * @details 2.387 hours => 8593.2 seconds
  */
-#define MAX_TIME_12_KWH_AC_STATIONS_0_20     (0.5)
+#define MAX_TIME_12_KWH_AC_STATIONS_0_20     (8593)
 
 /**
- * @brief Max. Time For Charging on AC 22 kWh Charger,
- *        In First Stage of Charging (0% - 20%).
+ * @brief   Max. Time For Charging on AC 22 kWh Charger,
+ *          In First Stage of Charging (0% - 20%).
+ * @details 1.302 hours => 4687.2 seconds
  */
-#define MAX_TIME_22_KWH_AC_STATIONS_0_20     (0.5)
+#define MAX_TIME_22_KWH_AC_STATIONS_0_20     (4687)
 
 /**
- * @brief Max. Time For Charging on DC 50 kWh Charger,
- *        In First Stage of Charging (0% - 20%).
+ * @brief   Max. Time For Charging on DC 50 kWh Charger,
+ *          In First Stage of Charging (0% - 20%).
+ * @details 0.573 hours => 2062.8 seconds   
  */
-#define MAX_TIME_50_KWH_DC_STATIONS_0_20     (0.5)
+#define MAX_TIME_50_KWH_DC_STATIONS_0_20     (2063)
 
 /**
- * @brief Max. Time For Charging on DC 108 kWh Charger,
- *        In First Stage of Charging (0% - 20%).
+ * @brief   Max. Time For Charging on DC 108 kWh Charger,
+ *          In First Stage of Charging (0% - 20%).
+ * @details 0.159 hours => 572.4 seconds
  */
-#define MAX_TIME_108_KWH_DC_STATIONS_0_20    (0.5)
+#define MAX_TIME_108_KWH_DC_STATIONS_0_20    (572)
 
 /**
- * @brief Max. Time For Charging on AC 12 kWh Charger,
- *        In First Stage of Charging (20% - 80%).
+ * @brief   Max. Time For Charging on AC 12 kWh Charger,
+ *          In First Stage of Charging (20% - 80%).
+ * @details 5.728 hours => 20620.8 seconds
  */
-#define MAX_TIME_12_KWH_AC_STATIONS_20_80    (0.5)
+#define MAX_TIME_12_KWH_AC_STATIONS_20_80    (20621)
 
 /**
- * @brief Max. Time For Charging on AC 22 kWh Charger,
- *        In First Stage of Charging (20% - 80%).
+ * @brief   Max. Time For Charging on AC 22 kWh Charger,
+ *          In First Stage of Charging (20% - 80%).
+ * @details 3.096 hours => 11145.6 seconds
  */
-#define MAX_TIME_22_KWH_AC_STATIONS_20_80    (0.5)
+#define MAX_TIME_22_KWH_AC_STATIONS_20_80    (11146)
 
 /**
- * @brief Max. Time For Charging on DC 50 kWh Charger,
- *        In First Stage of Charging (20% - 80%).
+ * @brief   Max. Time For Charging on DC 50 kWh Charger,
+ *          In First Stage of Charging (20% - 80%).
+ * @details 1.364 hours => 4910.4 seconds
  */
-#define MAX_TIME_50_KWH_DC_STATIONS_20_80    (0.5)
+#define MAX_TIME_50_KWH_DC_STATIONS_20_80    (4910)
 
 /**
- * @brief Max. Time For Charging on DC 108 kWh Charger,
- *        In First Stage of Charging (20% - 80%).
+ * @brief   Max. Time For Charging on DC 108 kWh Charger,
+ *          In First Stage of Charging (20% - 80%).
+ * @details 0.636 hours => 2289.6 seconds
  */
-#define MAX_TIME_108_KWH_DC_STATIONS_20_80   (0.5)
+#define MAX_TIME_108_KWH_DC_STATIONS_20_80   (2290)
 
 /**
- * @brief Max. Time For Charging on AC 12 kWh Charger,
- *        In First Stage of Charging (80% - 100%).
+ * @brief   Max. Time For Charging on AC 12 kWh Charger,
+ *          In First Stage of Charging (80% - 100%).
+ * @details 3.509 hours => 12632.4 seconds
  */
-#define MAX_TIME_12_KWH_AC_STATIONS_80_100   (0.5)
+#define MAX_TIME_12_KWH_AC_STATIONS_80_100   (12632)
 
 /**
- * @brief Max. Time For Charging on AC 22 kWh Charger,
- *        In First Stage of Charging (80% - 100%).
+ * @brief   Max. Time For Charging on AC 22 kWh Charger,
+ *          In First Stage of Charging (80% - 100%).
+ * @details 1.914 hours => 6890.4 seconds
  */
-#define MAX_TIME_22_KWH_AC_STATIONS_80_100   (0.5)
+#define MAX_TIME_22_KWH_AC_STATIONS_80_100   (6890)
 
 /**
- * @brief Max. Time For Charging on DC 50 kWh Charger,
- *        In First Stage of Charging (80% - 100%).
+ * @brief   Max. Time For Charging on DC 50 kWh Charger,
+ *          In First Stage of Charging (80% - 100%).
+ * @details 0.842 hours => 3031.2 seconds
  */
-#define MAX_TIME_50_KWH_DC_STATIONS_80_100   (0.5)
+#define MAX_TIME_50_KWH_DC_STATIONS_80_100   (3031)
 
 /**
- * @brief Max. Time For Charging on DC 108 kWh Charger,
- *        In First Stage of Charging (80% - 100%).
+ * @brief   Max. Time For Charging on DC 108 kWh Charger,
+ *          In First Stage of Charging (80% - 100%).
+ * @details 0.390 hours => 1404 seconds
  */
-#define MAX_TIME_108_KWH_DC_STATIONS_80_100  (0.5)
+#define MAX_TIME_108_KWH_DC_STATIONS_80_100  (1404)
 
 #endif // DEFINITIONS_HPP
