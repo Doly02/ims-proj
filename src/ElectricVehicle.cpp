@@ -32,7 +32,7 @@ double num_charged_cars_per_period = 0.0;
  * @brief Average Time That Car Spends In The System.
  */
 double avg_time_in_system = 0.0;
-
+ 
 /**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 1, and Uses 12kWh AC Charger [0 - 20%]
  *         and That Leaves The System.
@@ -139,7 +139,7 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
 
         /* Statistics - Store Time Spend on Charging in Stage 1, Use t_start_charging For Next Charging In Stage 2 [20-80%]*/
         ev_stats_ac12_0_20.emplace_back(t_start_charging, t_charging_0_20_on_ac12);
-
+        
         // TODO: Continue With 20% - 80% Charging
     }
     else if (POW_STATION_AC_22_KWH == pow_station)
@@ -332,7 +332,7 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
 }
 
 /**
- * @brief Defines behavior of process EletricCar.
+ * @brief Defines behavior of process EletricVehicle.
  */
 void ElectricVehicle::Behavior()
 {
