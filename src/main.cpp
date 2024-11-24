@@ -20,7 +20,7 @@
 /*                  Libraries                   */
 /************************************************/
 #include "../include/definitions.hpp"
-
+#include "../include/GeneratorDay.hpp"
 /************************************************/
 /*                  Global Variables            */
 /************************************************/
@@ -30,6 +30,16 @@ int dc50_chargers = NUM_50_KWH_DC_STATIONS;
 int dc108_chargers = NUM_108_KWH_DC_STATIONS;
 double speed_value = 0.0;
 bool is_day = false;
+/************************************************/
+/*                   Statistics                 */
+/************************************************/
+
+/**
+ * TODO:    Create HERE The Variables For Model Statistics. Variables Then Should Be Extern Into Electric Vehicle Class.
+ *          Or Create in The Electric Vehicle Class And Then Use Them Here.
+ */
+
+
 /************************************************/
 /*                   Main                       */
 /************************************************/
@@ -113,16 +123,26 @@ int main(int argc, char *argv[])
     retVal = parse_args(argc, argv);
 
     printf("Modeling & Simulation Project - Electromobility in Brno 2024\n");
-    Init(0, DAY_TIME);
+    Init(0, WHOLE_DAY_TIME);
 
     if (1 == retVal)    /* Simulation Of Day */
     {
-
+        (new TransactionDay(DAYTIME_LENGTH))->Activate();
+        (new GeneratorDay())->Activate();
     }
     else                /* Simulation Of Night */
     {
+        (new TransactionDay(DAYTIME_LENGTH))->Activate();
+        (new GeneratorDay())->Activate();
+        /**
+         * TODO: Update The Code, Current Implementation Is The Same For Day/Night Mode,
+         * In Both Modes Runs The Day Mode And After That The Night Mode.
+         **/  
+    }   
+    Run();
 
-    }
+    /* Print Statistics */
+    /* TODO: Code For Printing */
 
     return 0;
 }
