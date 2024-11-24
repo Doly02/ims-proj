@@ -49,14 +49,14 @@ extern bool model_active;
 class TransactionDay : public Process
 {
 private:
-    double day_lenght; /**< Duration of the daytime period. */
+    double day_length; /**< Duration of the daytime period. */
 
 public:
     /**
      * @brief Constructor for TransactionDay.
-     * @param dayLenght Duration of the daytime in simulation time.
+     * @param dayLength Duration of the daytime in simulation time.
      */
-    explicit TransactionDay(double dayLenght);
+    explicit TransactionDay(double dayLength);
 
     /**
      * @brief Behavior of the process simulating the day-night cycle.

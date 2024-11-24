@@ -48,20 +48,20 @@ bool model_active = true;
 /**
  * @brief Timer of The Day. Switches Between Daytime and Nighttime.
  */
-TransactionDay::TransactionDay(double dayLenght) : day_lenght(dayLenght) {}
+TransactionDay::TransactionDay(double dayLength) : day_length(dayLength) {}
 
 void TransactionDay::Behavior()
 {
     model_active = true;
-    double night_lenght = WHOLE_DAY_TIME - day_lenght;
+    double night_length = WHOLE_DAY_TIME - day_length;
     
     /* Simulate Daytime */
     curr_period = PERIOD_DAYTIME;
-    Wait(day_lenght);
+    Wait(day_length);
 
     /* Simulate Nighttime */
     curr_period = PERIOD_NIGHTTIME;
-    Wait(night_lenght); 
+    Wait(night_length); 
 
     model_active = false;
     Cancel(); // End of The Day
