@@ -5,12 +5,13 @@
 
 The goal of this project in the subject Modeling and Simulations was to create a model in the energy sector.
 ## Requirements
-To build and run `ipk24chat-client`, you will need the following:
+To build and run `sim`, you will need the following:
 
 ### Compiler
 - **Clang++** with support for **C++17** standard. This project uses specific compiler flags to enforce code quality and standards. Make sure your compiler version supports `-std=c++17` along with the flags `-Wall -Wextra -Werror -Wshadow -Wnon-virtual-dtor -pedantic`.
 
 ### Libraries
+- **SIMLIB/C++ - SIMulation LIBrary for C++**: Required for compiling and running application. Ensure you have SIMLIB installed on your system as it uses `--lm  -lsimlib` flags for linking.
 - **Google Test (gtest)**: Required for compiling and running the unit tests. Ensure you have Google Test installed on your system as it uses `-lgtest -lgtest_main -pthread` flags for linking.
 
 ### Build tools
