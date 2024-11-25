@@ -1,7 +1,7 @@
 # IMS Project: Model of Electromobility in Brno
-- Authors: Tomáš Dolák, Monika Zahradníková
-- Logins: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220), xzahra33
-- Emails: <xdolak09@stud.fit.vutbr.cz>, <xzahra33@stud.fit.vutbr.cz>
+- Author: Tomáš Dolák, Monika Zahradníková
+- Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220), [xzahra33](https://www.vut.cz/lide/monika-zahradnikova-250462)
+- Email: <xdolak09@stud.fit.vutbr.cz>, <xzahra33@stud.fit.vutbr.cz>
 
 The goal of this project in the subject Modeling and Simulations was to create a model in the energy sector.
 ## Requirements

@@ -30,6 +30,7 @@ int dc50_chargers = NUM_50_KWH_DC_STATIONS;
 int dc108_chargers = NUM_108_KWH_DC_STATIONS;
 double speed_value = 0.0;
 bool is_day = false;
+bool is_24_hours = false;
 /************************************************/
 /*                   Statistics                 */
 /************************************************/
@@ -45,7 +46,7 @@ bool is_day = false;
 /************************************************/
 void print_usage(void)
 {
-    printf("Usage: ./ims [day|night] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc108 [number]] [-s <speed_value>] [-h]\n");
+    printf("Usage: ./sim [day|night|24hours] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc108 [number]] [-s <speed_value>] [-h]\n");
     printf("Options:\n");
     printf("  -ac12  [number]       : Specify The Number of AC 12 kWh Chargers\n");
     printf("  -ac22  [number]       : Specify The Number of AC 22 kWh Chargers\n");
@@ -70,6 +71,10 @@ bool parse_args(int argc, char *argv[])
     else if (strcmp(argv[1], "night") == 0)
     {
         is_day = false;
+    }
+    else if (strcmp(argv[1], "24hours") == 0)
+    {
+        is_24_hours = true;
     }
     else
     {
@@ -121,17 +126,23 @@ int main(int argc, char *argv[])
     
     /* Parse Arguments */
     retVal = parse_args(argc, argv);
+    if (!retVal){
+        return 1;
+    }
 
     printf("Modeling & Simulation Project - Electromobility in Brno 2024\n");
-    Init(0, WHOLE_DAY_TIME);
 
-    if (1 == retVal)    /* Simulation Of Day */
+    // TODO: Simulation of whole 24 hours
+
+    if (is_day)    /* Simulation Of Day */
     {
+        Init(0, DAYTIME_LENGTH);
         (new TransactionDay(DAYTIME_LENGTH))->Activate();
         (new GeneratorDay())->Activate();
     }
-    else                /* Simulation Of Night */
+    else           /* Simulation Of Night */
     {
+        Init(0, NIGHTTIME_LENGTH);
         (new TransactionDay(DAYTIME_LENGTH))->Activate();
         (new GeneratorDay())->Activate();
         /**
