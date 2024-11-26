@@ -67,6 +67,12 @@ void TransactionDay::Behavior()
     Cancel(); // End of The Day
 }
 
+double calculateGenerationLambda(int total_cars, double charging_percentage, int period)
+{
+    period = period / 3600;
+    double lambda = 3600 / ((total_cars * charging_percentage)/period);
+    return lambda;
+}
 
 /**
  * @brief Generator of The EV Transaction In The Day Time.
@@ -74,7 +80,8 @@ void TransactionDay::Behavior()
 /************************************************/
 /*             GeneratorDay Methods             */
 /************************************************/
-GeneratorDay::GeneratorDay() : current_time(0.0) {}
+GeneratorDay::GeneratorDay(int total_cars, double charging_percentage) :
+        total_cars(total_cars), charging_percentage(charging_percentage), current_time(0.0) {}
 
 void GeneratorDay::Behavior()
 {
@@ -93,13 +100,15 @@ void GeneratorDay::Behavior()
 
         if (current_time < DAYTIME_LENGTH)
         {
+            double lambda = calculateGenerationLambda(total_cars, charging_percentage, DAYTIME_LENGTH);
 
-            // in seconds 4 min = 240 s
-            Activate(Time + Exponential(240));  // TODO: Change To Realistic Value
+            Activate(Time + Exponential(lambda));
         }
         else if (current_time < NIGHTTIME_LENGTH)
         {
-            Activate(Time + Exponential(600)); // TODO: Change To Realistic Value
+            double lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH);
+
+            Activate(Time + Exponential(lambda));
         }
         else
         {

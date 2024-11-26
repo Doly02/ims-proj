@@ -71,13 +71,15 @@ public:
 class GeneratorDay : public Event
 {
 private:
-    double current_time; /**< Current simulation time. */
+    int total_cars;            /** Total number of cars */
+    double charging_percentage; /** Percentage of cars charging */
+    double current_time; /** Current simulation time. */
 
 public:
     /**
      * @brief Default constructor.
      */
-    GeneratorDay();
+    GeneratorDay(int total_cars, double charging_percentage);
 
     /**
      * @brief Behavior function to manage the generation of EV transactions.

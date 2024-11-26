@@ -26,11 +26,14 @@
 /************************************************/
 /*                  Global Variables            */
 /************************************************/
+int num_of_cars_in_city = NUM_OF_CARS_IN_CITY;
+double charging_percentage_of_cars = CHARGING_PERCENTAGE_OF_CARS;
+
 int ac12_chargers = NUM_12_KWH_AC_STATIONS;
 int ac22_chargers = NUM_22_KWH_AC_STATIONS;
 int dc50_chargers = NUM_50_KWH_DC_STATIONS;
 int dc108_chargers = NUM_108_KWH_DC_STATIONS;
-double speed_value = 0.0;
+
 bool is_day = false;
 bool is_24_hours = false;
 /************************************************/
@@ -43,22 +46,20 @@ bool is_24_hours = false;
  *
  */
 
-
-
-
 /************************************************/
 /*                   Main                       */
 /************************************************/
 void print_usage(void)
 {
-    printf("Usage: ./sim [day|night|24hours] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc108 [number]] [-s <speed_value>] [-h]\n");
+    printf("Usage: ./sim [day|night|24hours] [-total_cars [number]] [-charging_percentage [number]] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc108 [number]] [-h]\n");
     printf("Options:\n");
-    printf("  -ac12  [number]       : Specify The Number of AC 12 kWh Chargers\n");
-    printf("  -ac22  [number]       : Specify The Number of AC 22 kWh Chargers\n");
-    printf("  -dc50  [number]       : Specify The Number of DC 50 kWh Chargers\n");
-    printf("  -dc108 [number]       : Specify The Number of DC 108 kWh Chargers\n");
-    printf("  -s <speed_value>      : Specify Speed Value (In Double)\n");
-    printf("  -h                    : Display Usage Message\n");
+    printf("  -total_cars [number]             : Specify The Number of Cars in The City\n");
+    printf("  -charging_percentage [number]    : Specify The Percentage of Cars to Charge During the Period (value must be between 0 and 1, e.g., 0.25 for 25%%)\n");
+    printf("  -ac12  [number]                  : Specify The Number of AC 12 kWh Chargers\n");
+    printf("  -ac22  [number]                  : Specify The Number of AC 22 kWh Chargers\n");
+    printf("  -dc50  [number]                  : Specify The Number of DC 50 kWh Chargers\n");
+    printf("  -dc108 [number]                  : Specify The Number of DC 108 kWh Chargers\n");
+    printf("  -h                               : Display Usage Message\n");
 }
 
 bool parse_args(int argc, char *argv[])
@@ -94,6 +95,14 @@ bool parse_args(int argc, char *argv[])
             print_usage();
             return false;
         }
+        else if (strcmp(argv[i], "-total_cars") == 0 && i + 1 < argc)
+        {
+            num_of_cars_in_city = atoi(argv[++i]);
+        }
+        else if (strcmp(argv[i], "-charging_percentage") == 0 && i + 1 < argc)
+        {
+            charging_percentage_of_cars = atoi(argv[++i]);
+        }
         else if (strcmp(argv[i], "-ac12") == 0 && i + 1 < argc)
         {
             ac12_chargers = atoi(argv[++i]);
@@ -109,10 +118,6 @@ bool parse_args(int argc, char *argv[])
         else if (strcmp(argv[i], "-dc108") == 0 && i + 1 < argc)
         {
             dc108_chargers = atoi(argv[++i]);
-        }
-        else if (strcmp(argv[i], "-s") == 0 && i + 1 < argc)
-        {
-            speed_value = atof(argv[++i]);
         }
         else
         {
@@ -138,18 +143,24 @@ int main(int argc, char *argv[])
     printf("Modeling & Simulation Project - Electromobility in Brno 2024\n");
 
     // TODO: Simulation of whole 24 hours
+    if (is_24_hours)   /* Simulation Of 24 hours period */
+    {
+        Init(0, WHOLE_DAY_TIME);
+        (new TransactionDay(WHOLE_DAY_TIME))->Activate();
+        (new GeneratorDay(num_of_cars_in_city, charging_percentage_of_cars))->Activate();
+    }
 
-    if (is_day)    /* Simulation Of Day */
+    else if (is_day)    /* Simulation Of Day */
     {
         Init(0, DAYTIME_LENGTH);
         (new TransactionDay(DAYTIME_LENGTH))->Activate();
-        (new GeneratorDay())->Activate();
+        (new GeneratorDay(num_of_cars_in_city, charging_percentage_of_cars))->Activate();
     }
     else           /* Simulation Of Night */
     {
         Init(0, NIGHTTIME_LENGTH);
-        (new TransactionDay(DAYTIME_LENGTH))->Activate();
-        (new GeneratorDay())->Activate();
+        (new TransactionDay(NIGHTTIME_LENGTH))->Activate();
+        (new GeneratorDay(num_of_cars_in_city, charging_percentage_of_cars))->Activate();
         /**
          * TODO: Update The Code, Current Implementation Is The Same For Day/Night Mode,
          * In Both Modes Runs The Day Mode And After That The Night Mode.
@@ -165,13 +176,17 @@ int main(int argc, char *argv[])
     CHAR_STATION_DC_50KWH.Output();
     CHAR_STATION_DC_108KWH.Output();
 
-    if (is_day)
+    if (is_24_hours)
+        printf("Statistics during 24 hours period\n");
+    else if (is_day)
         printf("Statistics during the day period 7:00-21:00\n");
     else
         printf("Statistics during the night period 21:00-7:00\n");
 
     printf("---------------------------------------------------------------\n");
     std::cout << "Number of generated vehicles: " << num_generated_cars << std::endl;
+    std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
+    std::cout << "Number of vehicles on stations: " << num_cars_on_station << std::endl;
 
     return 0;
 }

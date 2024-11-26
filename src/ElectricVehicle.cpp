@@ -27,7 +27,10 @@
 /**
  * @brief Number of Charged Car Per Period (Day/Night).
  */
-double num_charged_cars_per_period = 0.0;   
+double num_charged_cars_per_period = 0.0;
+
+
+double num_cars_on_station = 0.0;
 /**
  * @brief Average Time That Car Spends In The System.
  */
@@ -129,6 +132,8 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_AC_12KWH, 1);
 
+        num_cars_on_station++;
+
         /* Generate Time In Uniform Distribution */
         time_spend_charging = Uniform(0, MAX_TIME_12_KWH_AC_STATIONS_0_20);
 
@@ -150,6 +155,8 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_AC_22KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_22_KWH_AC_STATIONS_0_20);
 
@@ -173,6 +180,8 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_50KWH, 1);
 
+        num_cars_on_station++;
+
         time_spend_charging = Uniform(0, MAX_TIME_50_KWH_DC_STATIONS_0_20);
 
         /* Statistics - Current Time When Charging Started */
@@ -194,6 +203,8 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_108KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_108_KWH_DC_STATIONS_0_20);
 
@@ -232,6 +243,8 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_AC_12KWH, 1);
 
+        num_charged_cars_per_period++;
+
     }
     else if (POW_STATION_AC_22_KWH == pow_station)
     {
@@ -245,6 +258,8 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_AC_22KWH, 1);
 
+        num_charged_cars_per_period++;
+
     }
     else if (POW_STATION_DC_50_KWH == pow_station)
     {
@@ -257,6 +272,8 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
 
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_DC_50KWH, 1);
+
+        num_charged_cars_per_period++;
     }
     else
     {
@@ -269,6 +286,8 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
 
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_DC_108KWH, 1);
+
+        num_charged_cars_per_period++;
     }
 }
 
@@ -281,6 +300,8 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_AC_12KWH, 1);
 
+        num_cars_on_station++;
+
         /* Generate Time In Uniform Distribution */
         time_spend_charging = Uniform(0, MAX_TIME_12_KWH_AC_STATIONS_20_80);
 
@@ -290,11 +311,14 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_AC_12KWH, 1);
 
+        num_charged_cars_per_period++;
     }
     else if (POW_STATION_AC_22_KWH == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_AC_22KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_22_KWH_AC_STATIONS_20_80);
 
@@ -304,11 +328,15 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_AC_22KWH, 1);
 
+        num_charged_cars_per_period++;
+
     }
     else if (POW_STATION_DC_50_KWH == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_50KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_50_KWH_DC_STATIONS_20_80);
 
@@ -317,11 +345,15 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_DC_50KWH, 1);
+
+        num_charged_cars_per_period++;
     }
     else
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_108KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_108_KWH_DC_STATIONS_0_20);
 
@@ -331,6 +363,7 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_DC_108KWH, 1);
 
+        num_charged_cars_per_period++;
     }
 }
 
@@ -343,6 +376,8 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_AC_12KWH, 1);
 
+        num_cars_on_station++;
+
         /* Generate Time In Uniform Distribution */
         time_spend_charging = Uniform(0, MAX_TIME_12_KWH_AC_STATIONS_80_100);
 
@@ -352,11 +387,15 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_AC_12KWH, 1);
 
+        num_charged_cars_per_period++;
+
     }
     else if (POW_STATION_AC_22_KWH == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_AC_22KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_22_KWH_AC_STATIONS_80_100);
 
@@ -366,11 +405,15 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_AC_22KWH, 1);
 
+        num_charged_cars_per_period++;
+
     }
     else if (POW_STATION_DC_50_KWH == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_50KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_50_KWH_DC_STATIONS_80_100);
 
@@ -379,11 +422,15 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_DC_50KWH, 1);
+
+        num_charged_cars_per_period++;
     }
     else
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_108KWH, 1);
+
+        num_cars_on_station++;
 
         time_spend_charging = Uniform(0, MAX_TIME_108_KWH_DC_STATIONS_80_100);
 
@@ -392,6 +439,8 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
 
         /* Leave The Space In Charging Station */
         Leave(CHAR_STATION_DC_108KWH, 1);
+
+        num_charged_cars_per_period++;
 
     }
 }

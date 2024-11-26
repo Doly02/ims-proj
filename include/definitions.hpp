@@ -61,22 +61,32 @@ typedef enum
 /**
  * @brief Whole Day Time In Seconds.
  */
-#define WHOLE_DAY_TIME                      (24 * 3600)
+#define WHOLE_DAY_TIME                      (24 * 60)
 
 /**
  * @brief Daytime Length In Seconds.
  */
-#define DAYTIME_LENGTH                      (14 * 3600)
+#define DAYTIME_LENGTH                      (14 * 60)
 
 /**
  * @brief Nighttime Length In Seconds.
  */
-#define NIGHTTIME_LENGTH                    (10 * 3600)
+#define NIGHTTIME_LENGTH                    (10 * 60)
 
 
 #define PERIOD_DAYTIME                      (true)
 
 #define PERIOD_NIGHTTIME                    (false)
+
+/**
+ * @brief   Number Of Cars In The City
+ */
+#define NUM_OF_CARS_IN_CITY                 (2120)
+
+/**
+ * @brief   Percentage Of Cars To Charge In Period
+ */
+#define CHARGING_PERCENTAGE_OF_CARS         (0.3)
 
 /**
  * @brief   Chance That Car Will Choose 12kWh AC Charging Station.

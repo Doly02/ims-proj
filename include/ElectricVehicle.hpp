@@ -32,6 +32,7 @@
  */
 extern double num_charged_cars_per_period;
 extern double avg_time_in_system;
+extern double num_cars_on_station;
 
 extern std::vector<std::pair<double, double>> ev_stats_ac12_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_0_20;
