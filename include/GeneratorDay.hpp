@@ -31,7 +31,7 @@ extern bool curr_period;
 /**
  * @brief Counter for the number of generated cars.
  */
-extern bool num_generated_cars;
+extern int num_generated_cars;
 
 /**
  * @brief Flag indicating if the model is active.
