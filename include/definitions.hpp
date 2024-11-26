@@ -88,19 +88,19 @@ typedef enum
  * @brief   Chance That Car Will Choose 22kWh AC Charging Station.
  * @details 58 / 102 = 56.86% 
  */
-#define CHANCE_22_KWH_AC_STATIONS           (0.5686)
+#define CHANCE_22_KWH_AC_STATIONS           (0.1177 + 0.5686)
 
 /**
  * @brief   Chance That Car Will Choose 58kWh DC Charging Station.
  * @details 22 / 102 = 21.57% 
  */
-#define CHANCE_50_KWH_DC_STATIONS           (0.2157)
+#define CHANCE_50_KWH_DC_STATIONS           (0.1177 + 0.5686 + 0.2157)
 
 /**
  * @brief   Chance That Car Will Choose 108kWh DC Charging Station.
  * @details 10 / 102 = 9.80% 
  */
-#define CHANCE_108_KWH_DC_STATIONS          (0.0980)
+#define CHANCE_108_KWH_DC_STATIONS          (0.1177 + 0.5686 + 0.2157 + 0.0980)
 
 /**
  * @brief Number of 12kWh AC Charging Stations in Brno.
