@@ -21,6 +21,8 @@
 /************************************************/
 #include "../include/definitions.hpp"
 #include "../include/GeneratorDay.hpp"
+#include "../include/ElectricVehicle.hpp"
+
 /************************************************/
 /*                  Global Variables            */
 /************************************************/
@@ -38,7 +40,10 @@ bool is_24_hours = false;
 /**
  * TODO:    Create HERE The Variables For Model Statistics. Variables Then Should Be Extern Into Electric Vehicle Class.
  *          Or Create in The Electric Vehicle Class And Then Use Them Here.
+ *
  */
+
+
 
 
 /************************************************/
@@ -154,6 +159,19 @@ int main(int argc, char *argv[])
 
     /* Print Statistics */
     /* TODO: Code For Printing */
+    SetOutput("SimOutput");
+    CHAR_STATION_AC_12KWH.Output();
+    CHAR_STATION_AC_22KWH.Output();
+    CHAR_STATION_DC_50KWH.Output();
+    CHAR_STATION_DC_108KWH.Output();
+
+    if (is_day)
+        printf("Statistics during the day period 7:00-21:00\n");
+    else
+        printf("Statistics during the night period 21:00-7:00\n");
+
+    printf("---------------------------------------------------------------\n");
+    std::cout << "Number of generated vehicles: " << num_generated_cars << std::endl;
 
     return 0;
 }

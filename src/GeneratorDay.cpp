@@ -93,11 +93,13 @@ void GeneratorDay::Behavior()
 
         if (current_time < DAYTIME_LENGTH)
         {
-            Activate(Time + Exponential(8));  // TODO: Change To Realistic Value
+
+            // in seconds 4 min = 240 s
+            Activate(Time + Exponential(240));  // TODO: Change To Realistic Value
         }
         else if (current_time < NIGHTTIME_LENGTH)
         {
-            Activate(Time + Exponential(12)); // TODO: Change To Realistic Value
+            Activate(Time + Exponential(600)); // TODO: Change To Realistic Value
         }
         else
         {
