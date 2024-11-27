@@ -40,6 +40,14 @@ extern std::vector<std::pair<double, double>> ev_stats_dc50_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_0_20;
 
 /**
+ * @brief Chances to choose the stations.
+ */
+extern double chance_12_kwh_ac_station;
+extern double chance_22_kwh_ac_station;
+extern double chance_50_kwh_dc_station;
+extern double chance_108_kwh_dc_station;
+
+/**
  * @brief Charging station stores.
  */
 extern Store CHAR_STATION_AC_12KWH;

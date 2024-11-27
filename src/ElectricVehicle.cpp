@@ -30,7 +30,10 @@
 double num_charged_cars_per_period = 0.0;
 
 
+//TODO: Zatial je potrebna, neskor mozno vymazat
 double num_cars_on_station = 0.0;
+
+
 /**
  * @brief Average Time That Car Spends In The System.
  */
@@ -63,34 +66,32 @@ std::vector<std::pair<double, double>> ev_stats_dc108_0_20;
 /************************************************/
 /*                   Stores                     */
 /************************************************/
-Store CHAR_STATION_AC_12KWH("Charging Station 12kWh", NUM_12_KWH_AC_STATIONS);     // TODO:
+Store CHAR_STATION_AC_12KWH("Charging Station 12kWh", NUM_12_KWH_AC_STATIONS);
 
-Store CHAR_STATION_AC_22KWH("Charging Station 22kWh", NUM_22_KWH_AC_STATIONS);     // TODO:
+Store CHAR_STATION_AC_22KWH("Charging Station 22kWh", NUM_22_KWH_AC_STATIONS);
 
-Store CHAR_STATION_DC_50KWH("Charging Station 50kWh", NUM_50_KWH_DC_STATIONS);     // TODO:
+Store CHAR_STATION_DC_50KWH("Charging Station 50kWh", NUM_50_KWH_DC_STATIONS);
 
-Store CHAR_STATION_DC_108KWH("Charging Station 108kWh", NUM_108_KWH_DC_STATIONS);  // TODO:
+Store CHAR_STATION_DC_108KWH("Charging Station 108kWh", NUM_108_KWH_DC_STATIONS);
+
+
 /************************************************/
 /*                   Implementation             */
 /************************************************/
 
-void ElectricVehicle::choose_battery_cap(void)
-{
+void ElectricVehicle::choose_battery_cap(void) {
     double battery_state = Random();
 
     // 10 % of vehicles come with a battery capacity 0-20 %
-    if (battery_state < 0.1)
-    {
+    if (battery_state < 0.1) {
         char_state = CHAR_STATE_0_20;
     }
-    // 80 % of vehicles come with a battery capacity 20-80 %
-    else if (battery_state < 0.9)
-    {   
+        // 80 % of vehicles come with a battery capacity 20-80 %
+    else if (battery_state < 0.9) {
         char_state = CHAR_STATE_20_80;
     }
-    // 10 % of vehicles come with a battery capacity 80-100 %
-    else
-    {
+        // 10 % of vehicles come with a battery capacity 80-100 %
+    else {
         char_state = CHAR_STATE_80_100;
     }
 
@@ -100,15 +101,15 @@ void ElectricVehicle::choose_battery_station(void)
 {
     double station = Random();
 
-    if (station < CHANCE_12_KWH_AC_STATIONS)        // Chance of Choosing AC 12 kW
+    if (station < chance_12_kwh_ac_station)        // Chance of Choosing AC 12 kW
     {
         pow_station = POW_STATION_AC_12_KWH;
     }
-    else if (station < CHANCE_22_KWH_AC_STATIONS)   // Chance of Choosing AC 22 kW
+    else if (station < chance_22_kwh_ac_station)   // Chance of Choosing AC 22 kW
     {
         pow_station = POW_STATION_AC_22_KWH;
     }
-    else if (station < CHANCE_50_KWH_DC_STATIONS)   // Chance of Choosing DC 50 kW
+    else if (station < chance_50_kwh_dc_station)   // Chance of Choosing DC 50 kW
     {
         pow_station = POW_STATION_DC_50_KWH; 
     }

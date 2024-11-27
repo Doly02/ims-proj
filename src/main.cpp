@@ -34,6 +34,11 @@ int ac22_chargers = NUM_22_KWH_AC_STATIONS;
 int dc50_chargers = NUM_50_KWH_DC_STATIONS;
 int dc108_chargers = NUM_108_KWH_DC_STATIONS;
 
+double chance_12_kwh_ac_station = CHANCE_12_KWH_AC_STATIONS;
+double chance_22_kwh_ac_station = CHANCE_22_KWH_AC_STATIONS;
+double chance_50_kwh_dc_station = CHANCE_50_KWH_DC_STATIONS;
+double chance_108_kwh_dc_station = CHANCE_108_KWH_DC_STATIONS;
+
 bool is_day = false;
 bool is_24_hours = false;
 /************************************************/
@@ -135,6 +140,21 @@ bool parse_args(int argc, char *argv[])
     return true;
 }
 
+void update_store_values() {
+    CHAR_STATION_AC_12KWH.SetCapacity(ac12_chargers);
+    CHAR_STATION_AC_22KWH.SetCapacity(ac22_chargers);
+    CHAR_STATION_DC_50KWH.SetCapacity(dc50_chargers);
+    CHAR_STATION_DC_108KWH.SetCapacity(dc108_chargers);
+}
+
+void update_stations_chance() {
+    double count = ac12_chargers + ac22_chargers + dc50_chargers + dc108_chargers;
+    chance_12_kwh_ac_station = ac12_chargers / count;
+    chance_22_kwh_ac_station = chance_12_kwh_ac_station + (ac22_chargers / count);
+    chance_50_kwh_dc_station = chance_22_kwh_ac_station + (dc50_chargers / count);
+    chance_108_kwh_dc_station = chance_50_kwh_dc_station + (dc108_chargers / count);
+}
+
 int main(int argc, char *argv[]) 
 {
     bool retVal;
@@ -144,6 +164,12 @@ int main(int argc, char *argv[])
     if (!retVal){
         return 1;
     }
+
+    /* Update Store Capacities Based on Parsed Arguments */
+    update_store_values();
+
+    /* Update Chances to Choose the Stations Based on Parsed Arguments */
+    update_stations_chance();
 
     printf("Modeling & Simulation Project - Electromobility in Brno 2024\n");
 
