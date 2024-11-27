@@ -101,7 +101,12 @@ bool parse_args(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "-charging_percentage") == 0 && i + 1 < argc)
         {
-            charging_percentage_of_cars = atoi(argv[++i]);
+            charging_percentage_of_cars = atof(argv[++i]);
+            if (charging_percentage_of_cars < 0.0 || charging_percentage_of_cars > 1.0)
+            {
+                printf("Error: charging_percentage must be between 0 and 1.\n");
+                return false;
+            }
         }
         else if (strcmp(argv[i], "-ac12") == 0 && i + 1 < argc)
         {
@@ -169,7 +174,6 @@ int main(int argc, char *argv[])
     Run();
 
     /* Print Statistics */
-    /* TODO: Code For Printing */
     SetOutput("SimOutput");
     CHAR_STATION_AC_12KWH.Output();
     CHAR_STATION_AC_22KWH.Output();

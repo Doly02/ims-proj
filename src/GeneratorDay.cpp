@@ -69,8 +69,8 @@ void TransactionDay::Behavior()
 
 double calculateGenerationLambda(int total_cars, double charging_percentage, int period)
 {
-    period = period / 3600;
-    double lambda = 3600 / ((total_cars * charging_percentage)/period);
+    period = period / 60;
+    double lambda = 60 / ((total_cars * charging_percentage)/period);
     return lambda;
 }
 
