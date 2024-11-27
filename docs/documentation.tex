@@ -152,12 +152,36 @@ My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt
 V zásadě Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
 celkově 130.
 
-% TODO: tabulka rozdeleni elektrostanic
-
-\subsubsection{Zpracování datasetu}
-Text
-
 % TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
+\subsubsection{Zpracování datasetu}
+Data z datasetu poskytnutého portálem www.data.brno.cz \cite{data_brno}, bylo třeba nejprve zpracovat a určit 
+aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_stations.xl},
+obsahuje tedy roztřízené elektrostanice podle typu proudu (stejnosměrný/střídavý) a výkonu nabíjení. Jak již bylo
+řečeno Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je celkově 130,
+do úvahy jsme však vybrali pouze stanice s nabíjecím výkonem od 12 kW, jelikož systému s výkonem 3.7 kW se dnes již 
+neimplementují do veřejných nabíjecích stanic, jelikož nabíjení by trvalo příliš dlouho a zároveň by bylo neefektivní.
+Takový elektromobil s průměrnou kapacitou baterie 71.6 kWh by se z 0 na 100 procent nabíjel 19.43 hodin.\footnote{V první fázi 
+z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 a poslední fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
+
+% TODO: tabulka rozdeleni elektrostanic
+\begin{center}
+    \vspace{0.5cm} % Space before table
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{stanice} & \textbf{výkon stanice} & \textbf{typ stanice} & \textbf{počet}\\
+        \hline
+        12kWh  AC &  12kWh   & střídavý proud       & 12  \\
+        \hline
+        22kWh  AC &  22kWh   & střídavý proud       & 58  \\
+        \hline
+        50kWh  DC &  50kWh   & stejnosměrný proud   & 22  \\
+        \hline
+        108kWh DC &  108kWh  & stejnosměrný proud   & 10  \\
+        \hline
+    \end{tabular}
+    \vspace{0.5cm} % Space after table
+\end{center}
+
 
 Prumerny nabijeci vykon nabijecky
 \smallskip
