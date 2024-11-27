@@ -41,15 +41,7 @@ double chance_108_kwh_dc_station = CHANCE_108_KWH_DC_STATIONS;
 
 bool is_day = false;
 bool is_24_hours = false;
-/************************************************/
-/*                   Statistics                 */
-/************************************************/
 
-/**
- * TODO:    Create HERE The Variables For Model Statistics. Variables Then Should Be Extern Into Electric Vehicle Class.
- *          Or Create in The Electric Vehicle Class And Then Use Them Here.
- *
- */
 
 /************************************************/
 /*                   Main                       */
@@ -140,6 +132,7 @@ bool parse_args(int argc, char *argv[])
     return true;
 }
 
+/* Update Store Capacities Based on Parsed Arguments */
 void update_store_values() {
     CHAR_STATION_AC_12KWH.SetCapacity(ac12_chargers);
     CHAR_STATION_AC_22KWH.SetCapacity(ac22_chargers);
@@ -147,12 +140,56 @@ void update_store_values() {
     CHAR_STATION_DC_108KWH.SetCapacity(dc108_chargers);
 }
 
+/* Update Chances to Choose the Stations Based on Parsed Arguments */
 void update_stations_chance() {
     double count = ac12_chargers + ac22_chargers + dc50_chargers + dc108_chargers;
     chance_12_kwh_ac_station = ac12_chargers / count;
     chance_22_kwh_ac_station = chance_12_kwh_ac_station + (ac22_chargers / count);
     chance_50_kwh_dc_station = chance_22_kwh_ac_station + (dc50_chargers / count);
     chance_108_kwh_dc_station = chance_50_kwh_dc_station + (dc108_chargers / count);
+}
+
+/* Calculate charging time average for every phase (0-20%, 20-80%, 80-100%) */
+double calculate_phase_average(
+        const std::vector<std::pair<double, double>>& stats1,
+        const std::vector<std::pair<double, double>>& stats2,
+        const std::vector<std::pair<double, double>>& stats3,
+        const std::vector<std::pair<double, double>>& stats4
+) {
+    double total_time = 0.0;
+    int total_count = 0;
+
+    for (const auto& stats : {stats1, stats2, stats3, stats4}) {
+        for (const auto& stat : stats) {
+            total_time += stat.second;
+        }
+        total_count += stats.size();
+    }
+
+    return (total_count > 0) ? (total_time / total_count) : 0.0;
+}
+
+/* Calculate total charging time average of car */
+double calculate_total_average() {
+    double phase_0_20_avg = calculate_phase_average(
+            ev_stats_ac12_0_20, ev_stats_ac22_0_20, ev_stats_dc50_0_20, ev_stats_dc108_0_20);
+    double phase_20_80_avg = calculate_phase_average(
+            ev_stats_ac12_20_80, ev_stats_ac22_20_80, ev_stats_dc50_20_80, ev_stats_dc108_20_80);
+    double phase_80_100_avg = calculate_phase_average(
+            ev_stats_ac12_80_100, ev_stats_ac22_80_100, ev_stats_dc50_80_100, ev_stats_dc108_80_100);
+
+    return phase_0_20_avg + phase_20_80_avg + phase_80_100_avg;
+}
+
+
+// TODO: zatial nechat, potom odstranit
+void print_ev_stats(const std::vector<std::pair<double, double>>& stats, const std::string& charger_name) {
+    std::cout << "Statistics for " << charger_name << ":\n";
+    std::cout << "--------------------------------------\n";
+    for (const auto& stat : stats) {
+        std::cout << "Start Time: " << stat.first << ", Charging Time: " << stat.second << '\n';
+    }
+    std::cout << "--------------------------------------\n";
 }
 
 int main(int argc, char *argv[]) 
@@ -216,7 +253,29 @@ int main(int argc, char *argv[])
     printf("---------------------------------------------------------------\n");
     std::cout << "Number of generated vehicles: " << num_generated_cars << std::endl;
     std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
-    std::cout << "Number of vehicles on stations: " << num_cars_on_station << std::endl;
+    std::cout << "Number of vehicles that start to charging: " << num_cars_on_station << std::endl;
+
+    /*
+    print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)");
+    print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)");
+    print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)");
+    print_ev_stats(ev_stats_dc108_0_20, "DC 108kWh Charger (0-20%)");
+    print_ev_stats(ev_stats_ac12_20_80, "AC 12kWh Charger (20-80%)");
+    print_ev_stats(ev_stats_ac22_20_80, "AC 22kWh Charger (20-80%)");
+    print_ev_stats(ev_stats_dc50_20_80, "DC 50kWh Charger (20-80%)");
+    print_ev_stats(ev_stats_dc108_20_80, "DC 108kWh Charger (20-80%)");
+    print_ev_stats(ev_stats_ac12_80_100, "AC 12kWh Charger (80-100%)");
+    print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)");
+    print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)");
+    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)");
+     */
+
+    /* Average charging time of car */
+    double total_average = calculate_total_average();
+
+    std::cout << "Total average charging time: " << total_average << " minutes\n";
+
+    time_spend_in_system.Output();
 
     return 0;
 }

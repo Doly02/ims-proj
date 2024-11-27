@@ -39,6 +39,18 @@ extern std::vector<std::pair<double, double>> ev_stats_ac22_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_0_20;
 
+extern std::vector<std::pair<double, double>> ev_stats_ac12_20_80;
+extern std::vector<std::pair<double, double>> ev_stats_ac22_20_80;
+extern std::vector<std::pair<double, double>> ev_stats_dc50_20_80;
+extern std::vector<std::pair<double, double>> ev_stats_dc108_20_80;
+
+extern std::vector<std::pair<double, double>> ev_stats_ac12_80_100;
+extern std::vector<std::pair<double, double>> ev_stats_ac22_80_100;
+extern std::vector<std::pair<double, double>> ev_stats_dc50_80_100;
+extern std::vector<std::pair<double, double>> ev_stats_dc108_80_100;
+
+extern Histogram time_spend_in_system;
+
 /**
  * @brief Chances to choose the stations.
  */
@@ -66,7 +78,6 @@ class ElectricVehicle : public Process
         pow_station_t pow_station;
 
         double start_time;
-        double time_spend_in_system;
         double time_spend_in_front;
         double time_spend_charging;
 
