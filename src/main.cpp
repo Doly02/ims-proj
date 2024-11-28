@@ -27,6 +27,8 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include <fstream>
+
 /************************************************/
 /*                  Global Variables            */
 /************************************************/
@@ -197,24 +199,28 @@ double calculate_total_average() {
 }
 
 
-// TODO: zatial nechat, potom odstranit
-void print_ev_stats(const std::vector<std::pair<double, double>>& stats, const std::string& charger_name) {
-    std::cout << "Statistics for " << charger_name << ":\n";
-    std::cout << "--------------------------------------\n";
-    for (const auto& stat : stats) {
-        std::cout << "Start Time: " << stat.first << ", Charging Time: " << stat.second << '\n';
+void print_ev_stats(const std::vector<std::pair<double, double>>& stats, const std::string& charger_name, std::ofstream& out_file)
+{
+    double total_charging_time = 0.0;
+
+    out_file << "Statistics for " << charger_name << ":\n";
+    out_file << "--------------------------------------\n";
+    for (const auto& stat : stats)
+    {
+        out_file << std::fixed << std::setprecision(6);
+        out_file << "Start Time: " << stat.first << ", Charging Time: " << stat.second << '\n';
+        total_charging_time += stat.second;
     }
-    std::cout << "--------------------------------------\n";
+
+    double average_charging_time = stats.empty() ? 0.0 : total_charging_time / stats.size();
+    out_file << "--------------------------------------\n";
+    out_file << "Average Charging Time: " << average_charging_time << " mins\n";
+    out_file << "======================================\n";
 }
 
 int main(int argc, char *argv[]) 
 {
     bool retVal;
-    
-    std::time_t now = std::time(nullptr);
-    std::tm* localTime = std::localtime(&now);
-    std::ostringstream timeStream;
-    timeStream << std::put_time(localTime, "_%Y-%m-%d_%H-%M-%S");   
 
     /* Parse Arguments */
     retVal = parse_args(argc, argv);
@@ -253,7 +259,7 @@ int main(int argc, char *argv[])
 
     /* Print Statistics */
     std::string params = get_params();
-    std::string outputFileName = "output/sim_out" + params + timeStream.str() + ".txt";
+    std::string outputFileName = "output/sim_out" + params + ".txt";
     SetOutput(outputFileName.c_str());
     CHAR_STATION_AC_12KWH.Output();
     CHAR_STATION_AC_22KWH.Output();
@@ -261,31 +267,46 @@ int main(int argc, char *argv[])
     CHAR_STATION_DC_108KWH.Output();
 
     if (is_24_hours)
+    {
         printf("Statistics during 24 hours period\n");
+    }
     else if (is_day)
+    {
         printf("Statistics during the day period 7:00-21:00\n");
+    }
     else
+    {
         printf("Statistics during the night period 21:00-7:00\n");
+    }
 
     printf("---------------------------------------------------------------\n");
+
+
     std::cout << "Number of generated vehicles: " << num_generated_cars << std::endl;
     std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
     std::cout << "Number of vehicles that start to charging: " << num_cars_on_station << std::endl;
 
-    /*
-    print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)");
-    print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)");
-    print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)");
-    print_ev_stats(ev_stats_dc108_0_20, "DC 108kWh Charger (0-20%)");
-    print_ev_stats(ev_stats_ac12_20_80, "AC 12kWh Charger (20-80%)");
-    print_ev_stats(ev_stats_ac22_20_80, "AC 22kWh Charger (20-80%)");
-    print_ev_stats(ev_stats_dc50_20_80, "DC 50kWh Charger (20-80%)");
-    print_ev_stats(ev_stats_dc108_20_80, "DC 108kWh Charger (20-80%)");
-    print_ev_stats(ev_stats_ac12_80_100, "AC 12kWh Charger (80-100%)");
-    print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)");
-    print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)");
-    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)");
-    */
+    std::string out_stats_file = "output/ev_charging_stats" + params + ".txt";
+    std::ofstream out_file(out_stats_file);
+    if (!out_file)
+    {
+        std::cerr << "ERR: Unable to open file for writing.\n";
+        return 1;
+    }
+
+    print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_dc108_0_20, "DC 108kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_ac12_20_80, "AC 12kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_ac22_20_80, "AC 22kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_dc50_20_80, "DC 50kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_dc108_20_80, "DC 108kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_ac12_80_100, "AC 12kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)", out_file);
+    
 
     /* Average charging time of car */
     double total_average = calculate_total_average();

@@ -18,6 +18,8 @@ docs/documentation.toc
 
 # Compiled Project
 sim
+# Output Statistics
+output/
 
 # Precompiled Headers
 *.gch
