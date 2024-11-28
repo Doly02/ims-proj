@@ -54,15 +54,15 @@ bool is_24_hours = false;
 /************************************************/
 void print_usage(void)
 {
-    printf("Usage: ./sim [day|night|24hours] [-total_cars [number]] [-charging_percentage [number]] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc108 [number]] [-h]\n");
+    printf("Usage: ./sim [d|n|24h] [-tc [number]] [-p [number]] [-s12 [number]] [-s22 [number]] [-s50 [number]] [-s108 [number]] [-h]\n");
     printf("Options:\n");
-    printf("  -total_cars [number]             : Specify The Number of Cars in The City\n");
-    printf("  -charging_percentage [number]    : Specify The Percentage of Cars to Charge During the Period (value must be between 0 and 1, e.g., 0.25 for 25%%)\n");
-    printf("  -ac12  [number]                  : Specify The Number of AC 12 kWh Chargers\n");
-    printf("  -ac22  [number]                  : Specify The Number of AC 22 kWh Chargers\n");
-    printf("  -dc50  [number]                  : Specify The Number of DC 50 kWh Chargers\n");
-    printf("  -dc108 [number]                  : Specify The Number of DC 108 kWh Chargers\n");
-    printf("  -h                               : Display Usage Message\n");
+    printf("  -tc [number]         : Specify The Number of Cars in The City\n");
+    printf("  -p [number]          : Specify The Percentage of Cars to Charge During the Period (value must be between 0 and 1, e.g., 0.25 for 25%%)\n");
+    printf("  -s12  [number]       : Specify The Number of AC 12 kWh Chargers\n");
+    printf("  -s22  [number]       : Specify The Number of AC 22 kWh Chargers\n");
+    printf("  -s50  [number]       : Specify The Number of DC 50 kWh Chargers\n");
+    printf("  -s108 [number]       : Specify The Number of DC 108 kWh Chargers\n");
+    printf("  -h                   : Display Usage Message\n");
 }
 
 bool parse_args(int argc, char *argv[])
@@ -73,15 +73,15 @@ bool parse_args(int argc, char *argv[])
         return false;
     }
 
-    if (strcmp(argv[1], "day") == 0)
+    if (strcmp(argv[1], "d") == 0)
     {
         is_day = true;
     }
-    else if (strcmp(argv[1], "night") == 0)
+    else if (strcmp(argv[1], "n") == 0)
     {
         is_day = false;
     }
-    else if (strcmp(argv[1], "24hours") == 0)
+    else if (strcmp(argv[1], "24h") == 0)
     {
         is_24_hours = true;
     }
@@ -98,11 +98,11 @@ bool parse_args(int argc, char *argv[])
             print_usage();
             return false;
         }
-        else if (strcmp(argv[i], "-total_cars") == 0 && i + 1 < argc)
+        else if (strcmp(argv[i], "-tc") == 0 && i + 1 < argc)
         {
             num_of_cars_in_city = atoi(argv[++i]);
         }
-        else if (strcmp(argv[i], "-charging_percentage") == 0 && i + 1 < argc)
+        else if (strcmp(argv[i], "-p") == 0 && i + 1 < argc)
         {
             charging_percentage_of_cars = atof(argv[++i]);
             if (charging_percentage_of_cars < 0.0 || charging_percentage_of_cars > 1.0)
@@ -111,19 +111,19 @@ bool parse_args(int argc, char *argv[])
                 return false;
             }
         }
-        else if (strcmp(argv[i], "-ac12") == 0 && i + 1 < argc)
+        else if (strcmp(argv[i], "-s12") == 0 && i + 1 < argc)
         {
             ac12_chargers = atoi(argv[++i]);
         }
-        else if (strcmp(argv[i], "-ac22") == 0 && i + 1 < argc)
+        else if (strcmp(argv[i], "-s22") == 0 && i + 1 < argc)
         {
             ac22_chargers = atoi(argv[++i]);
         }
-        else if (strcmp(argv[i], "-dc50") == 0 && i + 1 < argc)
+        else if (strcmp(argv[i], "-s50") == 0 && i + 1 < argc)
         {
             dc50_chargers = atoi(argv[++i]);
         }
-        else if (strcmp(argv[i], "-dc108") == 0 && i + 1 < argc)
+        else if (strcmp(argv[i], "-s108") == 0 && i + 1 < argc)
         {
             dc108_chargers = atoi(argv[++i]);
         }

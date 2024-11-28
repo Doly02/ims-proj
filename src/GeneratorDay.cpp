@@ -3,7 +3,7 @@
  *  File Name:      GenerateDay.cpp
  *  Authors:        Tomas Dolak, Monika Zahradnikova
  *  Date:           20.11.2024
- *  Description:    Implements Generator of The Day Time.
+ *  Description:    Implements Generator of The Day Time, Night Time or All Day Time.
  *
  * ****************************/
 
@@ -12,7 +12,7 @@
  *  @file           GeneratorDay.cpp
  *  @authors        Tomas Dolak, Monika Zahradnikova
  *  @date           20.11.2024
- *  @brief          Implements Generator of The Day Time.
+ *  @brief          Implements Generator of The Day Time, Night Time or All Day Time.
  * ****************************/
 
 /************************************************/
@@ -37,6 +37,7 @@ int num_generated_cars = 0;
  * @details If Model Is Not Active, The Generator Will Stop Generating Cars.
  */
 bool model_active = true;
+
 /************************************************/
 /*                   Implementation             */
 /************************************************/
@@ -67,7 +68,7 @@ void TransactionDay::Behavior()
     Cancel(); // End of The Day
 }
 
-double calculateGenerationLambda(int total_cars, double charging_percentage, int period)
+double calculateGenerationLambda(double total_cars, double charging_percentage, double period)
 {
     period = period / 60;
     double lambda = 60 / ((total_cars * charging_percentage)/period);
@@ -80,8 +81,12 @@ double calculateGenerationLambda(int total_cars, double charging_percentage, int
 /************************************************/
 /*             GeneratorDay Methods             */
 /************************************************/
-GeneratorDay::GeneratorDay(int total_cars, double charging_percentage) :
-        total_cars(total_cars), charging_percentage(charging_percentage), current_time(0.0) {}
+GeneratorDay::GeneratorDay(int total_cars, double charging_percentage, GeneratorMode mode) :
+        total_cars(total_cars),
+        charging_percentage(charging_percentage),
+        current_time(0.0),
+        mode(mode) {}
+
 
 void GeneratorDay::Behavior()
 {
@@ -98,21 +103,35 @@ void GeneratorDay::Behavior()
         // Generate New EV (new ElectricCar)->Activate();
         num_generated_cars++;
 
-        if (current_time < DAYTIME_LENGTH)
+        double lambda;
+        switch (mode)
         {
-            double lambda = calculateGenerationLambda(total_cars, charging_percentage, DAYTIME_LENGTH);
+            case DAYTIME:
+                if (current_time < DAYTIME_LENGTH) {
+                    lambda = calculateGenerationLambda(total_cars, charging_percentage, DAYTIME_LENGTH);
+                    Activate(Time + Exponential(lambda));
+                } else {
+                    Cancel();
+                }
+                break;
 
-            Activate(Time + Exponential(lambda));
-        }
-        else if (current_time < NIGHTTIME_LENGTH)
-        {
-            double lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH);
+            case NIGHTTIME:
+                if (current_time >= DAYTIME_LENGTH && current_time < WHOLE_DAY_TIME) {
+                    lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH);
+                    Activate(Time + Exponential(lambda));
+                } else {
+                    Cancel();
+                }
+                break;
 
-            Activate(Time + Exponential(lambda));
-        }
-        else
-        {
-            Cancel();
+            case ALLTIME:
+                lambda = calculateGenerationLambda(total_cars, charging_percentage, WHOLE_DAY_TIME);
+                Activate(Time + Exponential(lambda));
+                break;
+
+            default:
+                Cancel();
+                break;
         }
     }
 }
