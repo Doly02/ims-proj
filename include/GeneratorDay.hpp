@@ -59,14 +59,13 @@ enum GeneratorMode {
 class TransactionDay : public Process
 {
 private:
-    double day_length; /** Duration of the daytime period. */
+    GeneratorMode mode; /** Mode of the generator (DAYTIME, NIGHTTIME, ALLTIME). */
 
 public:
     /**
      * @brief Constructor for TransactionDay.
-     * @param dayLength Duration of the daytime in simulation time.
      */
-    explicit TransactionDay(double dayLength);
+    explicit TransactionDay(GeneratorMode mode);
 
     /**
      * @brief Behavior of the process simulating the day-night cycle.
@@ -104,6 +103,7 @@ public:
 /************************************************/
 /*             Helper Functions                 */
 /************************************************/
+
 /**
  * @brief Calculate the generation rate (lambda) for the exponential distribution.
  * @param total_cars Total number of cars.

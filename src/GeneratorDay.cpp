@@ -24,10 +24,6 @@
 /*                   Global Variables           */
 /************************************************/
 /**
- * @brief Flag With Information If Actual Period Is Daytime or Nighttime 
- */
-bool curr_period;
-/**
  * @brief Number of Generated Cars. 
  */
 int num_generated_cars = 0;
@@ -49,20 +45,26 @@ bool model_active = true;
 /**
  * @brief Timer of The Day. Switches Between Daytime and Nighttime.
  */
-TransactionDay::TransactionDay(double dayLength) : day_length(dayLength) {}
+TransactionDay::TransactionDay(GeneratorMode mode) : mode(mode) {}
 
 void TransactionDay::Behavior()
 {
     model_active = true;
-    double night_length = WHOLE_DAY_TIME - day_length;
-    
-    /* Simulate Daytime */
-    curr_period = PERIOD_DAYTIME;
-    Wait(day_length);
 
-    /* Simulate Nighttime */
-    curr_period = PERIOD_NIGHTTIME;
-    Wait(night_length); 
+    switch (mode) {
+        case DAYTIME:
+            /* Simulate Daytime */
+            Wait(DAYTIME_LENGTH);
+            break;
+        case NIGHTTIME:
+            /* Simulate Nighttime */
+            Wait(NIGHTTIME_LENGTH);
+            break;
+        case ALLTIME:
+            /* Simulate 24 hours */
+            Wait(WHOLE_DAY_TIME);
+            break;
+    }
 
     model_active = false;
     Cancel(); // End of The Day
@@ -88,50 +90,38 @@ GeneratorDay::GeneratorDay(int total_cars, double charging_percentage, Generator
         mode(mode) {}
 
 
-void GeneratorDay::Behavior()
-{
+void GeneratorDay::Behavior() {
     current_time = Time; // Model Time In Local Form
 
-    if (!model_active)
-    {
+    if (!model_active) {
         Cancel(); // Stops The Generator
-    }
-    else
-    {
+    } else {
         (new ElectricVehicle)->Activate();
-        
+
         // Generate New EV (new ElectricCar)->Activate();
         num_generated_cars++;
 
         double lambda;
-        switch (mode)
-        {
+
+        switch (mode) {
             case DAYTIME:
+                lambda = calculateGenerationLambda(total_cars, charging_percentage, DAYTIME_LENGTH);
+                Activate(Time + Exponential(lambda));
+                break;
+
+            case NIGHTTIME:
+                lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH););
+                Activate(Time + Exponential(lambda));
+                break;
+
+            case ALLTIME:
                 if (current_time < DAYTIME_LENGTH) {
                     lambda = calculateGenerationLambda(total_cars, charging_percentage, DAYTIME_LENGTH);
                     Activate(Time + Exponential(lambda));
                 } else {
-                    Cancel();
-                }
-                break;
-
-            case NIGHTTIME:
-                if (current_time >= DAYTIME_LENGTH && current_time < WHOLE_DAY_TIME) {
                     lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH);
                     Activate(Time + Exponential(lambda));
-                } else {
-                    Cancel();
                 }
-                break;
-
-            case ALLTIME:
-                lambda = calculateGenerationLambda(total_cars, charging_percentage, WHOLE_DAY_TIME);
-                Activate(Time + Exponential(lambda));
-                break;
-
-            default:
-                Cancel();
-                break;
         }
     }
 }

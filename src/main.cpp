@@ -239,19 +239,19 @@ int main(int argc, char *argv[])
     if (is_24_hours)    /* Simulation Of 24 hours period */
     {
         Init(0, WHOLE_DAY_TIME);
-        (new TransactionDay(WHOLE_DAY_TIME))->Activate();
+        (new TransactionDay(ALLTIME))->Activate();
         (new GeneratorDay(num_of_cars_in_city, charging_percentage_of_cars, ALLTIME))->Activate();
     }
     else if (is_day)    /* Simulation Of Day */
     {
         Init(0, DAYTIME_LENGTH);
-        (new TransactionDay(DAYTIME_LENGTH))->Activate();
+        (new TransactionDay(DAYTIME))->Activate();
         (new GeneratorDay(num_of_cars_in_city, charging_percentage_of_cars, DAYTIME))->Activate();
     }
     else    /* Simulation Of Night */
     {
         Init(0, NIGHTTIME_LENGTH);
-        (new TransactionDay(NIGHTTIME_LENGTH))->Activate();
+        (new TransactionDay(NIGHTTIME))->Activate();
         (new GeneratorDay(num_of_cars_in_city, charging_percentage_of_cars, NIGHTTIME))->Activate();
     }
 
@@ -294,6 +294,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    /*
     print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)", out_file);
@@ -305,7 +306,7 @@ int main(int argc, char *argv[])
     print_ev_stats(ev_stats_ac12_80_100, "AC 12kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)", out_file);
-    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)", out_file);*/
     
 
     /* Average charging time of car */
