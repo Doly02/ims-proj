@@ -23,6 +23,10 @@
 #include "../include/GeneratorDay.hpp"
 #include "../include/ElectricVehicle.hpp"
 
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
 /************************************************/
 /*                  Global Variables            */
 /************************************************/
@@ -149,6 +153,17 @@ void update_stations_chance() {
     chance_108_kwh_dc_station = chance_50_kwh_dc_station + (dc108_chargers / count);
 }
 
+std::string get_params(void)
+{
+    std::string params = "-cars=" + std::to_string(num_of_cars_in_city) + "-";
+    params = params + "charge=" + std::to_string(charging_percentage_of_cars) + "-";
+    params = params + "ac12=" + std::to_string(ac12_chargers) + "-";
+    params = params + "ac22=" + std::to_string(ac22_chargers) + "-";
+    params = params + "dc50=" + std::to_string(dc50_chargers) + "-";
+    params = params + "dc108=" + std::to_string(dc108_chargers);
+    return params;
+}
+
 /* Calculate charging time average for every phase (0-20%, 20-80%, 80-100%) */
 double calculate_phase_average(
         const std::vector<std::pair<double, double>>& stats1,
@@ -196,6 +211,11 @@ int main(int argc, char *argv[])
 {
     bool retVal;
     
+    std::time_t now = std::time(nullptr);
+    std::tm* localTime = std::localtime(&now);
+    std::ostringstream timeStream;
+    timeStream << std::put_time(localTime, "_%Y-%m-%d_%H-%M-%S");   
+
     /* Parse Arguments */
     retVal = parse_args(argc, argv);
     if (!retVal){
@@ -237,7 +257,9 @@ int main(int argc, char *argv[])
     Run();
 
     /* Print Statistics */
-    SetOutput("SimOutput");
+    std::string params = get_params();
+    std::string outputFileName = "output/sim_out" + params + timeStream.str() + ".txt";
+    SetOutput(outputFileName.c_str());
     CHAR_STATION_AC_12KWH.Output();
     CHAR_STATION_AC_22KWH.Output();
     CHAR_STATION_DC_50KWH.Output();
@@ -255,7 +277,7 @@ int main(int argc, char *argv[])
     std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
     std::cout << "Number of vehicles that start to charging: " << num_cars_on_station << std::endl;
 
-    /*
+    
     print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)");
     print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)");
     print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)");
@@ -268,7 +290,7 @@ int main(int argc, char *argv[])
     print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)");
     print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)");
     print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)");
-     */
+    
 
     /* Average charging time of car */
     double total_average = calculate_total_average();
