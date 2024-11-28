@@ -148,14 +148,14 @@ nabíjecí stanice schopna poskytnout. % TODO: Dopsat!
 \subsubsection{Jak je na tom s elektrno stanicemi Brno?}
 V Brně je celkem 102 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
 na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
-My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/} v souboru \texttt{brno\_charging\_stations.xl}.
+My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/} v souboru \texttt{brno\_charging\_stations.xlsx}.
 V zásadě Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
 celkově 130.
 
 % TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
 \subsubsection{Zpracování datasetu}
 Data z datasetu poskytnutého portálem www.data.brno.cz \cite{data_brno}, bylo třeba nejprve zpracovat a určit 
-aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_stations.xl},
+aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_stations.xlsx},
 obsahuje tedy roztřízené elektrostanice podle typu proudu (stejnosměrný/střídavý) a výkonu nabíjení. Jak již bylo
 řečeno Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je celkově 130,
 do úvahy jsme však vybrali pouze stanice s nabíjecím výkonem od 12 kW, jelikož systému s výkonem 3.7 kW se dnes již 
@@ -163,12 +163,12 @@ neimplementují do veřejných nabíjecích stanic, jelikož nabíjení by trval
 Takový elektromobil s průměrnou kapacitou baterie 71.6 kWh by se z 0 na 100 procent nabíjel 19.43 hodin.\footnote{V první fázi 
 z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 a poslední fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
 
-% TODO: tabulka rozdeleni elektrostanic
-\begin{center}
+\begin{table}[h!]
+    \centering
     \vspace{0.5cm} % Space before table
     \begin{tabular}{|c|c|c|c|}
         \hline
-        \textbf{stanice} & \textbf{výkon stanice} & \textbf{typ stanice} & \textbf{počet stanic}\\
+        \textbf{Stanice} & \textbf{Výkon stanice} & \textbf{Typ stanice} & \textbf{Počet stanic}\\
         \hline
         12kWh  AC &  12kWh   & střídavý proud       & 12  \\
         \hline
@@ -179,34 +179,42 @@ z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 
         108kWh DC &  108kWh  & stejnosměrný proud   & 10  \\
         \hline
     \end{tabular}
+    \caption{Rozdělení typu veřejných nabíjecích stanic v Brně podle výkonu a typu proudu}
+    \label{table:charging-stations-distribution}
     \vspace{0.5cm} % Space after table
-\end{center}
+\end{table}
+
 
 \subsection{Modelování elektromobility v Brně}
 
+% TODO: popsat grafy pro AC a DC nabijeni a jak jsme dosli k tabulkam
 
 Prumerny nabijeci vykon nabijecky
 \smallskip
 
-\begin{center}
+\begin{table}[h!]
+    \centering % Zajistí centrování tabulky
     \vspace{0.5cm} % Space before table
     \begin{tabular}{|c|c|c|c|}
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
-        12kWh AC  &  12kWh  & 12kWh & 9kWh  \\
+        12kWh AC  &  12kWh  & 12kWh & 9kWh     \\
         \hline
         22kWh AC  &  22kWh  & 22kWh & 16.5kWh  \\
         \hline
         50kWh DC  &  26kWh  & 42kWh & 17kWh    \\
         \hline
-        108kWh DC &  54kWh  & 90kWh & 36.72Kwh \\
+        108kWh DC &  54kWh  & 90kWh & 36.72kWh \\
         \hline
     \end{tabular}
+    \caption{Průměrný nabíjecí výkon pro jednotlivé fáze nabíjení}
+    \label{table:average-charging-power}
     \vspace{0.5cm} % Space after table
-\end{center}
+\end{table}
 
-\begin{center}
+\begin{table}[h!] % Zabalíme tabulku do prostředí "table"
+    \centering % Zajistí centrování tabulky
     \vspace{0.5cm} % Space before table
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -221,8 +229,11 @@ Prumerny nabijeci vykon nabijecky
         108kWh DC &  0 -- 0.26h.  & 0 -- 0.47h. & 0 -- 0.38h.  \\
         \hline
     \end{tabular}
+    \caption{Čas potřebný k nabití baterie v jednotlivých fázích stanic}
+    \label{table:chargint-time-consumption}
     \vspace{0.5cm} % Space after table
-\end{center}
+\end{table}
+
 
 \subsubsection{Petriho síť elektromobility v Brně}
 % Popis Petriho sítě (jak napodobuje vypocty vysse, bla bla bla... )
