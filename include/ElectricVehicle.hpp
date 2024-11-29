@@ -34,38 +34,49 @@ extern double num_charged_cars_per_period;
 extern double avg_time_in_system;
 extern double num_cars_on_station;
 
+extern std::vector<std::pair<double, double>> ev_stats_ac11_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_ac12_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_0_20;
+extern std::vector<std::pair<double, double>> ev_stats_dc150_0_20;
 
+extern std::vector<std::pair<double, double>> ev_stats_ac11_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_ac12_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_20_80;
+extern std::vector<std::pair<double, double>> ev_stats_dc150_20_80;
 
+extern std::vector<std::pair<double, double>> ev_stats_ac11_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_ac12_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_80_100;
+extern std::vector<std::pair<double, double>> ev_stats_dc150_80_100;
 
 extern Histogram time_spend_in_system;
 
 /**
  * @brief Chances to choose the stations.
  */
+extern double chance_11_kwh_ac_station;
 extern double chance_12_kwh_ac_station;
 extern double chance_22_kwh_ac_station;
 extern double chance_50_kwh_dc_station;
 extern double chance_108_kwh_dc_station;
+extern double chance_150_kwh_dc_station;
+
 
 /**
  * @brief Charging station stores.
  */
+extern Store CHAR_STATION_AC_11KWH;
 extern Store CHAR_STATION_AC_12KWH;
 extern Store CHAR_STATION_AC_22KWH;
 extern Store CHAR_STATION_DC_50KWH;
 extern Store CHAR_STATION_DC_108KWH;
+extern Store CHAR_STATION_DC_150KWH;
 
 /**
  * @class ElectricVehicle
