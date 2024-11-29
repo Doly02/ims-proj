@@ -140,7 +140,7 @@ std::vector<std::pair<double, double>> ev_stats_dc50_80_100;
 std::vector<std::pair<double, double>> ev_stats_dc108_80_100;
 
 /**
- * @struct Contains Information About Each Electric Vehicle Starts In Stage 3, and Uses 108kWh DC Charger [80 - 100%]
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 3, and Uses 150kWh DC Charger [80 - 100%]
  *         and That Leaves The System.
  */
 std::vector<std::pair<double, double>> ev_stats_dc150_80_100;
