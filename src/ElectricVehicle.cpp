@@ -189,7 +189,7 @@ void ElectricVehicle::choose_battery_station(void)
 
     if (station < chance_11_kwh_ac_station)             // Chance of Choosing AC 11 kW
     {
-        pow_station = POW_STATION_AC_12_KWH;
+        pow_station = POW_STATION_AC_11_KWH;
     }
     else if (station < chance_12_kwh_ac_station)        // Chance of Choosing AC 12 kW
     {
@@ -205,11 +205,11 @@ void ElectricVehicle::choose_battery_station(void)
     }
     else if (station < chance_108_kwh_dc_station)       // Chance of Choosing DC 108 kW
     {
-        pow_station = POW_STATION_DC_50_KWH; 
+        pow_station = POW_STATION_DC_108_KWH; 
     }
     else                                                // Chance of Choosing DC 150 kW
     {
-        pow_station = POW_STATION_DC_108_KWH;
+        pow_station = POW_STATION_DC_150_KWH;
     }
 }
 
@@ -240,7 +240,7 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on AC 12kWh Charger In Stage 1 (0-20%) */
+        /* Statistics - Time of Charging on AC 11kWh Charger In Stage 1 (0-20%) */
         t_charging_0_20_on_ac11 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 1, Use t_start_charging For Next Charging In Stage 2 [20-80%]*/
@@ -361,7 +361,7 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on DC 108kWh Charger In Stage 1 (0-20%) */
+        /* Statistics - Time of Charging on DC 150kWh Charger In Stage 1 (0-20%) */
         t_charging_0_20_on_dc150 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 1, Use t_start_charging For Next Charging In Stage 2 [20-80%]*/
@@ -384,10 +384,13 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     double t_charging_20_80_on_dc108    = 0.0;
     double t_charging_20_80_on_dc150    = 0.0;
 
+    /**
+     * @warning The Vehicle Has Already Taken Up Space In The Store, So There
+     *          Is No Need To Call Enter() Function.
+     * */ 
+
     if (POW_STATION_AC_11_KWH == pow_station)
     {
-        /* The Vehicle Has Already Taken Up Space In The Store*/
-
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
 
@@ -397,7 +400,7 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on AC 12kWh Charger In Stage 2 (20-80%) */
+        /* Statistics - Time of Charging on AC 11kWh Charger In Stage 2 (20-80%) */
         t_charging_20_80_on_ac11 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 2*/
@@ -411,8 +414,6 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     }
     if (POW_STATION_AC_12_KWH == pow_station)
     {
-        /* The Vehicle Has Already Taken Up Space In The Store*/
-
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
 
@@ -425,7 +426,7 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
         /* Statistics - Time of Charging on AC 12kWh Charger In Stage 2 (20-80%) */
         t_charging_20_80_on_ac12 = Time - t_start_charging;
 
-        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        /* Statistics - Store Time Spend on Charging in Stage 2 */
         ev_stats_ac12_20_80.emplace_back(t_start_charging, t_charging_20_80_on_ac12);
 
         /* Leave The Space In Charging Station */
@@ -436,8 +437,6 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     }
     else if (POW_STATION_AC_22_KWH == pow_station)
     {
-        /* The Vehicle Has Already Taken Up Space In The Store*/
-
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
 
@@ -460,8 +459,6 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     }
     else if (POW_STATION_DC_50_KWH == pow_station)
     {
-        /* The Vehicle Has Already Taken Up Space In The Store*/
-
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
 
@@ -483,8 +480,6 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     }
     else if (POW_STATION_DC_108_KWH == pow_station)
     {
-        /* The Vehicle Has Already Taken Up Space In The Store*/
-
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
 
@@ -506,8 +501,6 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     }
     else
     {
-        /* The Vehicle Has Already Taken Up Space In The Store*/
-
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
 
@@ -556,7 +549,7 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on AC 12kWh Charger In Stage 2 (20-80%) */
+        /* Statistics - Time of Charging on AC 11kWh Charger In Stage 2 (20-80%) */
         t_charging_20_80_on_ac11 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 2*/
@@ -688,7 +681,7 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on DC 108kWh Charger In Stage 2 (20-80%) */
+        /* Statistics - Time of Charging on DC 150kWh Charger In Stage 2 (20-80%) */
         t_charging_20_80_on_dc150 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 2*/
@@ -728,7 +721,7 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on AC 12kWh Charger In Stage 3 (80-100%) */
+        /* Statistics - Time of Charging on AC 11kWh Charger In Stage 3 (80-100%) */
         t_charging_80_100_on_ac11 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 2*/
@@ -863,7 +856,7 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         /* Charging */
         Wait(time_spend_charging);
 
-        /* Statistics - Time of Charging on DC 108kWh Charger In Stage 3 (80-100%) */
+        /* Statistics - Time of Charging on DC 150kWh Charger In Stage 3 (80-100%) */
         t_charging_80_100_on_dc150 = Time - t_start_charging;
 
         /* Statistics - Store Time Spend on Charging in Stage 2*/
