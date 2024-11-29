@@ -30,6 +30,11 @@
 #include <fstream>
 
 /************************************************/
+/*                  Definitions                 */
+/************************************************/
+#define EXTRA_PRINTS            0  
+
+/************************************************/
 /*                  Global Variables            */
 /************************************************/
 int num_of_cars_in_city = NUM_OF_CARS_IN_CITY;
@@ -323,20 +328,35 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    /*
+#if (1 == EXTRA_PRINTS)
+
+    /* Statistics For 1. Phase (0-20%) */
+    print_ev_stats(ev_stats_ac11_0_20, "AC 12kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc108_0_20, "DC 108kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_dc150_0_20, "DC 150kWh Charger (0-20%)", out_file);
+
+    /* Statistics For 2. Phase (20-80%) */
+    print_ev_stats(ev_stats_ac11_20_80, "AC 11kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_ac12_20_80, "AC 12kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_ac22_20_80, "AC 22kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_dc50_20_80, "DC 50kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_dc108_20_80, "DC 108kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_dc150_20_80, "DC 150kWh Charger (20-80%)", out_file);
+
+    /* Statistics For 3. Phase (20-80%) */
+    print_ev_stats(ev_stats_ac11_80_100, "AC 11kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_ac12_80_100, "AC 12kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)", out_file);
-    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)", out_file);*/
-    
+    print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_dc150_80_100, "DC 150kWh Charger (80-100%)", out_file);
+
+
+
+#endif /* (1 == EXTRA_PRINTS) */
 
     /* Average charging time of car */
     double total_average = calculate_total_average();

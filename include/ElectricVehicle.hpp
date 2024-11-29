@@ -21,12 +21,13 @@
 /************************************************/
 /*                  Libraries                   */
 /************************************************/
-
-
 #include <vector>
 #include <utility>
 #include "../include/definitions.hpp"
 
+/************************************************/
+/*                  Global Variables            */
+/************************************************/
 /**
  * @brief Stores statistical data for electric vehicle charging sessions.
  */

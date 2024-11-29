@@ -110,7 +110,7 @@ void GeneratorDay::Behavior() {
                 break;
 
             case NIGHTTIME:
-                lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH););
+                lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH);
                 Activate(Time + Exponential(lambda));
                 break;
 
