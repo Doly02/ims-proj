@@ -148,20 +148,26 @@ nabíjecí stanice schopna poskytnout. % TODO: Dopsat!
 \subsubsection{Jak je na tom s elektrno stanicemi Brno?}
 V Brně je celkem 102 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
 na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
-My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/} v souboru \texttt{brno\_charging\_stations.xlsx}.
-V zásadě Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
-celkově 130.
+My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/}. V souboru \texttt{charging\_stations\_cez.json}
+obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, \texttt{charging\_stations\_PRE.pdf} obsahuje
+list stanic skupiny PRE (Pražská energetika), mezi další velké hráče na poli elektromobility v Brně patří společnost
+EON které náleží dvě 11kWh stanice, devětadvacet 22kWh stanic, jedenáct 50kWh stanic a 5 stanic o výkonu 150kWh vyplývající
+z dat DATA. Soubor \texttt{charging\_stations\_others.xlsx} stanice, které jsou vlastněny menšími firmami.
+V zásadě Brno disponuje nabíjecími stanicemi s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
+celkově 173.
 
 % TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
 \subsubsection{Zpracování datasetu}
 Data z datasetu poskytnutého portálem www.data.brno.cz \cite{data_brno}, bylo třeba nejprve zpracovat a určit 
-aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_stations.xlsx},
+aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_summary.xlsx},
 obsahuje tedy roztřízené elektrostanice podle typu proudu (stejnosměrný/střídavý) a výkonu nabíjení. Jak již bylo
-řečeno Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je celkově 130,
-do úvahy jsme však vybrali pouze stanice s nabíjecím výkonem od 12 kW, jelikož systému s výkonem 3.7 kW se dnes již 
-neimplementují do veřejných nabíjecích stanic, jelikož nabíjení by trvalo příliš dlouho a zároveň by bylo neefektivní.
-Takový elektromobil s průměrnou kapacitou baterie 71.6 kWh by se z 0 na 100 procent nabíjel 19.43 hodin.\footnote{V první fázi 
-z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 a poslední fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
+řečeno Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je celkově 173,
+do úvahy jsme však vybrali pouze stanice s nabíjecím výkonem od 11 kW, jelikož systému s výkonem 3.7 kW se dnes již 
+neimplementují do veřejných nabíjecích stanic, jelikož nabíjení by trvalo příliš dlouho -- vznikají tak malé ztráty
+modelu, které jsou však tolerovány, takový elektromobil s průměrnou kapacitou baterie 71.6 kWh by se z 0 na 100 procent 
+nabíjel 19.43 hodin, model poskytuje simulaci trvající maximálně 24 hodin, tedy za dobu simulace by byl nabito pouze jedno
+vozidlo.\footnote{V první fázi z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 a poslední 
+fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
 
 \begin{table}[h!]
     \centering
@@ -170,13 +176,17 @@ z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 
         \hline
         \textbf{Stanice} & \textbf{Výkon stanice} & \textbf{Typ stanice} & \textbf{Počet stanic}\\
         \hline
-        12kWh  AC &  12kWh   & střídavý proud       & 12  \\
+        11kWh  AC &  11kWh   & střídavý proud       & 6  \\
         \hline
-        22kWh  AC &  22kWh   & střídavý proud       & 58  \\
+        12kWh  AC &  12kWh   & střídavý proud       & 20  \\
         \hline
-        50kWh  DC &  50kWh   & stejnosměrný proud   & 22  \\
+        22kWh  AC &  22kWh   & střídavý proud       & 77  \\
         \hline
-        108kWh DC &  108kWh  & stejnosměrný proud   & 10  \\
+        50kWh  DC &  50kWh   & stejnosměrný proud   & 54  \\
+        \hline
+        108kWh DC &  108kWh  & stejnosměrný proud   & 11  \\
+        \hline
+        150kWh DC &  150kWh  & stejnosměrný proud   & 5  \\
         \hline
     \end{tabular}
     \caption{Rozdělení typu veřejných nabíjecích stanic v Brně podle výkonu a typu proudu}
@@ -199,6 +209,8 @@ Prumerny nabijeci vykon nabijecky
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
+        11kWh AC  &  12kWh  & 12kWh & 9kWh     \\
+        \hline
         12kWh AC  &  12kWh  & 12kWh & 9kWh     \\
         \hline
         22kWh AC  &  22kWh  & 22kWh & 16.5kWh  \\
@@ -206,6 +218,8 @@ Prumerny nabijeci vykon nabijecky
         50kWh DC  &  26kWh  & 42kWh & 17kWh    \\
         \hline
         108kWh DC &  54kWh  & 90kWh & 36.72kWh \\
+        \hline
+        150kWh DC &  54kWh  & 90kWh & 36.72kWh \\
         \hline
     \end{tabular}
     \caption{Průměrný nabíjecí výkon pro jednotlivé fáze nabíjení}
@@ -220,6 +234,8 @@ Prumerny nabijeci vykon nabijecky
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
+        11kWh AC  &  0 -- 1.30h.  & 0 -- 3.90h. & 0 -- 2.60h.  \\
+        \hline
         12kWh AC  &  0 -- 1.19h.  & 0 -- 3.58h. & 0 -- 2.38h.  \\
         \hline
         22kWh AC  &  0 -- 0.65h.  & 0 -- 1.95h. & 0 -- 1.30h.  \\
@@ -227,6 +243,8 @@ Prumerny nabijeci vykon nabijecky
         50kWh DC  &  0 -- 0.573h. & 0 -- 1.01h. & 0 -- 0.82h.  \\
         \hline
         108kWh DC &  0 -- 0.26h.  & 0 -- 0.47h. & 0 -- 0.38h.  \\
+        \hline
+        150kWh DC &  0 -- 0.19h.  & 0 -- 0.34h. & 0 -- 0.27h.  \\
         \hline
     \end{tabular}
     \caption{Čas potřebný k nabití baterie v jednotlivých fázích stanic}
