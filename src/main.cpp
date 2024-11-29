@@ -40,10 +40,12 @@ int ac22_chargers = NUM_22_KWH_AC_STATIONS;
 int dc50_chargers = NUM_50_KWH_DC_STATIONS;
 int dc108_chargers = NUM_108_KWH_DC_STATIONS;
 
+double chance_11_kwh_ac_station = CHANCE_11_KWH_AC_STATIONS;
 double chance_12_kwh_ac_station = CHANCE_12_KWH_AC_STATIONS;
 double chance_22_kwh_ac_station = CHANCE_22_KWH_AC_STATIONS;
 double chance_50_kwh_dc_station = CHANCE_50_KWH_DC_STATIONS;
 double chance_108_kwh_dc_station = CHANCE_108_KWH_DC_STATIONS;
+double chance_150_kwh_dc_station = CHANCE_150_KWH_DC_STATIONS;
 
 bool is_day = false;
 bool is_24_hours = false;
