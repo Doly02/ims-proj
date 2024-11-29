@@ -33,7 +33,7 @@
 /*                  Definitions                 */
 /************************************************/
 #define EXTRA_PRINTS            0  
-
+#define DEBUG                   0
 /************************************************/
 /*                  Global Variables            */
 /************************************************/
@@ -253,6 +253,12 @@ int main(int argc, char *argv[])
 {
     bool retVal;
 
+#if (1 == DEBUG)
+
+    DebugOFF();
+    
+#endif /* (1 == DEBUG) */
+
     /* Parse Arguments */
     retVal = parse_args(argc, argv);
     if (!retVal){
@@ -365,5 +371,10 @@ int main(int argc, char *argv[])
 
     time_spend_in_system.Output();
 
+#if (1 == DEBUG)
+
+    DebugOFF();
+
+#endif /* (1 == DEBUG) */
     return 0;
 }

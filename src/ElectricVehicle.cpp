@@ -149,7 +149,7 @@ std::vector<std::pair<double, double>> ev_stats_dc150_80_100;
 /************************************************/
 /*                   Stores                     */
 /************************************************/
-Store CHAR_STATION_AC_11KWH("Charging Station 12kWh", NUM_11_KWH_AC_STATIONS);
+Store CHAR_STATION_AC_11KWH("Charging Station 11kWh", NUM_11_KWH_AC_STATIONS);
 
 Store CHAR_STATION_AC_12KWH("Charging Station 12kWh", NUM_12_KWH_AC_STATIONS);
 
@@ -412,7 +412,7 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
         num_charged_cars_per_period++;
 
     }
-    if (POW_STATION_AC_12_KWH == pow_station)
+    else if (POW_STATION_AC_12_KWH == pow_station)
     {
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
