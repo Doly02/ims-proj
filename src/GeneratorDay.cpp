@@ -119,7 +119,8 @@ void GeneratorDay::Behavior() {
                     lambda = calculateGenerationLambda(total_cars, charging_percentage, DAYTIME_LENGTH);
                     Activate(Time + Exponential(lambda));
                 } else {
-                    lambda = calculateGenerationLambda(total_cars, charging_percentage, NIGHTTIME_LENGTH);
+                    double night_percentage = charging_percentage/10;
+                    lambda = calculateGenerationLambda(total_cars, night_percentage, NIGHTTIME_LENGTH);
                     Activate(Time + Exponential(lambda));
                 }
         }
