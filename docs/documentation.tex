@@ -54,19 +54,33 @@ V rámci projektu se zaměříme na modelování elektromobily v Brně elektromo
 na budoucnost.\cite{simlib_cpp}
 
 \section{Cíle projektu}
-Cílem projektu je vytvořit model, který bude schopen simulovat chování elektromobilů v Brně. 
-Model bude zahrnovat informace o elektromobilech, nabíjecích stanicích a o cestách, kterými 
-se elektromobily v Brně pohybují. Model bude schopen simulovat chování elektromobilů v Brně 
-v závislosti na různých parametrech, jako je například počet elektromobilů, počet nabíjecích 
-stanic, dostupnost nabíjecích stanic, atd. Model bude sloužit k analýze a optimalizaci 
-elektromobility v Brně.
+Cílem projektu je vytvořit model, který bude schopen simulovat chování nabíjení elektromobilů 
+v Brně. Model bude zahrnovat informace o elektromobilech a nabíjecích stanicích vyskytující se
+v Brně. Model bude schopen simulovat zátěž sítě nabíjecích stanic na základě zájmu o využítí 
+stanic, celkové struktuře této sítě a to v závislosti na části dne. Chování modelu, lze ovlivnit
+jeho parametry volání, mezi které patří počet elektromobilů nacházející se ve městě, kolik 
+procent z nich využíva veřejné stanice denně, počet stanic (lze specifikovat více druhů viz. 
+kapitola~\ref{sec:stanice}), a dále čas kdy simulace bude probíhat - celý den, tedy 24 hodin, denní režim a noční
+režim. Tento model lze využít k analýze a optimalizaci stavu sítě stanic pro nabíjení elektrických
+vozidel v Brně.
+
+Model byl otestován s aktuálním stavem sítě a zájmem o nabíjení na veřejných stanicicí a pomocí 
+experimentů, kde bylo zkoumáno, aktuální složení sítě a odhadovaným množstvím elektromobilů v Brně
+v roce 2030.
 
 \section{Rozbor tématu a použitých metod/technologií}
 Pro korektní modelování elektromobility je potřeba si nejprve uvědomit, jak elektromobily fungují, 
-jaké jsou jejich vlastnosti/parametry, které v modelu budou definovat transakce. Mezi hlavní aspekty,
-ovlivňující chování elektromobilů, patří v prvé řadě jejich motor a akumulátor/baterie.
+jaké jsou jejich vlastnosti/parametry, jelikož, elektrická vozidla budou v modelu představovat transakce.
+Je třeba si také uvědomit typy a počty nabíjecích stanic v Brně, tedy strukturu sítě, jak probíhá
+nabíjecí cyklus, jaké jsou fáze tohoto cyklus (tzv. SoC -- State of Charge) a v neposlední řadě 
+jaká je vůbec poptávka po nabíjecích stanicích.  
 
-\subsection{Elektromotor}
+\subsection{Elektrické vozidlo}
+Tedy naše tranksakce, mezi hlavní aspekty, ovlivňující chování elektromobilu, patří v prvé řadě 
+jeho motor, akumulátor/baterie a jeho vnitřní nabíječka, jež je využita v případě nabíjení pomocí
+střídavého proudu.
+
+\subsubsection{Elektromotor}
 U každého vozidla je nejdůležitější jeho pohon a palivo. Pro elektromobily je pohon zajištěn 
 elektromotorem, který je základní součástí elektrického hnacího systému. Elektromotor přeměňuje 
 elektrickou energii z baterie na mechanickou energii potřebnou pro pohyb vozidla a skládá se 
@@ -90,23 +104,25 @@ pole. Toto pole interaguje s magnetickým polem rotoru a vytváří točivý mom
     \label{figure:synchroni-elektromotor}
 \end{figure}
 
-\subsection{Baterie}
+\subsubsection{Baterie}
 Baterie je další důležitou součástí elektromobilu. Stejně jako existuje více typů elektromotorů, 
 liší se i baterie, používané jednotlivými výrobci. V zásadě se ale jedná o lithium-iontové baterie
 (varianty LIB a Li-NMC), poskytující přijatelný poměr mezi kapacitou, hmotností a prostorem, který 
 zabírají.\cite{baterie_ev_wiki} Liší se však v použitelné kapacitě této baterie, které se pohybuje 
-v rozmezí od 123 kWh, po 21.3 kWh na základě dat z webové stránky www.ev-database.org\cite{ev_database}, 
-poskytující databázi o elektromobilech.
+v rozmezí od 123 kWh, po 21.3 kWh na základě dat z webové stránky www.ev-database.org \cite{ev_database}, 
+poskytující databázi o elektromobilech. Tato databáze zároveň poskytuje informaci o průměrné kapacitě
+baterie, která činí 71.6 kWh, tato hodnota bude dále v modelu využita pro výpočet času stráveného autem
+nabíjením na stanici.
 
-\subsection{Typy nabíjení}
-Elektromobil, lze nabíjet hned několika způsoby, faktorů je mnoho, výkon elektrostanice, typ proudu, konektor,...
-My jsme se v našem modelu rozhodli zachovat pouze podstatné parametry, které v našem případě budou mít největší 
-vliv na chování elektromobilů a to nabíjecí výkon a druh proudu. Elektromobil, zde obvykle nabíjet jak 
-stejnosměrným proudem, tak střídavým proudem.
+\subsubsection{Typy nabíjení}
+Elektromobil, lze nabíjet hned několika způsoby, faktorů je mnoho, výkon elektrostanice, typ proudu, 
+konektor,... My jsme se v našem modelu rozhodli zachovat pouze podstatné parametry, které v našem 
+případě budou mít největší vliv na chování elektromobilů a to nabíjecí výkon a druh proudu. 
+Elektromobil, zde obvykle nabíjet jak stejnosměrným proudem, tak střídavým proudem.
 
 \begin{figure}[H]
     \centering
-    \scalebox{0.2}{
+    \scalebox{0.13}{
         \includegraphics{difference-between-ac-and-cd-charging-ev.eps}
     }
     \caption{Rozdíl mezi nabíjením střídavým a stejnosměrným proudem \cite{rozdil_mezi_ac_dc_nabijenim}}
@@ -146,14 +162,16 @@ nabíjecí stanice schopna poskytnout. % TODO: Dopsat!
 \subsection{Elektronabíjecí stanice}
 
 \subsubsection{Jak je na tom s elektrno stanicemi Brno?}
-V Brně je celkem 102 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
+\label{sec:stanice}
+V Brně je celkem 173 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
 na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
 My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/}. V souboru \texttt{charging\_stations\_cez.json}
 obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, \texttt{charging\_stations\_PRE.pdf} obsahuje
 list stanic skupiny PRE (Pražská energetika), mezi další velké hráče na poli elektromobility v Brně patří společnosti
 Teplárny Brno a.s. a E.ON. Dvě 11kWh stanice, devětadvacet 22kWh stanic, jedenáct 50kWh stanic a 5 stanic o výkonu 150kWh, 
 poskytuje E.ON, jak vyplývá z dat dostupných na webu \href{https://www.eon-drive.cz/mapa/}{www.eon-drive.cz/mapa/}.
-Zato společnosti Teplárny Brno a.s. poskutuje TODO, založeno na informacích z mapy na stránce \href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
+Zato společnosti Teplárny Brno a.s. poskutuje TODO, založeno na informacích z mapy na stránce 
+\href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
 Soubor \texttt{charging\_stations\_others.xlsx} stanice, které jsou vlastněny menšími firmami.
 V zásadě Brno disponuje nabíjecími stanicemi s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
 celkově 173. \cite{eon_data, emobilita_data}
