@@ -169,15 +169,15 @@ Store CHAR_STATION_DC_150KWH("Charging Station 150kWh", NUM_150_KWH_DC_STATIONS)
 void ElectricVehicle::choose_battery_cap(void) {
     double battery_state = Random();
 
-    // 10 % of vehicles come with a battery capacity 0-20 %
-    if (battery_state < 0.1) {
+    // 15 % of vehicles come with a battery capacity 0-20 %
+    if (battery_state < 0.15) {
         char_state = CHAR_STATE_0_20;
     }
-        // 80 % of vehicles come with a battery capacity 20-80 %
-    else if (battery_state < 0.95) {
+    // 75 % of vehicles come with a battery capacity 20-80 %
+    else if (battery_state < 0.90) {
         char_state = CHAR_STATE_20_80;
     }
-        // 10 % of vehicles come with a battery capacity 80-100 %
+    // 10 % of vehicles come with a battery capacity 80-100 %
     else {
         char_state = CHAR_STATE_80_100;
     }
