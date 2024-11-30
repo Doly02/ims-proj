@@ -187,7 +187,17 @@ void update_stations_chance()
 
 std::string get_params(void)
 {
-    std::string params = "-cars=" + std::to_string(num_of_cars_in_city) + "-";
+    std::string params;
+    if (is_24_hours){
+        params = "-24hours-";
+    }
+    else if (is_day){
+        params = "-day-";
+    }
+    else {
+        params = "-night-";
+    }
+    params = params + "cars=" + std::to_string(num_of_cars_in_city) + "-";
     params = params + "charge=" + std::to_string(charging_percentage_of_cars) + "-";
     params = params + "ac11=" + std::to_string(ac11_chargers) + "-";
     params = params + "ac12=" + std::to_string(ac12_chargers) + "-";
@@ -326,8 +336,8 @@ int main(int argc, char *argv[])
 
 
     std::cout << "Number of generated vehicles: " << num_generated_cars << std::endl;
-    std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
     std::cout << "Number of vehicles that start to charging: " << num_cars_on_station << std::endl;
+    std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
 
 
 #if (1 == EXTRA_PRINTS)
