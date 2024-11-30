@@ -174,7 +174,7 @@ void ElectricVehicle::choose_battery_cap(void) {
         char_state = CHAR_STATE_0_20;
     }
         // 80 % of vehicles come with a battery capacity 20-80 %
-    else if (battery_state < 0.9) {
+    else if (battery_state < 0.95) {
         char_state = CHAR_STATE_20_80;
     }
         // 10 % of vehicles come with a battery capacity 80-100 %
