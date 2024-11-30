@@ -1,9 +1,21 @@
 # IMS Project: Model of Electromobility in Brno
-- Author: Tomáš Dolák, Monika Zahradníková
-- Login: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220), [xzahra33](https://www.vut.cz/lide/monika-zahradnikova-250462)
-- Email: <xdolak09@stud.fit.vutbr.cz>, <xzahra33@stud.fit.vutbr.cz>
+- Authors: Tomáš Dolák, Monika Zahradníková
+- Logins: [xdolak09](https://www.vut.cz/lide/tomas-dolak-247220), [xzahra33](https://www.vut.cz/lide/monika-zahradnikova-250462)
+- Emails: <xdolak09@stud.fit.vutbr.cz>, <xzahra33@stud.fit.vutbr.cz>
 
-The goal of this project in the subject Modeling and Simulations was to create a model in the energy sector.
+## Project Overview
+The goal of this project in the subject Modeling and Simulations was to create a model in the energy sector. Project focuses on modeling electromobility in Brno, a city poised to embrace the future of electric vehicle (EV) adoption. With the increasing popularity of electromobility globally, this simulation aims to assess Brno's readiness for an electrified future. By analyzing the city's EV charging infrastructure and forecasting future demands, the project provides insights for optimizing the charging network to meet growing needs.
+
+## Objectives
+The primary objective of this project is to create a simulation model that evaluates the charging infrastructure for electric vehicles in Brno. The model considers:
+
+- EV Fleet: The number of electric vehicles in Brno and their charging behavior.
+- Charging Stations: The current and forecasted network of public charging stations, including different station types.
+- Load Simulation: The impact of varying charging loads on the city's infrastructure based on daily and nighttime usage patterns.
+- Adjustable Parameters: Users can configure parameters such as the number of EVs, daily public charging usage percentage, and the simulation timeframe (24 hours, daytime, or nighttime).
+
+The results of this model should help to analyze and optimize the charging infrastructure to ensure sustainable electromobility in Brno.
+
 ## Requirements
 To build and run `sim`, you will need the following:
 
