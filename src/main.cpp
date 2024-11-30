@@ -329,6 +329,9 @@ int main(int argc, char *argv[])
     std::cout << "Number of charged vehicles: " << num_charged_cars_per_period << std::endl;
     std::cout << "Number of vehicles that start to charging: " << num_cars_on_station << std::endl;
 
+
+#if (1 == EXTRA_PRINTS)
+
     std::string out_stats_file = "output/ev_charging_stats" + params + ".txt";
     std::ofstream out_file(out_stats_file);
     if (!out_file)
@@ -336,8 +339,6 @@ int main(int argc, char *argv[])
         std::cerr << "ERR: Unable to open file for writing.\n";
         return 1;
     }
-
-#if (1 == EXTRA_PRINTS)
 
     /* Statistics For 1. Phase (0-20%) */
     print_ev_stats(ev_stats_ac11_0_20, "AC 12kWh Charger (0-20%)", out_file);
