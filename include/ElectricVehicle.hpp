@@ -98,6 +98,7 @@ class ElectricVehicle : public Process
         void charge_battery_in_stage_0_20();
         void continue_charge_battery_in_stage_20_80();
         void charge_battery_in_stage_20_80();
+        void continue_charge_battery_in_stage_80_100(void);
         void charge_battery_in_stage_80_100();
         void Behavior() override;
 
