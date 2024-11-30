@@ -88,12 +88,12 @@ typedef enum
 /**
  * @brief   Percentage Of Cars To Charge In Day
  */
-#define CHARGING_PERCENTAGE_OF_CARS_DAY         (0.114)
+#define CHARGING_PERCENTAGE_OF_CARS_DAY         (0.177)
 
 /**
  * @brief   Percentage Of Cars To Charge At Night
  */
-#define CHARGING_PERCENTAGE_OF_CARS_NIGHT       (0.0114)
+#define CHARGING_PERCENTAGE_OF_CARS_NIGHT       (0.0177)
 
 /**
  * @brief   Chance That Car Will Choose 11kWh AC Charging Station.
