@@ -189,12 +189,12 @@ std::string get_params(void)
 {
     std::string params = "-cars=" + std::to_string(num_of_cars_in_city) + "-";
     params = params + "charge=" + std::to_string(charging_percentage_of_cars) + "-";
-    params = params + "ac11=" + std::to_string(ac12_chargers) + "-";
+    params = params + "ac11=" + std::to_string(ac11_chargers) + "-";
     params = params + "ac12=" + std::to_string(ac12_chargers) + "-";
     params = params + "ac22=" + std::to_string(ac22_chargers) + "-";
     params = params + "dc50=" + std::to_string(dc50_chargers) + "-";
-    params = params + "dc50=" + std::to_string(dc50_chargers) + "-";
-    params = params + "dc150=" + std::to_string(dc108_chargers);
+    params = params + "dc108=" + std::to_string(dc108_chargers) + "-";
+    params = params + "dc150=" + std::to_string(dc150_chargers);
     return params;
 }
 
@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
     CHAR_STATION_AC_22KWH.Output();
     CHAR_STATION_DC_50KWH.Output();
     CHAR_STATION_DC_108KWH.Output();
-    CHAR_STATION_DC_108KWH.Output();
+    CHAR_STATION_DC_150KWH.Output();
 
     if (is_24_hours)
     {
