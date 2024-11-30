@@ -97,54 +97,54 @@ typedef enum
 
 /**
  * @brief   Chance That Car Will Choose 11kWh AC Charging Station.
- * @details 6 / 173 = 3.4%
+ * @details 6 / 305 = 1.97%
  */
-#define CHANCE_11_KWH_AC_STATIONS            (0.034)
+#define CHANCE_11_KWH_AC_STATIONS            (0.0197)
 
 /**
  * @brief   Chance That Car Will Choose 12kWh AC Charging Station.
- * @details 20 / 173 = 11.6%
+ * @details 20 / 305 = 6.56%
  */
-#define CHANCE_12_KWH_AC_STATIONS           (CHANCE_11_KWH_AC_STATIONS + 0.116)
+#define CHANCE_12_KWH_AC_STATIONS           (CHANCE_11_KWH_AC_STATIONS + 0.0656)
 
 /**
  * @brief   Chance That Car Will Choose 22kWh AC Charging Station.
- * @details 77 / 173 = 44.5%
+ * @details 197 / 305 = 64.59%
  */
-#define CHANCE_22_KWH_AC_STATIONS           (CHANCE_12_KWH_AC_STATIONS + 0.445)
+#define CHANCE_22_KWH_AC_STATIONS           (CHANCE_12_KWH_AC_STATIONS + 0.6459)
 
 /**
  * @brief   Chance That Car Will Choose 50kWh DC Charging Station.
- * @details 54 / 173 = 31.1%
+ * @details 54 / 305 = 17.70%
  */
-#define CHANCE_50_KWH_DC_STATIONS           (CHANCE_22_KWH_AC_STATIONS + 0.312)
+#define CHANCE_50_KWH_DC_STATIONS           (CHANCE_22_KWH_AC_STATIONS + 0.1770)
 
 /**
  * @brief   Chance That Car Will Choose 108kWh DC Charging Station.
- * @details 11 / 173 = 6.3%
+ * @details 11 / 305 = 3.61%
  */
-#define CHANCE_108_KWH_DC_STATIONS          (CHANCE_50_KWH_DC_STATIONS + 0.063)
+#define CHANCE_108_KWH_DC_STATIONS          (CHANCE_50_KWH_DC_STATIONS + 0.0361)
 
 /**
  * @brief   Chance That Car Will Choose 150kWh DC Charging Station.
- * @details 5 / 173 = 2.9%
+ * @details 17 / 305 = 5.57%
  */
-#define CHANCE_150_KWH_DC_STATIONS          (CHANCE_108_KWH_DC_STATIONS + 0.029)
+#define CHANCE_150_KWH_DC_STATIONS          (CHANCE_108_KWH_DC_STATIONS + 0.0557)
 
 /**
  * @brief Number of 11kWh AC Charging Stations in Brno.
  */
-#define NUM_11_KWH_AC_STATIONS              (12)
+#define NUM_11_KWH_AC_STATIONS              (6)
 
 /**
  * @brief Number of 12kWh AC Charging Stations in Brno.
  */
-#define NUM_12_KWH_AC_STATIONS              (24)
+#define NUM_12_KWH_AC_STATIONS              (20)
 
 /**
  * @brief Number of 22kWh AC Charging Stations in Brno.
  */
-#define NUM_22_KWH_AC_STATIONS              (77)
+#define NUM_22_KWH_AC_STATIONS              (197)
 
 /**
  * @brief Number of 50kWh DC Charging Stations in Brno.
@@ -159,12 +159,12 @@ typedef enum
 /**
  * @brief Number of 150kWh DC Charging Stations in Brno.
  */
-#define NUM_150_KWH_DC_STATIONS             (5)
+#define NUM_150_KWH_DC_STATIONS             (17)
 
 /**
  * @brief Number Charging Stations in Brno.
  */
-#define NUM_ALL_STATIONS (NUM_12_KWH_AC_STATIONS + NUM_22_KWH_AC_STATIONS + NUM_50_KWH_DC_STATIONS + NUM_108_KWH_DC_STATIONS + NUM_150_KWH_DC_STATIONS)
+#define NUM_ALL_STATIONS (NUM_11_KWH_AC_STATIONS + NUM_12_KWH_AC_STATIONS + NUM_22_KWH_AC_STATIONS + NUM_50_KWH_DC_STATIONS + NUM_108_KWH_DC_STATIONS + NUM_150_KWH_DC_STATIONS)
 
 /**
  * @brief   Max. Time For Charging on AC 11 kWh Charger,
@@ -284,7 +284,7 @@ typedef enum
 #define MAX_TIME_108_KWH_DC_STATIONS_80_100  (22.8)
 
 /**
- * @brief   Max. Time For Charging on DC 108 kWh Charger,
+ * @brief   Max. Time For Charging on DC 150 kWh Charger,
  *          In Third Stage of Charging (80% - 100%).
  * @details 0.27 hours => 16.2 minutes
  */
