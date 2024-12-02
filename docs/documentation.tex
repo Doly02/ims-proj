@@ -174,10 +174,10 @@ na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zazna
 My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/}. V souboru \texttt{charging\_stations\_cez.json}
 obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, \texttt{charging\_stations\_PRE.pdf} obsahuje
 list stanic skupiny PRE (Pražská energetika), mezi další velké hráče na poli elektromobility v Brně patří společnosti
-Teplárny Brno a.s. a E.ON. Dvě 11kWh stanice, devětadvacet 22kWh stanic, jedenáct 50kWh stanic a 5 stanic o výkonu 150kWh, 
+Teplárny Brno a.s. a E.ON. Dvě 11kW stanice, devětadvacet 22kW stanic, jedenáct 50kW stanic a 5 stanic o výkonu 150kW, 
 poskytuje E.ON, jak vyplývá z dat dostupných na webu \href{https://www.eon-drive.cz/mapa/}{www.eon-drive.cz/mapa/}.
 Zato společnosti Teplárny Brno a.s. disponuje celkem 132 nabíjecími stanicemi. Z těchto 132 stanic tvoří většínu -- 120 
-nabíječky se střídavým proudem o výkonu 22 kWh, a zbylých 12 nabíjecích stanic je stejnosměrných s výkonem 150 kW. 
+nabíječky se střídavým proudem o výkonu 22 kW, a zbylých 12 nabíjecích stanic je stejnosměrných s výkonem 150 kW. 
 Data společnosti Teplárny Brno a.s byly získány pomocí informací z mapy na stránce 
 \href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
 Soubor \texttt{charging\_stations\_others.xlsx} stanice, které jsou vlastněny menšími firmami.
@@ -205,17 +205,17 @@ fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
         \hline
         \textbf{Stanice} & \textbf{Výkon stanice} & \textbf{Typ stanice} & \textbf{Počet stanic}\\
         \hline
-        11kWh  AC &  11kWh   & střídavý proud       & 6  \\
+        11kW  AC &  11kW   & střídavý proud       & 6  \\
         \hline
-        12kWh  AC &  12kWh   & střídavý proud       & 20  \\
+        12kW  AC &  12kW   & střídavý proud       & 20  \\
         \hline
-        22kWh  AC &  22kWh   & střídavý proud       & 77  \\
+        22kW  AC &  22kW   & střídavý proud       & 77  \\
         \hline
-        50kWh  DC &  50kWh   & stejnosměrný proud   & 54  \\
+        50kW  DC &  50kW   & stejnosměrný proud   & 54  \\
         \hline
-        108kWh DC &  108kWh  & stejnosměrný proud   & 11  \\
+        108kW DC &  108kW  & stejnosměrný proud   & 11  \\
         \hline
-        150kWh DC &  150kWh  & stejnosměrný proud   & 5  \\
+        150kW DC &  150kW  & stejnosměrný proud   & 5  \\
         \hline
     \end{tabular}
     \caption{Rozdělení typu veřejných nabíjecích stanic v Brně podle výkonu a typu proudu}
@@ -302,10 +302,10 @@ kde:
 
 Například pro třetí fázi DC nabíjení (\textit{80–100 \%}) byl výkon stanoven následovně: \\
 
-Maximální výkon nabíjecí stanice byl \(P_{\text{max}} = 50 \, \mathrm{kWh}\), přičemž výkon v této fázi klesal lineárně z \(p_{\text{start}} = 0.70\) (70 \%) na \(p_{\text{end}} = 0.00\) (0 \%). Průměrný výkon této fáze lze tedy vypočítat takto:
+Maximální výkon nabíjecí stanice byl \(P_{\text{max}} = 50 \, \mathrm{kW}\), přičemž výkon v této fázi klesal lineárně z \(p_{\text{start}} = 0.70\) (70 \%) na \(p_{\text{end}} = 0.00\) (0 \%). Průměrný výkon této fáze lze tedy vypočítat takto:
 
 \[
-P_{\text{průměr}} = 50 \cdot \frac{0.70 + 0.00}{2} = 50 \cdot 0.35 = 17.5 \, \mathrm{kWh}
+P_{\text{průměr}} = 50 \cdot \frac{0.70 + 0.00}{2} = 50 \cdot 0.35 = 17.5 \, \mathrm{kW}
 \]
 
 Podobným způsobem byly provedeny výpočty pro všechny fáze nabíjení jednotlivých nabíjecích stanic, přičemž výsledné hodnoty byly zaokrouhleny pro větší přehlednost.
@@ -349,7 +349,7 @@ kde:
 \begin{itemize}
     \item \(t_{\text{nabíjení}}\) je maximalní doba nabíjení v dané fázi [h],
     \item \(C_{\text{baterie}}\) je průměrná kapacita baterie elektromobilů (\(71.6 \, \mathrm{kWh}\)),
-    \item \(P_{\text{průměr}}\) je průměrný nabíjecí výkon v dané fázi (viz tabulka \ref{table:average-charging-power}) [kWh],
+    \item \(P_{\text{průměr}}\) je průměrný nabíjecí výkon v dané fázi (viz tabulka \ref{table:average-charging-power}) [kW],
     \item \(k_{\text{fáze}}\) je podíl kapacity baterie nabíjený v dané fázi (např. \(0.2\) pro fázi \textit{0–20 \%}).\\
 \end{itemize}
 
@@ -369,17 +369,17 @@ Podobným způsobem byly vypočteny časy nabíjení pro všechny fáze a typy n
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
-        11 kWh AC  &  0 -- 1.30 h  & 0 -- 3.90 h & 0 -- 2.60 h  \\
+        11 kW AC  &  0 -- 1.30 h  & 0 -- 3.90 h & 0 -- 2.60 h  \\
         \hline
-        12 kWh AC  &  0 -- 1.19 h  & 0 -- 3.58 h & 0 -- 2.38 h  \\
+        12 kW AC  &  0 -- 1.19 h  & 0 -- 3.58 h & 0 -- 2.38 h  \\
         \hline
-        22 kWh AC  &  0 -- 0.65 h  & 0 -- 1.95 h & 0 -- 1.30 h  \\
+        22 kW AC  &  0 -- 0.65 h  & 0 -- 1.95 h & 0 -- 1.30 h  \\
         \hline
-        50 kWh DC  &  0 -- 0.57 h & 0 -- 1.01 h & 0 -- 0.82 h  \\
+        50 kW DC  &  0 -- 0.57 h & 0 -- 1.01 h & 0 -- 0.82 h  \\
         \hline
-        108 kWh DC &  0 -- 0.26 h  & 0 -- 0.47 h & 0 -- 0.38 h  \\
+        108 kW DC &  0 -- 0.26 h  & 0 -- 0.47 h & 0 -- 0.38 h  \\
         \hline
-        150 kWh DC &  0 -- 0.19 h  & 0 -- 0.34 h & 0 -- 0.27 h  \\
+        150 kW DC &  0 -- 0.19 h  & 0 -- 0.34 h & 0 -- 0.27 h  \\
         \hline
     \end{tabular}
     \caption{Čas potřebný k nabití baterie v jednotlivých fázích stanic}
@@ -442,7 +442,7 @@ Popis jednotlivých parametrů:
     \end{itemize}
     \item \texttt{-tc počet\_aut}: Počet elektromobilů ve městě.
     \item \texttt{-p procento}: Procento elektromobilů ve městě, která se v daný den budou chtít nabít. Na základě tohoto procenta se vypočítává parametr \(\lambda\) pro generování počtu aut (např. hodnota \texttt{0.25} znamená 25 \% elektromobilů z celkového počtu elektromobilů ve městě).
-    \item \texttt{-ac11 počet}, \texttt{-ac12 počet}, \texttt{-ac22 počet}, \texttt{-dc50 počet}, \texttt{-dc108 počet}, \texttt{-dc150 počet}: Počet nabíjecích bodů pro stanice s příslušným výkonem (např. AC 11 kWh, DC 50 kWh apod.).
+    \item \texttt{-ac11 počet}, \texttt{-ac12 počet}, \texttt{-ac22 počet}, \texttt{-dc50 počet}, \texttt{-dc108 počet}, \texttt{-dc150 počet}: Počet nabíjecích bodů pro stanice s příslušným výkonem (např. AC 11 kW, DC 50 kW apod.).
     \item \texttt{-h}: Zobrazení nápovědy a možností spuštění programu.
 \end{itemize}
 
@@ -530,16 +530,16 @@ Průměrná doba nabíjení zůstala na úrovni 102,45 minut, což je srovnateln
 
 Podrobnější analýza odhalila výrazné fronty u pomalejších AC nabíječek:
 \begin{itemize}
-    \item \textbf{11 kWh nabíječky}: Průměrná fronta činila 23 vozidel, tedy zhruba 4 vozidla na jednu nabíječku.
-    \item \textbf{12 kWh nabíječky}: Fronty byly ještě delší, v průměru 87 vozidel, což odpovídá více než 4 vozidlům na jednu nabíječku.
-    \item \textbf{22 kWh nabíječky}: Průměrná fronta zde dosahovala 251 vozidel. Při kapacitě 197 nabíječek to odpovídá zhruba 1,27 vozidla na jednu nabíječku.
+    \item \textbf{11 kW nabíječky}: Průměrná fronta činila 23 vozidel, tedy zhruba 4 vozidla na jednu nabíječku.
+    \item \textbf{12 kW nabíječky}: Fronty byly ještě delší, v průměru 87 vozidel, což odpovídá více než 4 vozidlům na jednu nabíječku.
+    \item \textbf{22 kW nabíječky}: Průměrná fronta zde dosahovala 251 vozidel. Při kapacitě 197 nabíječek to odpovídá zhruba 1,27 vozidla na jednu nabíječku.
 \end{itemize}
 
-Naopak u rychlejších \textbf{DC nabíječek} (50 kWh, 108 kWh, 150 kWh) se fronty vůbec nevytvářely. Statistika ukázala:
+Naopak u rychlejších \textbf{DC nabíječek} (50 kW, 108 kW, 150 kW) se fronty vůbec nevytvářely. Statistika ukázala:
 \begin{itemize}
-    \item \textbf{50 kWh nabíječky}: Průměrně bylo využíváno 36 z 54 dostupných bodů.
-    \item \textbf{108 kWh nabíječky}: Průměrné využití bylo 2,6 bodu z celkových 11.
-    \item \textbf{150 kWh nabíječky}: V průměru bylo obsazeno 3,6 bodu z 17.
+    \item \textbf{50 kW nabíječky}: Průměrně bylo využíváno 36 z 54 dostupných bodů.
+    \item \textbf{108 kW nabíječky}: Průměrné využití bylo 2,6 bodu z celkových 11.
+    \item \textbf{150 kW nabíječky}: V průměru bylo obsazeno 3,6 bodu z 17.
 \end{itemize}
 
 Tato data potvrzují, že \textbf{DC nabíječky} jsou mnohem efektivnější a umožňují rychlé nabíjení, zatímco \textbf{AC nabíječky} omezují plynulost systému a způsobují značné fronty.
@@ -568,7 +568,7 @@ Na základě informací z článku \cite{ev_growth}, který uvádí, že město 
 
 
 \paragraph{Experiment 1: Zvýšení počtu AC nabíječek\\\\}
-V tomto experimentu jsme se zaměřili na navýšení počtu \textbf{AC nabíječek} na celkových 1 000 bodů. Pro 11 kWh a 12 kWh nabíječky bylo přidáno po 300 bodů a pro 22 kWh nabíječky 400 bodů (\texttt{./sim d -tc 20000 -p 0.25 -ac11 300 -ac12 300 -ac22 400}). Cílem bylo zjistit, jak by toto navýšení ovlivnilo fungování systému a zvládání poptávky v denním režimu (od 7:00 do 21:00).
+V tomto experimentu jsme se zaměřili na navýšení počtu \textbf{AC nabíječek} na celkových 1 000 bodů. Pro 11 kW a 12 kW nabíječky bylo přidáno po 300 bodů a pro 22 kW nabíječky 400 bodů (\texttt{./sim d -tc 20000 -p 0.25 -ac11 300 -ac12 300 -ac22 400}). Cílem bylo zjistit, jak by toto navýšení ovlivnilo fungování systému a zvládání poptávky v denním režimu (od 7:00 do 21:00).
 
 Simulace ukázala, že během dne bylo vygenerováno 5 039 elektromobilů a všechna tato vozidla se připojila k nabíjecím stanicím. Nabít a opustit systém se ale podařilo pouze 4 490 vozidlům, což odpovídá 89~\% všech generovaných aut.
 
@@ -580,7 +580,7 @@ Na druhou stranu, navýšení počtu AC nabíječek zajistilo, že se během sim
 
 
 \paragraph{Experiment 2: Zvýšení počtu AC a DC nabíječek\\\\}
-Ve druhém experimentu jsme kombinovali navýšení počtu \textbf{AC i DC nabíječek}, přičemž celkový počet bodů (AC a DC dohromady) byl opět 1 000. V tomto scénáři byly parametry nastaveny na 200 bodů pro 11kWh a 12kWh stanice, 250 bodů pro 22kWh stanice, 150 bodů pro DC 50kWh stanice a 100 bodů pro DC 108kWh a 150kWh stanice (\texttt{./sim d -tc 20000 -p 0.25 -ac11 200 -ac12 200 -ac22 250 -dc50 150 -dc108 100 -dc150 100}). Tento experiment zkoumal, zda kombinace rychlejších DC a pomalejších AC nabíječek dokáže zlepšit dostupnost infrastruktury ve srovnání s pouhým zvýšením počtu AC nabíječek.
+Ve druhém experimentu jsme kombinovali navýšení počtu \textbf{AC i DC nabíječek}, přičemž celkový počet bodů (AC a DC dohromady) byl opět 1 000. V tomto scénáři byly parametry nastaveny na 200 bodů pro 11kW a 12kW stanice, 250 bodů pro 22kW stanice, 150 bodů pro DC 50kW stanice a 100 bodů pro DC 108kW a 150kW stanice (\texttt{./sim d -tc 20000 -p 0.25 -ac11 200 -ac12 200 -ac22 250 -dc50 150 -dc108 100 -dc150 100}). Tento experiment zkoumal, zda kombinace rychlejších DC a pomalejších AC nabíječek dokáže zlepšit dostupnost infrastruktury ve srovnání s pouhým zvýšením počtu AC nabíječek.
 
 Program simuloval celkem 5 059 elektromobilů, přičemž všechna vozidla zahájila proces nabíjení. Systém úspěšně opustilo plně nabito 4 666 vozidel, což odpovídá 92 \% všech generovaných elektromobilů. Průměrná doba potřebná k dokončení nabíjení činila 127 minut, což je o 29 minut méně než v prvním experimentu, kde bylo zvýšeno pouze množství AC nabíječek. Tento výsledek ukazuje, že kombinace rychlejších DC nabíječek a pomalejších AC nabíječek umožňuje zlepšit efektivitu nabíjení.
 
@@ -588,12 +588,12 @@ Podrobný výstup ukazuje, že se v průběhu simulace nevytvořily žádné fro
 
 Histogram ukazuje, že většina vozidel (přes 31 \%) opustila systém za méně než 20 minut, což je výrazné zlepšení oproti prvnímu experimentu. Průměrná doba strávená v systému činila 62 minut se směrodatnou odchylkou 59 minut. Tento výsledek je o 15 minut lepší než v prvním experimentu.
 
-Z analýzy je zřejmé, že DC nabíječky byly v průměru méně vytížené než AC nabíječky. Například DC 50kWh stanice využívaly průměrně 30 ze 150 dostupných bodů, zatímco 11kWh a 12kWh AC stanice byly v průměru využity na 127 a 114 bodů z celkových 200. Tato data potvrzují, že rychlejší DC nabíječky výrazně snižují zatížení systému a zlepšují plynulost nabíjení.
+Z analýzy je zřejmé, že DC nabíječky byly v průměru méně vytížené než AC nabíječky. Například DC 50kW stanice využívaly průměrně 30 ze 150 dostupných bodů, zatímco 11kW a 12kW AC stanice byly v průměru využity na 127 a 114 bodů z celkových 200. Tato data potvrzují, že rychlejší DC nabíječky výrazně snižují zatížení systému a zlepšují plynulost nabíjení.
 
 \section{Závěr}
 Tento projekt se zaměřil na zkoumání současné a budoucí situace elektromobility v Brně pomocí simulací nabíjecí infrastruktury. Cílem bylo zjistit, jak dobře si stávající systém poradí s rostoucím počtem elektromobilů a jak by mohla rozšířená infrastruktura zlepšit dostupnost a rychlost nabíjení.
 
-Simulace ukázaly, že aktuální stav nabíjecí sítě v Brně je dostatečný pro současný počet elektromobilů. Systém zvládá poptávku bez větších problémů – nevznikají dlouhé fronty a většina vozidel je nabita v rozumném čase. Nicméně při předpokládaném nárůstu počtu elektromobilů na 20 tisíc do roku 2030 se ukázaly zásadní slabiny. Hlavním problémem jsou pomalejší AC nabíječky, které nedokážou zvládnout vyšší počet vozidel a způsobují zdržení a fronty.
+Simulace ukázaly, že aktuální stav nabíjecí sítě v Brně je dostatečný pro současný počet elektromobilů. Systém zvládá poptávku bez větších problémů -- nevznikají dlouhé fronty a většina vozidel je nabita v rozumném čase. Nicméně při předpokládaném nárůstu počtu elektromobilů na 20 tisíc do roku 2030 se ukázaly zásadní slabiny. Hlavním problémem jsou pomalejší AC nabíječky, které nedokážou zvládnout vyšší počet vozidel a způsobují zdržení a fronty.
 
 Pro zlepšení situace byly provedeny dva experimenty s rozšířením nabíjecí sítě, přičemž počet nabíjecích bodů byl zvolen na základě článku \cite{ev_growth}, který uvádí, že Teplárny Brno plánují do roku 2030 vybudovat 1 000 nabíjecích bodů. Experimenty se zaměřily na dvě varianty rozšíření infrastruktury:
 
