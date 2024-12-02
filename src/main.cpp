@@ -347,7 +347,7 @@ int main(int argc, char *argv[])
     }
 
     /* Statistics For 1. Phase (0-20%) */
-    print_ev_stats(ev_stats_ac11_0_20, "AC 12kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_ac11_0_20, "AC 11kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)", out_file);
