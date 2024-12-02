@@ -70,6 +70,13 @@ void TransactionDay::Behavior()
     Cancel(); // End of The Day
 }
 
+/**
+ * @brief Calculate the generation rate (lambda) for the exponential distribution.
+ * @param total_cars Total number of cars.
+ * @param charging_percentage Percentage of cars to charge daily.
+ * @param period Time period for the simulation (in minutes).
+ * @return Lambda value for exponential distribution.
+ */
 double calculateGenerationLambda(double total_cars, double charging_percentage, double period)
 {
     period = period / 60;

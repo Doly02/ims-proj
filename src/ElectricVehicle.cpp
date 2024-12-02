@@ -27,12 +27,14 @@
 Histogram time_spend_in_system("Total time in the system", 0, 20, 12);
 
 /**
- * @brief Number of Charged Car Per Period (Day/Night).
+ * @brief Number of Charged Cars Per Period (Day/Night).
  */
 double num_charged_cars_per_period = 0.0;
 
 
-//TODO: Zatial je potrebna, neskor mozno vymazat
+/**
+ * @brief Number of Cars That Start Charging.
+ */
 double num_cars_on_station = 0.0;
 
 /**

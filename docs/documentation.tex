@@ -11,12 +11,14 @@
 \usepackage{float}
 \usepackage{tabularx}
 \usepackage{array}
+\usepackage{amsmath}
 
 
 \usepackage[unicode, hidelinks]{hyperref}
 \usepackage[nodayofweek]{datetime}
 \usepackage[hyphenbreaks]{breakurl}
 \usepackage{csquotes}
+\usepackage{graphicx}
  
 \begin{document}
 
@@ -38,7 +40,7 @@
         \vspace*{\stretch{0.618}}
     \end{center}
     
-    {\large \today \hfill Tomáš Dolák (xdolak09), Monika Zahradníková (xzahra33)}
+    {\large \today \hfill Tomáš Dolák (xdolak09), Monika Záhradníková (xzahra33)}
 \end{titlepage}
 
 \newpage
@@ -48,9 +50,9 @@
 \label{firstpage}
 
 \section{Úvod}
-Jako téma našeho projektu jsme si zvolili modelování elektromobility v Brně. Elektromobilita je v posledních aktuálním trendem, 
-který se v posledních letech stává stále populárnějším a je pravděpodné, že tomu bude tak i nadále. 
-V rámci projektu se zaměříme na modelování elektromobily v Brně elektromobility v Brně s cílem určit zda je Brno, připraveno 
+Jako téma našeho projektu jsme si zvolili modelování elektromobility v Brně. Elektromobilita je aktuálním trendem,
+který se v posledních letech stává stále populárnějším a je pravděpodobné, že tomu bude tak i nadále.
+V rámci projektu se zaměříme na modelování elektromobily v Brně s cílem určit, zda je Brno připraveno
 na budoucnost.\cite{simlib_cpp}
 
 \section{Cíle projektu}
@@ -104,6 +106,7 @@ pole. Toto pole interaguje s magnetickým polem rotoru a vytváří točivý mom
 \end{figure}
 
 \subsubsection{Baterie}
+\label{batteries}
 Baterie je další důležitou součástí elektromobilu. Stejně jako existuje více typů elektromotorů, 
 liší se i baterie, používané jednotlivými výrobci. V zásadě se ale jedná o lithium-iontové baterie
 (varianty LIB a Li-NMC), poskytující přijatelný poměr mezi kapacitou, hmotností a prostorem, který 
@@ -160,7 +163,7 @@ nabíjecí stanice schopna poskytnout. % TODO: Dopsat!
 
 \subsection{Elektronabíjecí stanice}
 
-\subsubsection{Jak je na tom s elektrno stanicemi Brno?}
+\subsubsection{Jak je na tom s elektro stanicemi Brno?}
 \label{sec:stanice}
 V Brně je celkem 173 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
 na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
@@ -177,6 +180,7 @@ celkově 173. \cite{eon_data, emobilita_data}
 
 % TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
 \subsubsection{Zpracování datasetu}
+\label{dataset-processing}
 Data z datasetu poskytnutého portálem www.data.brno.cz \cite{data_brno}, bylo třeba nejprve zpracovat a určit 
 aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_summary.xlsx},
 obsahuje tedy roztřízené elektrostanice podle typu proudu (stejnosměrný/střídavý) a výkonu nabíjení. Jak již bylo
@@ -215,11 +219,26 @@ fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
 
 
 \subsection{Modelování elektromobility v Brně}
+Modelování elektromobility v Brně zahrnovalo výpočty a analýzy zaměřené na zjištění reálných výkonů nabíjecích stanic a
+jejich efektivity. Bylo nutné zohlednit rozdíly mezi AC a DC nabíjením, zejména jejich charakteristické nabíjecí křivky,
+které ovlivňují průběh nabíjení a dobu potřebnou k dosažení dané kapacity akumulátoru.
 
-% TODO: popsat grafy pro AC a DC nabijeni a jak jsme dosli k tabulkam
-\subsubsection{Nabíjení pomocí střídavého proudu}
-TODO Popis jak křivka vypadá a jak se došlo k hodnotám v tabulkách tedy k průměrnému nabíjecímu výkonu,
-proč křivka pro AC vypadá tak jak vypadá + popis fází. \cite{bacancy_ac_vs_dc}
+Výpočty průměrných nabíjecích výkonů byly klíčovým krokem k vytvoření modelu, který umožňuje simulovat zátěž na síť
+nabíjecích stanic v Brně.
+
+\subsubsection{Nabíjení pomocí střídavého proudu (AC)}
+Křivka nabíjecího výkonu na obrázku \ref{figure:ac-charging-efficency} při využití střídavého proudu je rozdělena do tří fází.
+
+První fáze pokrývá počáteční nabíjení akumulátoru od nízké úrovně nabití (0–20 \% kapacity). V této fázi od 0 \%
+kapacity akumulátoru výkon prudce stoupá na maximum a následně se udržuje na této úrovni. Je to proto, že se akumulátor
+adaptuje na nabíjecí proud a minimalizuje tepelné ztráty.
+
+Ve druhé fázi, která pokrývá střední část nabíjení (20–80 \% kapacity akumulátoru), je výkon nabíjení konstantní a
+dosahuje svého maxima. Tato fáze je klíčová, protože zde dochází k nejefektivnějšímu využití nabíjecí stanice.
+
+Třetí fáze, od 80 \% do plné kapacity, zahrnuje postupné snižování výkonu. To je způsobeno tím, že se akumulátor blíží
+své maximální kapacitě, což vyžaduje menší proud k minimalizaci rizika přehřátí nebo poškození článků.
+\cite{bacancy_ac_vs_dc}
 
 \begin{figure}[H]
     \centering
@@ -230,9 +249,19 @@ proč křivka pro AC vypadá tak jak vypadá + popis fází. \cite{bacancy_ac_vs
     \label{figure:ac-charging-efficency}
 \end{figure}
 
-\subsubsection{Nabíjení pomocí stejnosměrného proudu}
-TODO Popis jak křivka vypadá a jak se došlo k hodnotám v tabulkách tedy k průměrnému nabíjecímu výkonu,
-proč křivka pro DC vypadá tak jak vypadá + popis fází. \cite{ivy_charge}
+\subsubsection{Nabíjení pomocí stejnosměrného proudu (DC)}
+Křivka nabíjecího výkonu na obrázku \ref{figure:dc-charging-efficency} při využití stejnosměrného proudu se skládá ze tří fází.
+
+V první fázi nabíjení dochází k postupnému zvyšování výkonu, protože akumulátor začíná nabíjení s nulovou úrovní nabití.
+Nabíjecí stanice zajišťuje, aby proces probíhal bezpečně, což vyžaduje opatrné navyšování proudu. Výkon dosahuje svého
+maxima při dosažení 20 \% kapacity baterie.
+
+Ve druhé fázi výkon postupně klesá, a to z maximální hodnoty dosažené v první fázi na přibližně 70~\% maximálního výkonu. I přes tento pokles výkonu je tato fáze stále efektivní, protože většina kapacity baterie se nabíjí právě
+v tomto rozmezí.
+
+Jakmile baterie dosáhne přibližně 80 \% své kapacity, výkon začíná klesat. Tento proces je nezbytný pro ochranu baterie
+před přehřátím nebo přetížením, což by mohlo vést ke snížení její životnosti. Posledních 20 \% nabíjení je tedy
+pomalejší a méně efektivní. \cite{ivy_charge}
 
 \begin{figure}[H]
     \centering
@@ -244,27 +273,56 @@ proč křivka pro DC vypadá tak jak vypadá + popis fází. \cite{ivy_charge}
 \end{figure}
 
 
-Prumerny nabijeci vykon nabijecky
-\smallskip
+\subsubsection{Výpočty průměrných nabíjecích výkonů nabíječek}
+Pro výpočet průměrných nabíjecích výkonů uvedených v tabulce \ref{table:average-charging-power} byly využity křivky znázorňující nabíjecí průběhy AC a DC nabíjecích stanic, které jsou zobrazeny na obrázcích \ref{figure:ac-charging-efficency} a \ref{figure:dc-charging-efficency}. Nabíjení bylo rozděleno do tří fází na základě kapacity akumulátoru: \textit{0–20 \%}, \textit{20–80 \%} a \textit{80–100 \%}. Pro každou fázi byl průměrný výkon stanoven následujícím způsobem.\\
 
-\begin{table}[h!]
+U AC nabíjení byl počáteční prudký nárůst výkonu v první fázi (\textit{0–20 \%}) zanedbán, protože se odehrál v rámci kapacity akumulátoru \textit{0–5 \%}, což bylo považováno za zanedbatelný interval. Tento interval byl opomenut také proto, že jen velmi malé množství vozidel dorazí k nabíjecí stanici s akumulátorem vybitým natolik, aby spadalo do tohoto rozsahu nabíjení. Proto byl výkon v první fázi považován za konstantní na úrovni 100 \% maximálního výkonu. Ve druhé fázi (\textit{20–80 \%}) byl výkon rovněž konstantní na úrovni 100 \%. Ve třetí fázi (\textit{80–100 \%}) výkon klesal lineárně z 100 \% na 0 \% maximální hodnoty, což dává průměrnou hodnotu 50 \% pro tento interval.\\
+
+U DC nabíjení výkon v první fázi (\textit{0–20 \%}) lineárně roste z 0 \% na 100 \%, což odpovídá průměru 50 \% maximálního výkonu nabíjecí stanice. Ve druhé fázi (\textit{20–80 \%}) výkon lineárně klesal z 100 \% na 70 \% maximální hodnoty, což odpovídá průměrné hodnotě 85 \% pro tento interval, jak je patrné z grafu. Ve třetí fázi (\textit{80–100 \%}) dochází k postupnému poklesu výkonu z 70 \% na 0 \%, což odpovídá průměrnému výkonu 35 \% maximální hodnoty.\\
+
+Procentuální hodnoty získané z analýzy průběhu nabíjení byly využity k výpočtu průměrného výkonu pro jednotlivé fáze. Pro každý interval nabíjení byl výkon vypočítán pomocí následujícího vzorce:
+
+\[
+P_{\text{průměr}} = P_{\text{max}} \cdot \frac{p_{\text{start}} + p_{\text{end}}}{2}
+\]
+
+kde:
+\begin{itemize}
+    \item \(P_{\text{průměr}}\) je průměrný výkon pro danou fázi,
+    \item \(P_{\text{max}}\) je maximální výkon nabíjecí stanice,
+    \item \(p_{\text{start}}\) je procentuální hodnota výkonu na začátku fáze (vyjádřená jako zlomek, např. \(p_{\text{start}} = 0.75\) pro 75 \%),
+    \item \(p_{\text{end}}\) je procentuální hodnota výkonu na konci fáze (vyjádřená jako zlomek, např. \(p_{\text{end}} = 1.00\) pro 100 \%).\\
+\end{itemize}
+
+Například pro třetí fázi DC nabíjení (\textit{80–100 \%}) byl výkon stanoven následovně: \\
+
+Maximální výkon nabíjecí stanice byl \(P_{\text{max}} = 50 \, \mathrm{kWh}\), přičemž výkon v této fázi klesal lineárně z \(p_{\text{start}} = 0.70\) (70 \%) na \(p_{\text{end}} = 0.00\) (0 \%). Průměrný výkon této fáze lze tedy vypočítat takto:
+
+\[
+P_{\text{průměr}} = 50 \cdot \frac{0.70 + 0.00}{2} = 50 \cdot 0.35 = 17.5 \, \mathrm{kWh}
+\]
+
+Podobným způsobem byly provedeny výpočty pro všechny fáze nabíjení jednotlivých nabíjecích stanic, přičemž výsledné hodnoty byly zaokrouhleny pro větší přehlednost.
+
+
+\begin{table}[H]
     \centering 
     \vspace{0.5cm} % Space before table
     \begin{tabular}{|c|c|c|c|}
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
-        11kWh AC  &  12kWh  & 12kWh & 9kWh     \\
+        11 kWh AC  &  11 kWh  & 11 kWh & 5.5 kWh     \\
         \hline
-        12kWh AC  &  12kWh  & 12kWh & 9kWh     \\
+        12 kWh AC  &  12 kWh  & 12 kWh & 6 kWh     \\
         \hline
-        22kWh AC  &  22kWh  & 22kWh & 16.5kWh  \\
+        22 kWh AC  &  22 kWh  & 22 kWh & 11 kWh  \\
         \hline
-        50kWh DC  &  26kWh  & 42kWh & 17kWh    \\
+        50 kWh DC  &  25 kWh  & 42.5 kWh & 17.5 kWh    \\
         \hline
-        108kWh DC &  54kWh  & 90kWh & 36.72kWh \\
+        108 kWh DC &  54 kWh  & 91.8 kWh & 37.8 kWh \\
         \hline
-        150kWh DC &  54kWh  & 90kWh & 36.72kWh \\
+        150 kWh DC &  75 kWh  & 127.5 kWh & 52.5 kWh \\
         \hline
     \end{tabular}
     \caption{Průměrný nabíjecí výkon pro jednotlivé fáze nabíjení}
@@ -272,24 +330,50 @@ Prumerny nabijeci vykon nabijecky
     \vspace{0.5cm} % Space after table
 \end{table}
 
-\begin{table}[h!]
+
+\subsubsection{Výpočty průměrných dob potřebných k nabití baterie}
+
+Pro výpočet průměrné doby potřebné k nabití baterie byly využity hodnoty průměrného nabíjecího výkonu uvedené v tabulce \ref{table:average-charging-power} a průměrná kapacita baterie \(71.6 \, \mathrm{kWh}\), o níž se pojednává v podkapitole \ref{batteries}. Výpočty byly provedeny pro každou fázi nabíjení (\textit{0–20 \%}, \textit{20–80 \%}, \textit{80–100 \%}) zvlášť pomocí následujícího vzorce:
+
+\[
+t_{\text{nabíjení}} = \frac{C_{\text{baterie}}}{P_{\text{průměr}}} \cdot k_{\text{fáze}}
+\]
+
+kde:
+\begin{itemize}
+    \item \(t_{\text{nabíjení}}\) je maximalní doba nabíjení v dané fázi [h],
+    \item \(C_{\text{baterie}}\) je průměrná kapacita baterie elektromobilů (\(71.6 \, \mathrm{kWh}\)),
+    \item \(P_{\text{průměr}}\) je průměrný nabíjecí výkon v dané fázi (viz tabulka \ref{table:average-charging-power}) [kWh],
+    \item \(k_{\text{fáze}}\) je podíl kapacity baterie nabíjený v dané fázi (např. \(0.2\) pro fázi \textit{0–20 \%}).\\
+\end{itemize}
+
+Například pro fázi \textit{20–80 \%} (odpovídající \(k_{\text{fáze}} = 0.6\)) a DC nabíjecí stanici s maximálním výkonem \(50 \, \mathrm{kWh}\) lze výpočet provést následovně:
+
+\[
+t_{\text{nabíjení}} = \frac{71.6}{42.5} \cdot 0.6 = 1.01 \, \mathrm{h}
+\]
+
+Podobným způsobem byly vypočteny časy nabíjení pro všechny fáze a typy nabíjecích stanic. Výsledné hodnoty jsou uvedeny v tabulce \ref{table:charging-time-consumption}.
+
+
+\begin{table}[H]
     \centering 
     \vspace{0.5cm} % Space before table
     \begin{tabular}{|c|c|c|c|}
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
-        11kWh AC  &  0 -- 1.30h.  & 0 -- 3.90h. & 0 -- 2.60h.  \\
+        11 kWh AC  &  0 -- 1.30 h  & 0 -- 3.90 h & 0 -- 2.60 h  \\
         \hline
-        12kWh AC  &  0 -- 1.19h.  & 0 -- 3.58h. & 0 -- 2.38h.  \\
+        12 kWh AC  &  0 -- 1.19 h  & 0 -- 3.58 h & 0 -- 2.38 h  \\
         \hline
-        22kWh AC  &  0 -- 0.65h.  & 0 -- 1.95h. & 0 -- 1.30h.  \\
+        22 kWh AC  &  0 -- 0.65 h  & 0 -- 1.95 h & 0 -- 1.30 h  \\
         \hline
-        50kWh DC  &  0 -- 0.573h. & 0 -- 1.01h. & 0 -- 0.82h.  \\
+        50 kWh DC  &  0 -- 0.57 h & 0 -- 1.01 h & 0 -- 0.82 h  \\
         \hline
-        108kWh DC &  0 -- 0.26h.  & 0 -- 0.47h. & 0 -- 0.38h.  \\
+        108 kWh DC &  0 -- 0.26 h  & 0 -- 0.47 h & 0 -- 0.38 h  \\
         \hline
-        150kWh DC &  0 -- 0.19h.  & 0 -- 0.34h. & 0 -- 0.27h.  \\
+        150 kWh DC &  0 -- 0.19 h  & 0 -- 0.34 h & 0 -- 0.27 h  \\
         \hline
     \end{tabular}
     \caption{Čas potřebný k nabití baterie v jednotlivých fázích stanic}
@@ -297,67 +381,228 @@ Prumerny nabijeci vykon nabijecky
     \vspace{0.5cm} % Space after table
 \end{table}
 
+
 \subsubsection{Petriho síť elektromobility v Brně}
-% Popis Petriho sítě (jak napodobuje vypocty vysse, bla bla bla... )
+
+Na začátku je nutné simulovat generování automobilů v určitém časovém intervalu. V našem modelu je tento proces reprezentován exponenciálním rozložením s parametrem \(\lambda\). Protože jsme chtěli simulovat celodenní (24 hodin), denní (14 hodin) i noční režim (10 hodin), v návrhu Petriho sítě parametr \(\lambda\) konkrétně nedefinujeme. Když se elektromobil vygeneruje, zařadí se do fronty, která reprezentuje elektromobily v Brně, jež se chtějí nabít. 
+
+Každý elektromobil je následně zařazen do specifické fronty podle aktuálního stavu baterie. Největší část elektromobilů (80 \%) má stav baterie v rozmezí 20–80 \% a potřebuje se dobít. Pravděpodobnost, že elektromobil přijede s kapacitou baterie pod 20 \% nebo nad 80 \%, je shodně 10 \%. Po zařazení do fronty si elektromobil vybírá výkon nabíječky, kterou chce použít. Pravděpodobnost výběru konkrétního typu nabíječky je vypočítána na základě poměru počtu daného typu nabíječek k celkovému počtu nabíječek. 
+
+Po výběru nabíječky elektromobil přejde do stavu čekání ve frontě na nabíječku s daným výkonem. Přechod do stavu nabíjení je možný pouze v případě, že sklad nabíječek daného výkonu má volnou alespoň jednu nabíječku. Jakmile je nabíječka volná, elektromobil si ji zabere a začne proces nabíjení (během této fáze čeká po dobu simulovanou rovnoměrným rozložením). Rozsahy pro rovnoměrné rozložení nabíjecí doby jsou uvedeny v tabulce \ref{table:charging-time-consumption}.
+
+
+Po dokončení nabíjení může elektromobil:
+\begin{itemize}
+    \item přejít do další fáze nabíjení (v případě, že přešel z první fáze, kdy měl kapacitu baterie 0–20 \%, na druhou fázi s kapacitou 20–80 \%),
+    \item nebo dokončit nabíjení, uvolnit nabíječku a opustit systém.
+\end{itemize}
+
+Při přechodu z první fáze nabíjení (0–20 \%) do druhé fáze (20–80 \%) je důležité poznamenat, že elektromobil už nemusí znovu čekat ve frontě na nabíječku, protože ji má stále obsazenou. Rovnou tedy přechází do fáze nabíjení z 20 na 80 \% kapacity baterie. Po této fázi uvolní nabíječku a systém opustí.
+
+Třetí fáze nabíjení, tedy z 80 na 100 \% kapacity baterie, simuluje elektromobily, které do systému přijedou s kapacitou baterie vyšší než 80 \% a chtějí se nabít na plnou kapacitu. Tyto elektromobily postupují stejným způsobem jako ostatní, avšak jejich proces začíná přímo touto třetí fází.
+
 
 \begin{figure}[H]
     \centering
     \scalebox{0.135}{
-        \includegraphics{ims-petri-net.eps}
+        %\includegraphics{ims-petri-net.eps}
     }
     \caption{Petriho síť elektromobility v Brně}
     \label{figure:ims-petri-net}
 \end{figure}
 
+\section{Simulace elektromobility}
+
+\subsection{Vstupy a výstupy programu}
+
+Program byl implementován na základě návrhu Petriho sítí (viz obrázek \ref{figure:ims-petri-net}). Tento model slouží k simulaci nabíjení elektromobilů v rámci města s různými režimy provozu a nabíjecími stanicemi.
+
+\subsubsection{Vstupy programu}
+
+Program se spouští s následujícím základním formátem:
+
+\begin{verbatim}
+./sim [d|n|24h] [-tc počet_aut] [-p procento] [-ac11 počet] [-ac12 počet]
+[-ac22 počet] [-dc50 počet] [-dc108 počet] [-dc150 počet] [-h]
+\end{verbatim}
+
+Popis jednotlivých parametrů:
+\begin{itemize}
+    \item \texttt{[d|n|24h]}: Režim simulace.
+    \begin{itemize}
+        \item \texttt{d}: Denní režim (od 7:00 do 21:00, tj. 14 hodin).
+        \item \texttt{n}: Noční režim (od 21:00 do 7:00, tj. 10 hodin).
+        \item \texttt{24h}: Simulace celého dne (24 hodin).
+    \end{itemize}
+    \item \texttt{-tc počet\_aut}: Počet elektromobilů ve městě.
+    \item \texttt{-p procento}: Procento elektromobilů ve městě, která se v daný den budou chtít nabít. Na základě tohoto procenta se vypočítává parametr \(\lambda\) pro generování počtu aut (např. hodnota \texttt{0.25} znamená 25 \% elektromobilů z celkového počtu elektromobilů ve městě).
+    \item \texttt{-ac11 počet}, \texttt{-ac12 počet}, \texttt{-ac22 počet}, \texttt{-dc50 počet}, \texttt{-dc108 počet}, \texttt{-dc150 počet}: Počet nabíjecích bodů pro stanice s příslušným výkonem (např. AC 11 kWh, DC 50 kWh apod.).
+    \item \texttt{-h}: Zobrazení nápovědy a možností spuštění programu.
+\end{itemize}
+
+
+\subsubsection{Výchozí hodnoty}
+V programu jsou výchozí hodnoty parametrů nastaveny na aktuální situaci ve městě Brno:
+\begin{itemize}
+
+    \item \texttt{-tc}: Počet elektromobilů je nastaven na hodnotu 1700, což odpovídá odhadu aktuálního počtu elektromobilů v Brně. Tento odhad byl získán analýzou dat poskytnutých nemenovanou společností.
+    \item \texttt{-p}: Procento elektromobilů, která se chtějí nabít v danou periodu, bylo vypočítáno na základě analýzy datového souboru od nemenované společnosti. Pro denní režim (\texttt{d}) činí toto procento 17.7 \%, zatímco pro noční režim (\texttt{n}) odpovídá jedné desetině této hodnoty, tj. 1.77 \%.
+    \item Počet jednotlivých nabíjecích stanic (\texttt{-ac11}, \texttt{-ac12}, \texttt{-ac22}, \texttt{-dc50}, \texttt{-dc108}, \texttt{-dc150}) byl určen z dat a je podrobněji popsán v podkapitole \ref{dataset-processing}.
+\end{itemize}
+
+\subsubsection{Výstupy programu}
+
+Výstupy programu jsou zobrazovány jak v terminálu, tak ukládány do výstupního souboru. Výstupní soubor je umístěn v adresáři \texttt{output}, který musí být vytvořen v kořenovém adresáři aplikace.\\
+
+V terminálu jsou zobrazeny následující údaje:
+\begin{itemize}
+    \item Počet generovaných automobilů ve zvoleném režimu simulace (denní, noční, 24 hodin).
+    \item Počet automobilů, která zahájila proces nabíjení.
+    \item Počet automobilů, která dokončila nabíjení a opustila systém.
+    \item Průměrná doba potřebná k úplnému nabití baterie (od 0 \% do 100 \% kapacity).\\
+\end{itemize}
+
+V adresáři \texttt{output} jsou vytvářeny textové soubory, jejichž názvy odpovídají parametrům zadaným při spuštění programu. Každý soubor obsahuje následující informace:
+\begin{itemize}
+    \item Statistiky jednotlivých skladů nabíjecích stanic, včetně využití.
+    \item Statistiky čekacích dob ve frontách u jednotlivých nabíjecích stanic.
+    \item Histogram znázorňující doby, po které se elektromobily nacházely v systému (od vstupu do systému po jeho opuštění).
+\end{itemize}
+
+Tyto výstupy umožňují analyzovat efektivitu nabíjecí infrastruktury, její vytíženost a čekací doby, což může být využito jako základ pro zlepšení efektivity provozu.
+
+\subsection{Momentální stav elektromobility v Brně}
+Program byl spuštěn s výchozími hodnotami, které definují aktuální stav elektromobility v Brně. Simulace byla provedena pro tři režimy: denní (\texttt{d}), noční (\texttt{n}) a celodenní (\texttt{24h}). 
+
+Ze simulace bylo zjištěno, že nabíjecí stanice bez problémů pokrývají aktuální potřeby elektromobility v Brně, přičemž ve žádném z režimů simulace nedocházelo k tvorbě front ani přetížení infrastruktury. Tato zjištění potvrzují, že současná nabíjecí infrastruktura je dostatečně navržena pro pokrytí potřeb elektromobilů za výchozích podmínek simulace.
+
+\paragraph{Výstup programu pro momentální stav\\\\}
+
+Na základě simulace denního režimu (\texttt{d}), nočního režimu (\texttt{n}) a celodenního režimu (\texttt{24h}) byly získány následující výsledky:
+
+\paragraph{Denní režim (\texttt{d}):} 
+Denní režim, který pokrývá období od 7:00 do 21:00 (celkem 14 hodin), simuloval celkem 281 elektromobilů. Všechna vozidla zahájila nabíjení, přičemž 260 z nich proces úspěšně dokončilo a opustilo systém. Průměrná doba nabíjení z úplného vybití na plnou kapacitu byla 100,475 minut.
+
+Podle histogramu času stráveného v systému se minimální doba pohybovala okolo 0,07 minuty a maximální dosáhla 188,17 minut. Průměrná doba činila 48,19 minut se směrodatnou odchylkou 38,31 minut. Největší podíl vozidel (30,77 \%) strávil v systému méně než 20 minut, zatímco přibližně 68 \% vozidel opustilo systém do 60 minut. Dlouhé časy nad 140 minut byly spíše výjimečné a tvořily méně než 3 \% případů. Tyto výsledky naznačují, že nabíjecí infrastruktura během denního režimu dokáže většinu vozidel obsloužit bez výrazného zpoždění.
+
+\paragraph{Noční režim (\texttt{n}):}
+V nočním režimu, který probíhá od 21:00 do 7:00 (celkem 10 hodin), simulace generovala 28 elektromobilů. Všechna tato vozidla zahájila nabíjení a 27 z nich nabíjení úspěšně dokončilo. Průměrná doba nabíjení byla delší než v denním režimu a dosáhla hodnoty 125,856 minut.
+
+Podle histogramu se minimální doba strávená v systému pohybovala na 0,31 minutách, zatímco maximální činila 143,04 minut. Průměrná doba strávená v systému byla 62,55 minut, což je vyšší hodnota než v denním režimu. Největší podíl vozidel (25,93 \%) opustil systém v rozmezí 40 až 60 minut, přičemž dlouhé časy nad 140 minut byly výjimečné.
+
+Celkově je zřejmé, že v nočním režimu je vytížení nabíjecí infrastruktury výrazně nižší než ve dne. Méně vozidel znamená plynulejší provoz a žádné fronty, což umožňuje efektivní obsloužení všech elektromobilů. Tento stav ukazuje, že noční režim není hlavním zdrojem zátěže pro nabíjecí infrastrukturu.
+
+
+\paragraph{Celodenní režim (\texttt{24h}):}
+Celodenní režim, zahrnující 24 hodin, simuloval celkem 310 elektromobilů. Všechna vozidla zahájila nabíjení, přičemž 307 z nich dokončilo proces a opustilo systém. Průměrná doba nabíjení dosáhla hodnoty 108,203 minut.
+
+Histogram celkového času v systému ukazuje minimální dobu 0,07 minut a maximální 229,76 minut. Průměrná doba byla 53,65 minut, což je mezi hodnotami zjištěnými v denním (48,19 minut) a nočním režimu (62,55 minut). Největší podíl vozidel (27,04 \%) strávil v systému méně než 20 minut, zatímco dlouhé časy nad 140 minut byly opět spíše výjimečné. Tyto výsledky potvrzují schopnost infrastruktury zvládnout nabíjení většiny vozidel s minimálním zpožděním.
+
+\paragraph{} 
+Celkové výsledky simulace naznačují, že současná nabíjecí infrastruktura v Brně je schopná efektivně pokrýt poptávku elektromobilů. Vysoký počet dokončených nabíjení a relativně nízké průměrné časy v systému potvrzují, že infrastruktura je dobře přizpůsobena aktuálnímu počtu vozidel ve městě.
+
+\subsection{Stav elektromobility v Brně v roce 2030}
+
+S rostoucím počtem elektromobilů, který se očekává do roku 2030, je důležité pochopit, jak tento nárůst ovlivní stávající nabíjecí infrastrukturu v Brně. Počet elektromobilů by měl výrazně vzrůst, což klade nové nároky na kapacitu a dostupnost nabíjecích stanic. Očekává se, že rozšiřování nabíjecích bodů, delší dojezdy na jedno nabití a rychlejší nabíjení umožní širší přijetí elektromobility mezi uživateli. \cite{electromobiles_in_future}
+
+Hlavním cílem tohoto experimentu je zjistit, jak zvýšený počet elektromobilů ovlivní čekací doby, vytíženost nabíjecích stanic a celkovou efektivitu nabíjecí infrastruktury. V rámci simulace jsme proto zohlednili různé scénáře, které počítají s různými počty a výkony nabíjecích bodů.
+
+\subsubsection{Nárůst elektromobilů}
+Abychom mohli simulovat situaci v roce 2030, bylo potřeba odhadnout přibližný počet elektromobilů v Brně. Na základě informací z článku \cite{ev_growth} odhadujeme, že počet elektromobilů by na konci roku 2030 mohl dosáhnout přibližně 20 tisíc.
+
+Tento odhad nám poskytuje výchozí bod pro experimenty zaměřené na analýzu dopadů zvýšeného počtu elektromobilů na nabíjecí infrastrukturu ve městě. Simulace nám umožní zjistit, jak se infrastruktura vyrovná s větší zátěží a jak by ji bylo možné přizpůsobit rostoucí poptávce.
+
+\subsubsection{Simulace nabíjení při stávající infrastruktuře}
+Pro první část simulace jsme ponechali počty nabíjecích stanic nezměněné, aby odpovídaly současnému stavu infrastruktury v Brně. Jedinou změnou byl zvýšený počet elektromobilů, který jsme nastavili na 20 000 podle předchozího odhadu. Kromě toho jsme zvýšili podíl elektromobilů, která se chtějí během jednoho dne nabíjet, na 25 \%. Tento vyšší podíl odráží předpoklad, že v budoucnosti budou elektromobily používány častěji, což povede k větší zátěži na nabíjecí infrastrukturu.
+
+Cílem této simulace bylo zjistit, zda stávající infrastruktura dokáže zvládnout zvýšený počet vozidel, a identifikovat klíčové problémy, jako jsou fronty u nabíjecích stanic nebo prodloužené čekací doby. Tato analýza poskytuje důležitý základ pro návrh efektivnějšího řešení do budoucna.
+
+
+\paragraph{Výstup programu\\\\}
+Na základě simulace denního režimu (\texttt{d}), nočního režimu (\texttt{n}) a celodenního režimu (\texttt{24h}) jsme získali následující výstupy:
+
+\paragraph{Denní režim (\texttt{d}):} 
+V rámci 14hodinového denního režimu, který probíhá od 7:00 do 21:00, bylo simulováno celkem 5 133 elektromobilů. Z tohoto počtu se 4 373 vozidel, tedy 85 \%, připojilo k nabíjení. Plně nabít a opustit systém však zvládlo pouze 4 110 elektromobilů, což odpovídá 80 \% generovaných vozidel. Tato čísla naznačují, že současná nabíjecí infrastruktura má problémy s pokrytím zvýšené poptávky.
+
+Průměrná doba nabíjení zůstala na úrovni 102,45 minut, což je srovnatelné s předchozími výsledky. Přesto 15 \% elektromobilů nabíjení vůbec nezahájilo a dalších 5 \% ho nedokončilo, což ukazuje na obtíže systému zvládnout větší počet elektromobilů.
+
+Podrobnější analýza odhalila výrazné fronty u pomalejších AC nabíječek:
+\begin{itemize}
+    \item \textbf{11 kWh nabíječky}: Průměrná fronta činila 23 vozidel, tedy zhruba 4 vozidla na jednu nabíječku.
+    \item \textbf{12 kWh nabíječky}: Fronty byly ještě delší, v průměru 87 vozidel, což odpovídá více než 4 vozidlům na jednu nabíječku.
+    \item \textbf{22 kWh nabíječky}: Průměrná fronta zde dosahovala 251 vozidel. Při kapacitě 197 nabíječek to odpovídá zhruba 1,27 vozidla na jednu nabíječku.
+\end{itemize}
+
+Naopak u rychlejších \textbf{DC nabíječek} (50 kWh, 108 kWh, 150 kWh) se fronty vůbec nevytvářely. Statistika ukázala:
+\begin{itemize}
+    \item \textbf{50 kWh nabíječky}: Průměrně bylo využíváno 36 z 54 dostupných bodů.
+    \item \textbf{108 kWh nabíječky}: Průměrné využití bylo 2,6 bodu z celkových 11.
+    \item \textbf{150 kWh nabíječky}: V průměru bylo obsazeno 3,6 bodu z 17.
+\end{itemize}
+
+Tato data potvrzují, že \textbf{DC nabíječky} jsou mnohem efektivnější a umožňují rychlé nabíjení, zatímco \textbf{AC nabíječky} omezují plynulost systému a způsobují značné fronty.
+
+Podle histogramu byla \textbf{průměrná doba v systému} 95 minut, což je 1 hodina a 35 minut, se směrodatnou odchylkou 78 minut. Maximální doba v systému byla téměř 9 hodin, což by pro uživatele znamenalo neúnosné čekání. 
+
+Z výsledků je zřejmé, že současná infrastruktura má zásadní nedostatky, zejména u AC nabíječek. K zajištění plynulého provozu by bylo nutné rozšířit kapacitu nebo přejít na výkonnější DC nabíječky.
+
+\paragraph{Noční režim (\texttt{n}):} 
+Během nočního režimu, který trvá 10 hodin (od 21:00 do 7:00), bylo simulováno 464 elektromobilů. Všechna vozidla zahájila nabíjení, z nichž 425 úspěšně dokončilo proces a opustilo systém. 
+
+Detailní analýza ukázala, že během nočního režimu se netvořily žádné fronty u nabíjecích stanic. Průměrná doba, kterou vozidla strávila v systému, byla 51 minut se směrodatnou odchylkou 38 minut. Tato čísla naznačují, že infrastruktura byla během nočního režimu dostatečně efektivní a umožnila plynulý provoz bez zpoždění.
+
+
+\paragraph{Celodenní režim (\texttt{24h}):} 
+V celodenním režimu bylo vygenerováno celkem 5 638 elektromobilů, z nichž 5 505 zahájilo nabíjení. To odpovídá 97 \% všech vygenerovaných vozidel, což je výrazné zlepšení oproti dennímu režimu, kde se k nabíjení připojilo pouze 85 \% aut. Hlavním důvodem tohoto rozdílu je skutečnost, že vozidla generovaná během dne mohla pokračovat v nabíjení i po 21. hodině. Celkově 5 442 vozidel úspěšně dokončilo nabíjení a opustilo systém, což představuje 96 \% všech generovaných elektromobilů. Tento výsledek lze považovat za dobrý, ale v reálném světě by uživatelé pravděpodobně nechtěli nabíjet své vozy na veřejných stanicích dlouho do noci.
+
+Fronty se během celodenního režimu tvořily pouze u AC nabíječek. Průměrná délka front dosahovala přibližně 3,5 vozidla na jednu AC nabíječku, což je sice méně než v denním režimu, ale stále to představuje významný problém. Navíc byla průměrná doba, kterou vozidla strávila v systému, 122 minut se směrodatnou odchylkou 120 minut. To znamená, že někteří uživatelé čekali na dokončení nabíjení výrazně déle.
+
+Výsledky naznačují, že pokud se má zvládnout rostoucí počet elektromobilů, bude nutné zvýšit počet DC nabíjecích bodů. Tyto stanice nabízejí rychlejší nabíjení a mohou výrazně zlepšit plynulost celé infrastruktury.
+
+
+\subsubsection{Simulace nabíjení při rozšířené infrastruktuře}
+
+Na základě informací z článku \cite{ev_growth}, který uvádí, že město Brno plánuje do roku 2030 vybudovat síť 1 000 nabíjecích bodů, jsme se rozhodli analyzovat, jak by takové rozšíření infrastruktury ovlivnilo efektivitu nabíjení elektromobilů v nejvytíženějším denním režimu, tedy od 7:00 do 21:00. Provedli jsme dva experimenty, každý s odlišným rozšířením nabíjecích stanic.
+
+
+\paragraph{Experiment 1: Zvýšení počtu AC nabíječek\\\\}
+V tomto experimentu jsme se zaměřili na navýšení počtu \textbf{AC nabíječek} na celkových 1 000 bodů. Pro 11 kWh a 12 kWh nabíječky bylo přidáno po 300 bodů a pro 22 kWh nabíječky 400 bodů (\texttt{./sim d -tc 20000 -p 0.25 -ac11 300 -ac12 300 -ac22 400}). Cílem bylo zjistit, jak by toto navýšení ovlivnilo fungování systému a zvládání poptávky v denním režimu (od 7:00 do 21:00).
+
+Simulace ukázala, že během dne bylo vygenerováno 5 039 elektromobilů a všechna tato vozidla se připojila k nabíjecím stanicím. Nabít a opustit systém se ale podařilo pouze 4 490 vozidlům, což odpovídá 89~\% všech generovaných aut.
+
+Průměrná doba nabíjení dosáhla 168 minut, což je téměř o hodinu více než ve scénáři se stávající infrastrukturou, kde bylo nabíjení zvládnuto za průměrných 102 minut. Tento výsledek naznačuje, že i při navýšení počtu AC nabíječek systém nedokázal eliminovat zdržení způsobená pomalým nabíjením na těchto typech stanic.
+
+Průměrná doba v systému byla 83 minut s odchylkou 60 minut, což naznačuje, že některé elektromobily zůstávaly v systému mnohem déle. Minimální doba byla 0,03 minuty, zatímco maximální dosáhla téměř 5 hodin. Přibližně 6~\% vozidel strávilo v systému více než 3 hodiny, což může být pro uživatele nepřijatelné.
+
+Na druhou stranu, navýšení počtu AC nabíječek zajistilo, že se během simulace netvořily žádné fronty, což znamená, že z hlediska dostupnosti bylo stanic dostatek. Navzdory tomu pomalé nabíjení způsobovalo, že systém nebyl dostatečně efektivní pro zvládnutí vysokého počtu elektromobilů. Výsledky ukazují, že pouhé navýšení kapacity AC nabíječek nestačí a že by mělo být doplněno rozšířením rychlejších DC nabíječek.
+
+
+\paragraph{Experiment 2: Zvýšení počtu AC a DC nabíječek\\\\}
+Ve druhém experimentu jsme kombinovali navýšení počtu \textbf{AC i DC nabíječek}, přičemž celkový počet bodů (AC a DC dohromady) byl opět 1 000. V tomto scénáři byly parametry nastaveny na 200 bodů pro 11kWh a 12kWh stanice, 250 bodů pro 22kWh stanice, 150 bodů pro DC 50kWh stanice a 100 bodů pro DC 108kWh a 150kWh stanice (\texttt{./sim d -tc 20000 -p 0.25 -ac11 200 -ac12 200 -ac22 250 -dc50 150 -dc108 100 -dc150 100}). Tento experiment zkoumal, zda kombinace rychlejších DC a pomalejších AC nabíječek dokáže zlepšit dostupnost infrastruktury ve srovnání s pouhým zvýšením počtu AC nabíječek.
+
+Program simuloval celkem 5 059 elektromobilů, přičemž všechna vozidla zahájila proces nabíjení. Systém úspěšně opustilo plně nabito 4 666 vozidel, což odpovídá 92 \% všech generovaných elektromobilů. Průměrná doba potřebná k dokončení nabíjení činila 127 minut, což je o 29 minut méně než v prvním experimentu, kde bylo zvýšeno pouze množství AC nabíječek. Tento výsledek ukazuje, že kombinace rychlejších DC nabíječek a pomalejších AC nabíječek umožňuje zlepšit efektivitu nabíjení.
+
+Podrobný výstup ukazuje, že se v průběhu simulace nevytvořily žádné fronty u nabíjecích stanic. To naznačuje, že dostupnost nabíjecích bodů byla zcela dostatečná. V porovnání s prvním experimentem, kde se rovněž nevytvářely fronty, je klíčovým rozdílem právě průměrná doba nabíjení, která byla v tomto experimentu výrazně kratší.
+
+Histogram ukazuje, že většina vozidel (přes 31 \%) opustila systém za méně než 20 minut, což je výrazné zlepšení oproti prvnímu experimentu. Průměrná doba strávená v systému činila 62 minut se směrodatnou odchylkou 59 minut. Tento výsledek je o 15 minut lepší než v prvním experimentu.
+
+Z analýzy je zřejmé, že DC nabíječky byly v průměru méně vytížené než AC nabíječky. Například DC 50kWh stanice využívaly průměrně 30 ze 150 dostupných bodů, zatímco 11kWh a 12kWh AC stanice byly v průměru využity na 127 a 114 bodů z celkových 200. Tato data potvrzují, že rychlejší DC nabíječky výrazně snižují zatížení systému a zlepšují plynulost nabíjení.
+
 \section{Závěr}
-% K cemu se doslo... popis vysledku
+Tento projekt se zaměřil na zkoumání současné a budoucí situace elektromobility v Brně pomocí simulací nabíjecí infrastruktury. Cílem bylo zjistit, jak dobře si stávající systém poradí s rostoucím počtem elektromobilů a jak by mohla rozšířená infrastruktura zlepšit dostupnost a rychlost nabíjení.
 
-\subsection{Výstup programu}
-% kde jsou vysledky ulozeny, jak je interpretovat
+Simulace ukázaly, že aktuální stav nabíjecí sítě v Brně je dostatečný pro současný počet elektromobilů. Systém zvládá poptávku bez větších problémů – nevznikají dlouhé fronty a většina vozidel je nabita v rozumném čase. Nicméně při předpokládaném nárůstu počtu elektromobilů na 20 tisíc do roku 2030 se ukázaly zásadní slabiny. Hlavním problémem jsou pomalejší AC nabíječky, které nedokážou zvládnout vyšší počet vozidel a způsobují zdržení a fronty.
 
-\subsubsection{Momentální stav elektromobility v Brně}
-% vsechno momentalne dostacuje, denne se nabije tolik a tolik aut prumerna doba cekani, ...
+Pro zlepšení situace byly provedeny dva experimenty s rozšířením nabíjecí sítě, přičemž počet nabíjecích bodů byl zvolen na základě článku \cite{ev_growth}, který uvádí, že Teplárny Brno plánují do roku 2030 vybudovat 1 000 nabíjecích bodů. Experimenty se zaměřily na dvě varianty rozšíření infrastruktury:
 
-\subsubsection{Výstup programu pro momentální stav elektromobility v Brně}
+\begin{description}
+    \item[\textbf{Zvýšení počtu AC nabíječek}] V prvním experimentu byl počet AC nabíjecích bodů navýšen na 1 000. Toto rozšíření eliminovalo fronty, což ukazuje na dostatečnou kapacitu stanic. Průměrná doba strávená v systému však byla 82,88 minut s odchylkou 60,19 minut, což je pro uživatele stále příliš dlouhé a nevyhovující.
+    \item[\textbf{Kombinace AC a DC nabíječek}] Druhý experiment kombinoval navýšení počtu pomalejších AC nabíječek a rychlejších DC nabíječek, přičemž celkový počet bodů zůstal na 1 000. Tato kombinace přinesla výrazně lepší výsledky. Průměrná doba strávená v systému byla 61,83 minut s odchylkou 58,57 minut. DC nabíječky se ukázaly jako klíčové pro efektivní zvládnutí vyšší poptávky a významně zlepšily plynulost celého systému. Přibližně 70~\% elektromobilů strávilo v systému méně než 80 minut, což představuje značné zlepšení oproti prvnímu experimentu.
+\end{description}
 
-\subsubsection{Stav v roce 2030 elektromobility v Brně}
-% co se stane, kdyz se zvysi pocet elektromobilu, jak se zmeni prumerna doba cekani, ...
+Z výsledků experimentů vyplývá, že samotné navýšení počtu AC nabíječek nestačí. Rychlejší DC nabíječky výrazně snižují dobu nabíjení a zvyšují efektivitu systému, což je nezbytné pro zvládnutí vyššího počtu elektromobilů v budoucnosti. Kombinace AC a DC nabíječek se ukazuje jako nejefektivnější způsob, jak zajistit plynulé a rychlé nabíjení a zároveň minimalizovat čekací doby.
 
-\subsubsection{Nárůst elektromobilitů v Brně}
-
-% tabulka s poctem elektromobilu od roku 2023 po 2030
-
-\begin{table}[h!]
-    \centering 
-    \vspace{0.5cm} % Space before table
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Rok} & \textbf{Počet elektromobilů} & \textbf{přírustek} \\
-        \hline
-        2023  &  --  &  --  \\
-        \hline
-        2024  &  --  &  --  \\
-        \hline
-        2025  &  --  &  --  \\
-        \hline
-        2026  &  --  &  --  \\
-        \hline
-        2027  &  --  &  --  \\
-        \hline
-        2028  &  --  &  --  \\
-        \hline
-        2029  &  --  &  --  \\
-        \hline
-        2030  &  --  &  --  \\
-        \hline
-    \end{tabular}
-    \caption{Počet elektromobilů v Brně v letech 2023–2030}
-    \label{table:charging-time-consumption}
-    \vspace{0.5cm} % Space after table
-\end{table}
-
-\subsubsection{Výstup programu pro stav elektromobility v Brně v roce 2030}
-dfd
+Brno by se mělo zaměřit na rozšíření nabíjecí infrastruktury, která kombinuje oba typy nabíječek. Taková síť umožní městu zvládnout přechod na ekologičtější a udržitelnější dopravu. Výsledky projektu jasně ukazují, že investice do rozšíření infrastruktury s důrazem na DC nabíječky budou nezbytné pro přípravu na budoucí požadavky elektromobility a pro zajištění komfortu uživatelů.
 
 \newpage
 \bibliographystyle{unsrt}
