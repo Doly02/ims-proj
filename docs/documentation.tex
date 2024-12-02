@@ -55,10 +55,18 @@ který se v posledních letech stává stále populárnějším a je pravděpodo
 V rámci projektu se zaměříme na modelování elektromobily v Brně s cílem určit, zda je Brno připraveno
 na budoucnost.\cite{simlib_cpp}
 
+\section{Autoři simulace}
+Autoři této simulační studie do předmětu IMS (Modelování a simulace) jsou:
+
+\begin{itemize}
+    \item Tomáš Dolák, \href{mailto:xdolak09@stud.fit.vutbr.cz}{\texttt{xdolak09@stud.fit.vutbr.cz}}
+    \item Monika Záhradníková, \href{mailto:xzahra33@stud.fit.vutbr.cz}{\texttt{xzahra33@stud.fit.vutbr.cz}} \\
+\end{itemize}
+
 \section{Cíle projektu}
-Cílem projektu je vytvořit model, který bude schopen simulovat chování nabíjení elektromobilů 
-v Brně. Model bude zahrnovat informace o elektromobilech a nabíjecích stanicích vyskytující se
-v Brně. Model bude schopen simulovat zátěž sítě nabíjecích stanic na základě zájmu o využítí 
+Cílem projektu bylo vytvořit model, který bude schopen simulovat chování nabíjení elektromobilů 
+v Brně. Model zahrnuje informace o elektromobilech a nabíjecích stanicích vyskytující se
+v Brně. Doménou modelu bude schopenost simulovat zátěž sítě nabíjecích stanic na základě zájmu o využítí 
 stanic, celkové struktuře této sítě a to v závislosti na části dne. Chování modelu, lze ovlivnit
 jeho parametry volání, mezi které patří počet elektromobilů nacházející se ve městě, kolik 
 procent z nich využíva veřejné stanice denně, počet stanic (lze specifikovat více druhů viz. 
@@ -66,9 +74,13 @@ kapitola~\ref{sec:stanice}), a dále čas kdy simulace bude probíhat - celý de
 režim. Tento model lze využít k analýze a optimalizaci stavu sítě stanic pro nabíjení elektrických
 vozidel v Brně.
 
-Model byl otestován s aktuálním stavem sítě a zájmem o nabíjení na veřejných stanicicí a pomocí 
+\section{Validita modelu}
+Model byl otestován s aktuálním stavem sítě a zájmem o nabíjení na veřejných stanicicích a pomocí 
 experimentů, kde bylo zkoumáno, aktuální složení sítě a odhadovaným množstvím elektromobilů v Brně
-v roce 2030.
+v roce 2030. K realizaci modulu byly využity jak veřejná data - viz. \ref{sec:zdroje} neveřejná data, 
+konkrétní data ani zdroje nemohou být publikovány. Tyto informace byly použity k vytvoření představy 
+o aktuálním stavu elektromobily v Brně a k ověření správnosti modelu. 
+
 \section{Rozbor tématu a použitých metod/technologií}
 Pro korektní modelování elektromobility je potřeba si nejprve uvědomit, jak elektromobily fungují, 
 jaké jsou jejich vlastnosti/parametry, jelikož, elektrická vozidla budou v modelu představovat transakce.
@@ -609,5 +621,6 @@ Brno by se mělo zaměřit na rozšíření nabíjecí infrastruktury, která ko
 \newpage
 \bibliographystyle{unsrt}
 \bibliography{resources}
+\label{sec:zdroje}
 
 \end{document}
