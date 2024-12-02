@@ -106,6 +106,7 @@ pole. Toto pole interaguje s magnetickým polem rotoru a vytváří točivý mom
 \end{figure}
 
 \subsubsection{Baterie}
+
 \label{batteries}
 Baterie je další důležitou součástí elektromobilu. Stejně jako existuje více typů elektromotorů, 
 liší se i baterie, používané jednotlivými výrobci. V zásadě se ale jedná o lithium-iontové baterie
@@ -115,6 +116,8 @@ v rozmezí od 123 kWh, po 21.3 kWh na základě dat z webové stránky www.ev-da
 poskytující databázi o elektromobilech. Tato databáze zároveň poskytuje informaci o průměrné kapacitě
 baterie, která činí 71.6 kWh, tato hodnota bude dále v modelu využita pro výpočet času stráveného autem
 nabíjením na stanici.
+
+Je důležité zmínit, že baterie postupem času degraduje. S rostoucím počtem najetých kilometrů se postupně snižuje její maximální kapacita. Tento proces je přirozenou vlastností lithium-iontových baterií a nelze jej zcela zastavit, lze jej však vhodným způsobem zpomalit. Pro co nejdelší životnost a zdraví baterie je doporučeno udržovat její kapacitu v rozmezí 20–80~\%. To znamená vyvarovat se jak hlubokému vybití, tak i častému nabíjení na 100~\%. Tyto extrémní stavy vedou k urychlenému opotřebení článků. Tuto informaci budeme dále využívat při návrhu modelu a simulace.\cite{battery-health}
 
 \subsubsection{Typy nabíjení}
 Elektromobil, lze nabíjet hned několika způsoby, faktorů je mnoho, výkon elektrostanice, typ proudu, 
@@ -386,7 +389,7 @@ Podobným způsobem byly vypočteny časy nabíjení pro všechny fáze a typy n
 
 Na začátku je nutné simulovat generování automobilů v určitém časovém intervalu. V našem modelu je tento proces reprezentován exponenciálním rozložením s parametrem \(\lambda\). Protože jsme chtěli simulovat celodenní (24 hodin), denní (14 hodin) i noční režim (10 hodin), v návrhu Petriho sítě parametr \(\lambda\) konkrétně nedefinujeme. Když se elektromobil vygeneruje, zařadí se do fronty, která reprezentuje elektromobily v Brně, jež se chtějí nabít. 
 
-Každý elektromobil je následně zařazen do specifické fronty podle aktuálního stavu baterie. Největší část elektromobilů (80 \%) má stav baterie v rozmezí 20–80 \% a potřebuje se dobít. Pravděpodobnost, že elektromobil přijede s kapacitou baterie pod 20 \% nebo nad 80 \%, je shodně 10 \%. Po zařazení do fronty si elektromobil vybírá výkon nabíječky, kterou chce použít. Pravděpodobnost výběru konkrétního typu nabíječky je vypočítána na základě poměru počtu daného typu nabíječek k celkovému počtu nabíječek. 
+Každý elektromobil je následně zařazen do specifické fronty podle aktuálního stavu baterie. Největší část elektromobilů (80 \%) má stav baterie v rozmezí 20–80 \% a potřebuje se dobít. Pravděpodobnost, že elektromobil přijede s kapacitou baterie pod 20 \% nebo nad 80 \%, je shodně 10 \%. Při volbě těchto údajů jsme vycházeli ze skutečnosti, že většina lidí se snaží udržovat své baterie v rozmezí 20–80~\%, jak již bylo zmíněno v podkapitole \ref{batteries}. Po zařazení do fronty si elektromobil vybírá výkon nabíječky, kterou chce použít. Pravděpodobnost výběru konkrétního typu nabíječky je vypočítána na základě poměru počtu daného typu nabíječek k celkovému počtu nabíječek. 
 
 Po výběru nabíječky elektromobil přejde do stavu čekání ve frontě na nabíječku s daným výkonem. Přechod do stavu nabíjení je možný pouze v případě, že sklad nabíječek daného výkonu má volnou alespoň jednu nabíječku. Jakmile je nabíječka volná, elektromobil si ji zabere a začne proces nabíjení (během této fáze čeká po dobu simulovanou rovnoměrným rozložením). Rozsahy pro rovnoměrné rozložení nabíjecí doby jsou uvedeny v tabulce \ref{table:charging-time-consumption}.
 
@@ -452,22 +455,18 @@ V programu jsou výchozí hodnoty parametrů nastaveny na aktuální situaci ve 
 
 \subsubsection{Výstupy programu}
 
-Výstupy programu jsou zobrazovány jak v terminálu, tak ukládány do výstupního souboru. Výstupní soubor je umístěn v adresáři \texttt{output}, který musí být vytvořen v kořenovém adresáři aplikace.\\
-
-V terminálu jsou zobrazeny následující údaje:
+Výstupy programu jsou zobrazovány v terminálu. Jedná se o následující údaje:
 \begin{itemize}
     \item Počet generovaných automobilů ve zvoleném režimu simulace (denní, noční, 24 hodin).
     \item Počet automobilů, která zahájila proces nabíjení.
     \item Počet automobilů, která dokončila nabíjení a opustila systém.
-    \item Průměrná doba potřebná k úplnému nabití baterie (od 0 \% do 100 \% kapacity).\\
-\end{itemize}
-
-V adresáři \texttt{output} jsou vytvářeny textové soubory, jejichž názvy odpovídají parametrům zadaným při spuštění programu. Každý soubor obsahuje následující informace:
-\begin{itemize}
+    \item Průměrná doba potřebná k úplnému nabití baterie (od 0 \% do 100 \% kapacity).
     \item Statistiky jednotlivých skladů nabíjecích stanic, včetně využití.
     \item Statistiky čekacích dob ve frontách u jednotlivých nabíjecích stanic.
     \item Histogram znázorňující doby, po které se elektromobily nacházely v systému (od vstupu do systému po jeho opuštění).
 \end{itemize}
+
+V adresáři \texttt{output} jsou umístěny ukázkové výstupní textové soubory, jejichž názvy odpovídají parametrům zadaným při spuštění programu. Každý soubor obsahuje informace o statistikách skladů a histogramu.
 
 Tyto výstupy umožňují analyzovat efektivitu nabíjecí infrastruktury, její vytíženost a čekací doby, což může být využito jako základ pro zlepšení efektivity provozu.
 
