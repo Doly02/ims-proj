@@ -60,23 +60,23 @@ extern Histogram time_spend_in_system;
 /**
  * @brief Chances to choose the stations.
  */
-extern double chance_11_kwh_ac_station;
-extern double chance_12_kwh_ac_station;
-extern double chance_22_kwh_ac_station;
-extern double chance_50_kwh_dc_station;
-extern double chance_108_kwh_dc_station;
-extern double chance_150_kwh_dc_station;
+extern double chance_11_kw_ac_station;
+extern double chance_12_kw_ac_station;
+extern double chance_22_kw_ac_station;
+extern double chance_50_kw_dc_station;
+extern double chance_108_kw_dc_station;
+extern double chance_150_kw_dc_station;
 
 
 /**
  * @brief Charging station stores.
  */
-extern Store CHAR_STATION_AC_11KWH;
-extern Store CHAR_STATION_AC_12KWH;
-extern Store CHAR_STATION_AC_22KWH;
-extern Store CHAR_STATION_DC_50KWH;
-extern Store CHAR_STATION_DC_108KWH;
-extern Store CHAR_STATION_DC_150KWH;
+extern Store CHAR_STATION_AC_11KW;
+extern Store CHAR_STATION_AC_12KW;
+extern Store CHAR_STATION_AC_22KW;
+extern Store CHAR_STATION_DC_50KW;
+extern Store CHAR_STATION_DC_108KW;
+extern Store CHAR_STATION_DC_150KW;
 
 /**
  * @class ElectricVehicle

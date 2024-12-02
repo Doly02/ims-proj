@@ -37,19 +37,19 @@
 int num_of_cars_in_city = NUM_OF_CARS_IN_CITY;
 double charging_percentage_of_cars;
 
-int ac11_chargers = NUM_11_KWH_AC_STATIONS;
-int ac12_chargers = NUM_12_KWH_AC_STATIONS;
-int ac22_chargers = NUM_22_KWH_AC_STATIONS;
-int dc50_chargers = NUM_50_KWH_DC_STATIONS;
-int dc108_chargers = NUM_108_KWH_DC_STATIONS;
-int dc150_chargers = NUM_150_KWH_DC_STATIONS;
+int ac11_chargers = NUM_11_KW_AC_STATIONS;
+int ac12_chargers = NUM_12_KW_AC_STATIONS;
+int ac22_chargers = NUM_22_KW_AC_STATIONS;
+int dc50_chargers = NUM_50_KW_DC_STATIONS;
+int dc108_chargers = NUM_108_KW_DC_STATIONS;
+int dc150_chargers = NUM_150_KW_DC_STATIONS;
 
-double chance_11_kwh_ac_station = CHANCE_11_KWH_AC_STATIONS;
-double chance_12_kwh_ac_station = CHANCE_12_KWH_AC_STATIONS;
-double chance_22_kwh_ac_station = CHANCE_22_KWH_AC_STATIONS;
-double chance_50_kwh_dc_station = CHANCE_50_KWH_DC_STATIONS;
-double chance_108_kwh_dc_station = CHANCE_108_KWH_DC_STATIONS;
-double chance_150_kwh_dc_station = CHANCE_150_KWH_DC_STATIONS;
+double chance_11_kw_ac_station = CHANCE_11_KW_AC_STATIONS;
+double chance_12_kw_ac_station = CHANCE_12_KW_AC_STATIONS;
+double chance_22_kw_ac_station = CHANCE_22_KW_AC_STATIONS;
+double chance_50_kw_dc_station = CHANCE_50_KW_DC_STATIONS;
+double chance_108_kw_dc_station = CHANCE_108_KW_DC_STATIONS;
+double chance_150_kw_dc_station = CHANCE_150_KW_DC_STATIONS;
 
 bool is_day = false;
 bool is_24_hours = false;
@@ -159,12 +159,12 @@ bool parse_args(int argc, char *argv[])
 /* Update Store Capacities Based on Parsed Arguments */
 void update_store_values() 
 {
-    CHAR_STATION_AC_11KWH.SetCapacity(ac11_chargers);
-    CHAR_STATION_AC_12KWH.SetCapacity(ac12_chargers);
-    CHAR_STATION_AC_22KWH.SetCapacity(ac22_chargers);
-    CHAR_STATION_DC_50KWH.SetCapacity(dc50_chargers);
-    CHAR_STATION_DC_108KWH.SetCapacity(dc108_chargers);
-    CHAR_STATION_DC_150KWH.SetCapacity(dc150_chargers);
+    CHAR_STATION_AC_11KW.SetCapacity(ac11_chargers);
+    CHAR_STATION_AC_12KW.SetCapacity(ac12_chargers);
+    CHAR_STATION_AC_22KW.SetCapacity(ac22_chargers);
+    CHAR_STATION_DC_50KW.SetCapacity(dc50_chargers);
+    CHAR_STATION_DC_108KW.SetCapacity(dc108_chargers);
+    CHAR_STATION_DC_150KW.SetCapacity(dc150_chargers);
 }
 
 /* Update Chances to Choose the Stations Based on Parsed Arguments */
@@ -172,12 +172,12 @@ void update_stations_chance()
 {
     double count = ac11_chargers + ac12_chargers + ac22_chargers + dc50_chargers + dc108_chargers + dc150_chargers;
     
-    chance_11_kwh_ac_station = ac11_chargers / count;
-    chance_12_kwh_ac_station = chance_11_kwh_ac_station + (ac12_chargers / count);
-    chance_22_kwh_ac_station = chance_12_kwh_ac_station + (ac22_chargers / count);
-    chance_50_kwh_dc_station = chance_22_kwh_ac_station + (dc50_chargers / count);
-    chance_108_kwh_dc_station = chance_50_kwh_dc_station + (dc108_chargers / count);
-    chance_150_kwh_dc_station = chance_108_kwh_dc_station + (dc150_chargers / count);
+    chance_11_kw_ac_station = ac11_chargers / count;
+    chance_12_kw_ac_station = chance_11_kw_ac_station + (ac12_chargers / count);
+    chance_22_kw_ac_station = chance_12_kw_ac_station + (ac22_chargers / count);
+    chance_50_kw_dc_station = chance_22_kw_ac_station + (dc50_chargers / count);
+    chance_108_kw_dc_station = chance_50_kw_dc_station + (dc108_chargers / count);
+    chance_150_kw_dc_station = chance_108_kw_dc_station + (dc150_chargers / count);
     
 }
 
@@ -308,12 +308,12 @@ int main(int argc, char *argv[])
     std::string outputFileName = "output/sim_out" + params + ".txt";
     SetOutput(outputFileName.c_str());
 
-    CHAR_STATION_AC_11KWH.Output();
-    CHAR_STATION_AC_12KWH.Output();
-    CHAR_STATION_AC_22KWH.Output();
-    CHAR_STATION_DC_50KWH.Output();
-    CHAR_STATION_DC_108KWH.Output();
-    CHAR_STATION_DC_150KWH.Output();
+    CHAR_STATION_AC_11KW.Output();
+    CHAR_STATION_AC_12KW.Output();
+    CHAR_STATION_AC_22KW.Output();
+    CHAR_STATION_DC_50KW.Output();
+    CHAR_STATION_DC_108KW.Output();
+    CHAR_STATION_DC_150KW.Output();
 
     if (is_24_hours)
     {
