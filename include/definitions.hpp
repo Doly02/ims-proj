@@ -83,7 +83,7 @@ typedef enum
 /**
  * @brief   Number Of Cars In The City
  */
-#define NUM_OF_CARS_IN_CITY                 (2120)
+#define NUM_OF_CARS_IN_CITY                 (1700)
 
 /**
  * @brief   Percentage Of Cars To Charge In Day
