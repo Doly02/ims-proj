@@ -38,11 +38,6 @@ double num_charged_cars_per_period = 0.0;
 double num_cars_on_station = 0.0;
 
 /**
- * @brief Average Time That Car Spends In The System.
- */
-double avg_time_in_system = 0.0;
-
-/**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 1, and Uses 11kWh AC Charger [0 - 20%]
  *         and That Leaves The System.
  */

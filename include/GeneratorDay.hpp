@@ -24,11 +24,6 @@
 /*                   Globals                    */
 /************************************************/
 /**
- * @brief Flag indicating if the current period is daytime or nighttime.
- */
-extern bool curr_period;
-
-/**
  * @brief Counter for the number of generated cars.
  */
 extern int num_generated_cars;

@@ -23,10 +23,7 @@
 #include "../include/GeneratorDay.hpp"
 #include "../include/ElectricVehicle.hpp"
 
-#include <iostream>
 #include <iomanip>
-#include <ctime>
-#include <sstream>
 #include <fstream>
 
 /************************************************/
@@ -56,7 +53,6 @@ double chance_150_kwh_dc_station = CHANCE_150_KWH_DC_STATIONS;
 
 bool is_day = false;
 bool is_24_hours = false;
-
 
 /************************************************/
 /*                   Main                       */
@@ -378,10 +374,10 @@ int main(int argc, char *argv[])
 
 #endif /* (1 == EXTRA_PRINTS) */
 
-    /* Average charging time of car */
+    /* Total average charging time from 0 % to 100 % of car */
     double total_average = calculate_total_average();
 
-    std::cout << "Total average charging time: " << total_average << " minutes\n";
+    std::cout << "Total average charging time from 0% to 100%: " << total_average << " minutes\n";
 
     time_spend_in_system.Output();
 
