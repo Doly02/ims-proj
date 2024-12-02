@@ -44,6 +44,21 @@ To build and run `sim`, you will need the following:
 
 Please refer to the Makefile for additional targets and commands.
 
+## Outputs
+for running the application two files with simulation results are created in the root directory, the first one is the file starting with `ev_charging_stats...` this file contains records of all received cars to the single types of charging stations (the record always contains `the time of arrival` and `the length of charging`), the second file is called `sim_out-...` this file contains statistics of individual stores, queues and histogram of the simulation. 
+
+Example of `ev_charging_stats...`:
+```
+ev_charging_stats-day-cars=20000-charge=0.250000-ac11=400-ac12=400-ac22=400-dc50=240-dc108=220-dc150=200.txt
+```
+- **note**: file creation can be disabled by switching the `EXTRA_PRINTS` argument from 1 to 0 in the `main.c` file.
+
+Example of `sim_out-...`:
+```
+sim_out-day-cars=20000-charge=0.250000-ac11=400-ac12=400-ac22=400-dc50=240-dc108=220-dc150=200.txt
+```
+Both files contain in their name the parameters with which the simulation was launched.
+
 ## Resources
 [1] "SIMLIB/C++ - SIMulation LIBrary for C++" [online]. [cited 2024-10-28]. Available at [https://www.fit.vut.cz/person/peringer/public/SIMLIB/](https://www.fit.vut.cz/person/peringer/public/SIMLIB/)
 

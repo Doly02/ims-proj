@@ -29,7 +29,7 @@
 /************************************************/
 /*                  Definitions                 */
 /************************************************/
-#define EXTRA_PRINTS            0  
+#define EXTRA_PRINTS            1  
 #define DEBUG                   0
 /************************************************/
 /*                  Global Variables            */
@@ -305,7 +305,7 @@ int main(int argc, char *argv[])
 
     /* Print Statistics */
     std::string params = get_params();
-    std::string outputFileName = "output/sim_out" + params + ".txt";
+    std::string outputFileName = "sim_out" + params + ".txt";
     SetOutput(outputFileName.c_str());
 
     CHAR_STATION_AC_11KW.Output();
@@ -338,7 +338,7 @@ int main(int argc, char *argv[])
 
 #if (1 == EXTRA_PRINTS)
 
-    std::string out_stats_file = "output/ev_charging_stats" + params + ".txt";
+    std::string out_stats_file = "ev_charging_stats" + params + ".txt";
     std::ofstream out_file(out_stats_file);
     if (!out_file)
     {
