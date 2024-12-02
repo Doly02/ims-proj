@@ -361,8 +361,8 @@ kde:
 \begin{itemize}
     \item \(t_{\text{nabíjení}}\) je maximalní doba nabíjení v dané fázi [h],
     \item \(C_{\text{baterie}}\) je průměrná kapacita baterie elektromobilů (\(71.6 \, \mathrm{kWh}\)),
-    \item \(P_{\text{průměr}}\) je průměrný nabíjecí výkon v dané fázi (viz tabulka \ref{table:average-charging-power}) [kWh],
-    \item \(k_{\text{fáze}}\) je podíl kapacity baterie nabíjený v dané fázi (např. \(0.2\) pro fázi \textit{0–20 \%}).\\
+    \item \(P_{\text{průměr}}\) je průměrný nabíjecí výkon v dané fázi (viz tabulka \ref{table:average-charging-power}) [kW],
+    \item \(k_{\text{fáze}}\) je podíl kapacity baterie nabíjený v dané fázi (např. \(0.2\) pro fázi \textit{0 -- 20 \%}).\\
 \end{itemize}
 
 Pro zohlednění variability doby nabíjení v reálných podmínkách jsme se rozhodli použít \textbf{uniformní rozdělení}.
@@ -393,17 +393,17 @@ Podobným způsobem byly vypočteny časy nabíjení pro všechny fáze a typy n
         \hline
         \textbf{} & \textbf{0 - 20 [\%]} & \textbf{20 - 80 [\%]} & \textbf{80 - 100 [\%]}\\
         \hline
-        11 kWh AC  &  0 -- 1.30 h  & 0 -- 3.90 h & 0 -- 2.60 h  \\
+        11 kW AC  &  0 -- 1.30 h  & 0 -- 3.90 h & 0 -- 2.60 h  \\
         \hline
-        12 kWh AC  &  0 -- 1.19 h  & 0 -- 3.58 h & 0 -- 2.38 h  \\
+        12 kW AC  &  0 -- 1.19 h  & 0 -- 3.58 h & 0 -- 2.38 h  \\
         \hline
-        22 kWh AC  &  0 -- 0.65 h  & 0 -- 1.95 h & 0 -- 1.30 h  \\
+        22 kW AC  &  0 -- 0.65 h  & 0 -- 1.95 h & 0 -- 1.30 h  \\
         \hline
-        50 kWh DC  &  0 -- 0.57 h & 0 -- 1.01 h & 0 -- 0.82 h  \\
+        50 kW DC  &  0 -- 0.57 h & 0 -- 1.01 h & 0 -- 0.82 h  \\
         \hline
-        108 kWh DC &  0 -- 0.26 h  & 0 -- 0.47 h & 0 -- 0.38 h  \\
+        108 kW DC &  0 -- 0.26 h  & 0 -- 0.47 h & 0 -- 0.38 h  \\
         \hline
-        150 kWh DC &  0 -- 0.19 h  & 0 -- 0.34 h & 0 -- 0.27 h  \\
+        150 kW DC &  0 -- 0.19 h  & 0 -- 0.34 h & 0 -- 0.27 h  \\
         \hline
     \end{tabular}
     \caption{Čas potřebný k nabití baterie v jednotlivých fázích stanic}

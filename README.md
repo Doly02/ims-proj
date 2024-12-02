@@ -45,7 +45,7 @@ To build and run `sim`, you will need the following:
 Please refer to the Makefile for additional targets and commands.
 
 ## Outputs
-for running the application two files with simulation results are created in the root directory, the first one is the file starting with `ev_charging_stats...` this file contains records of all received cars to the single types of charging stations (the record always contains `the time of arrival` and `the length of charging`), the second file is called `sim_out-...` this file contains statistics of individual stores, queues and histogram of the simulation. 
+for running the application two files with simulation results are created in the root directory, the first one is the file starting with `ev_charging_stats...` this file contains records of all received EVs to the single types of charging stations (the record always contains `the time of arrival` and `the length of charging`), the second file is called `sim_out-...` this file contains statistics of individual stores, queues and histogram of the simulation. 
 
 Example of `ev_charging_stats...`:
 ```
