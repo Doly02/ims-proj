@@ -181,34 +181,34 @@ Z tohoto rozsahu se vycházi i výběr nabíjecích stanic se střídavým proud
 
 \subsubsection{Jak je na tom s elektro stanicemi Brno?}
 \label{sec:stanice}
-V Brně je celkem 173 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
+V Brně je celkem 305 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
 na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
 My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/}. V souboru \texttt{charging\_stations\_cez.json}
 obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, \texttt{charging\_stations\_PRE.pdf} obsahuje
 list stanic skupiny PRE (Pražská energetika), mezi další velké hráče na poli elektromobility v Brně patří společnosti
-Teplárny Brno a.s. a E.ON. Dvě 11 kW stanice, devětadvacet 22 kW stanic, jedenáct 50 kW stanic a 5 stanic o výkonu 150 kW,
-poskytuje E.ON, jak vyplývá z dat dostupných na webu \href{https://www.eon-drive.cz/mapa/}{www.eon-drive.cz/mapa/}.
-Zato společnosti Teplárny Brno a.s. disponuje celkem 132 nabíjecími stanicemi. Z těchto 132 stanic tvoří většínu -- 120
-nabíječky se střídavým proudem o výkonu 22 kW, a zbylých 12 nabíjecích stanic je stejnosměrných s výkonem 150 kW.
-Data společnosti Teplárny Brno a.s byly získány pomocí informací z mapy na stránce
-\href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
+Teplárny Brno a.s. a E.ON. Dvě 11 kW stanice, devětadvacet 22 kW stanic se střídavým proudem a jedenáct 50 kW stanic 
+a 5 stanic o výkonu 150 kW se stejnosměrným proudem, poskytuje E.ON, jak vyplývá z dat dostupných na webu 
+\href{https://www.eon-drive.cz/mapa/}{www.eon-drive.cz/mapa/}. Zato společnosti Teplárny Brno a.s. disponuje celkem 
+132 nabíjecími stanicemi. Z těchto 132 stanic tvoří většínu -- 120 nabíječky se střídavým proudem o výkonu 22 kW, 
+a zbylých 12 nabíjecích stanic je stejnosměrných s výkonem 150 kW. Data společnosti Teplárny Brno a.s byly získány pomocí informací 
+z mapy na stránce \href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
 Soubor \texttt{charging\_stations\_others.xlsx} stanice, které jsou vlastněny menšími firmami.
-V zásadě Brno disponuje nabíjecími stanicemi s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
-celkově 173. \cite{eon_data, emobilita_data}
+V zásadě Brno disponuje nabíjecími stanicemi s výkonem od 3.7 kW (AC) až po 150 kW (DC), a nabíjecích bodů je 
+celkově 305. \cite{eon_data, emobilita_data}
 
 % TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
 \subsubsection{Zpracování datasetu}
 \label{dataset-processing}
-Data z datasetu poskytnutého portálem www.data.brno.cz \cite{data_brno}, bylo třeba nejprve zpracovat a určit 
+Data z datasetu poskytnutého portálem www.data.brno.cz \cite{data_brno} a další informace, bylo třeba nejprve zpracovat a určit 
 aktuální situaci v Brně. Zpracovaný dataset nacházející se v souboru \texttt{brno\_charging\_summary.xlsx},
 obsahuje tedy roztřízené elektrostanice podle typu proudu (stejnosměrný/střídavý) a výkonu nabíjení. Jak již bylo
-řečeno Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je celkově 173,
+řečeno Brno poskytuje nabíjecí stanice s výkonem od 3.7 kW (AC) až po 150 kW (DC), a nabíjecích bodů je celkově 305,
 do úvahy jsme však vybrali pouze stanice s nabíjecím výkonem od 11 kW, jelikož systému s výkonem 3.7 kW se dnes již 
 neimplementují do veřejných nabíjecích stanic, jelikož nabíjení by trvalo příliš dlouho -- vznikají tak malé ztráty
 modelu, které jsou však tolerovány, takový elektromobil s průměrnou kapacitou baterie 71.6 kWh by se z 0 na 100 procent 
-nabíjel 19.43 hodin, model poskytuje simulaci trvající maximálně 24 hodin, tedy za dobu simulace by byl nabito pouze jedno
-vozidlo\footnote{V první fázi z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 a poslední 
-fáze z 80 do 100 procent by opět trvala 3.9 hodiny}.
+nabíjel 19.43 hodin\footnote{V první fázi z 0 do 20 procent za 3.9, v druhé fázi od 20 do 80 procent by to trvalo 11.93 a poslední 
+fáze z 80 do 100 procent by opět trvala 3.9 hodiny}, model poskytuje simulaci trvající maximálně 24 hodin, tedy za dobu simulace by 
+byl nabito pouze jedno vozidlo, navíc by se vytvořila zbytečná fronta, jež by zkreslovala výsledek simulace.
 
 \begin{table}[h!]
     \centering
