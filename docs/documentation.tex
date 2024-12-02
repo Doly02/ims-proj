@@ -497,7 +497,7 @@ V adresáři \texttt{output} jsou umístěny ukázkové výstupní textové soub
 
 Tyto výstupy umožňují analyzovat efektivitu nabíjecí infrastruktury, její vytíženost a čekací doby, což může být využito jako základ pro zlepšení efektivity provozu.
 
-\subsection{Momentální stav elektromobility v Brně}
+\subsection{Momentální stav elektromobility v Brně} \label{actual-state}
 Program byl spuštěn s výchozími hodnotami, které definují aktuální stav elektromobility v Brně. Simulace byla provedena pro tři režimy: denní (\texttt{d}), noční (\texttt{n}) a celodenní (\texttt{24h}). 
 
 Ze simulace bylo zjištěno, že nabíjecí stanice bez problémů pokrývají aktuální potřeby elektromobility v Brně, přičemž ve žádném z režimů simulace nedocházelo k tvorbě front ani přetížení infrastruktury. Tato zjištění potvrzují, že současná nabíjecí infrastruktura je dostatečně navržena pro pokrytí potřeb elektromobilů za výchozích podmínek simulace.
@@ -588,7 +588,7 @@ Výsledky naznačují, že pokud se má zvládnout rostoucí počet elektromobil
 
 \subsubsection{Simulace nabíjení při rozšířené infrastruktuře}
 
-Na základě informací z článku \cite{ev_growth}, který uvádí, že město Brno plánuje do roku 2030 vybudovat síť 1 000 nabíjecích bodů, jsme se rozhodli analyzovat, jak by takové rozšíření infrastruktury ovlivnilo efektivitu nabíjení elektromobilů v nejvytíženějším denním režimu, tedy od 7:00 do 21:00. Provedli jsme dva experimenty, každý s odlišným rozšířením nabíjecích stanic.
+Na základě informací z článku \cite{ev_growth}, který uvádí, že město Brno plánuje do roku 2030 vybudovat síť 1 000 nabíjecích bodů, jsme se rozhodli analyzovat, jak by takové rozšíření infrastruktury ovlivnilo efektivitu nabíjení elektromobilů v nejvytíženějším denním režimu, tedy od 7:00 do 21:00. Provedli jsme tri experimenty, každý s odlišným rozšířením nabíjecích stanic.
 
 
 \paragraph{Experiment 1: Zvýšení počtu AC nabíječek\\\\}
@@ -613,6 +613,22 @@ Podrobný výstup ukazuje, že se v průběhu simulace nevytvořily žádné fro
 Histogram ukazuje, že většina vozidel (přes 31 \%) opustila systém za méně než 20 minut, což je výrazné zlepšení oproti prvnímu experimentu. Průměrná doba strávená v systému činila 62 minut se směrodatnou odchylkou 59 minut. Tento výsledek je o 15 minut lepší než v prvním experimentu.
 
 Z analýzy je zřejmé, že DC nabíječky byly v průměru méně vytížené než AC nabíječky. Například DC 50 kW stanice využívaly průměrně 30 ze 150 dostupných bodů, zatímco 11 kW a 12 kW AC stanice byly v průměru využity na 127 a 114 bodů z celkových 200. Tato data potvrzují, že rychlejší DC nabíječky výrazně snižují zatížení systému a zlepšují plynulost nabíjení.
+
+
+\paragraph{Experiment 3: Zvýšení počtu AC a DC nabíječek pro přiblížení se k aktuálnímu stavu\\\\}
+Třetí experiment byl navržen tak, aby co nejvěrněji reflektoval aktuální situaci v Brně a hodnoty získané ze simulace
+popsané v podkapitole \ref{actual-state}. Program byl spuštěn s následujícím příkazem:
+
+\texttt{./sim d -tc 20000 -p 0.25 -ac11 400 -ac12 400 -ac22 400 -dc50 240 -dc108 220 -dc150 200}.
+
+Jak je zřejmé, bylo přidáno výrazně více AC i DC nabíječek, což odpovídá reálnému nárůstu dostupné nabíjecí
+infrastruktury. Během simulace bylo vygenerováno celkem 4931 vozidel, všechna vozidla zahájila proces nabíjení,
+a systém opustilo 4484 plně nabitých vozidel, což odpovídá přibližně \textbf{90,93 \%} z celkového počtu
+vygenerovaných vozidel.
+
+
+
+
 
 \section{Závěr}
 Tento projekt se zaměřil na zkoumání současné a budoucí situace elektromobility v Brně pomocí simulací nabíjecí infrastruktury. Cílem bylo zjistit, jak dobře si stávající systém poradí s rostoucím počtem elektromobilů a jak by mohla rozšířená infrastruktura zlepšit dostupnost a rychlost nabíjení.
