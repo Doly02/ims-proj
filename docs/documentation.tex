@@ -149,7 +149,7 @@ stavu dosáhne maximální výkon stanice (většínou stanice jelikož elektrom
 než dnešní stanice standardně nabízejí) a následně začíná pokles, tento sestupný trend nastává jak se baterie plní a
 zároveň se přehřívá. Poslední fází je rozsah mezi 80\% až 100\%, zde se výkon nabíjení opět snižuje, jelikož
 dochází k protekci před přebitím baterie a i chemický proces, ke kterému dochází v baterii je méně efektivní 
-při vyšších úrovních nabití, což má za následek že stejný nabíjecí proud má menší dopad na zvýšení kapacity.\cite{nabijeci_krivka}
+při vyšších úrovních nabití, což má za následek že stejný nabíjecí proud má menší dopad na zvýšení kapacity. \cite{nabijeci_krivka}
 
 \begin{figure}[H]
     \centering
@@ -162,7 +162,8 @@ při vyšších úrovních nabití, což má za následek že stejný nabíjecí
 
 U nabíjení na střídavý proud je situace jiná, tím, že je výkon primárně limitován elektromobilem -- tedy palubní nabíječkou 
 (OBC - On-Board Charger), výrobce automobilu zaručuje, že baterie je schopna pracovat s určitým výkonem, který externí
-nabíjecí stanice schopna poskytnout. % TODO: Dopsat!
+nabíjecí stanice ve většině případů schopna poskytnout. Typickými limity palubní nabíječky je od 6.6kW do 22kW. \cite{we_power_your_car_obc} 
+Z tohoto rozsahu se vycházi i výběr nabíjecích stanic se střídavým proudem v popisovaném modelu, viz. tabulka \ref{table:charging-stations-distribution}.
 
 \subsection{Elektronabíjecí stanice}
 
@@ -175,7 +176,9 @@ obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, \textt
 list stanic skupiny PRE (Pražská energetika), mezi další velké hráče na poli elektromobility v Brně patří společnosti
 Teplárny Brno a.s. a E.ON. Dvě 11kWh stanice, devětadvacet 22kWh stanic, jedenáct 50kWh stanic a 5 stanic o výkonu 150kWh, 
 poskytuje E.ON, jak vyplývá z dat dostupných na webu \href{https://www.eon-drive.cz/mapa/}{www.eon-drive.cz/mapa/}.
-Zato společnosti Teplárny Brno a.s. poskutuje TODO, založeno na informacích z mapy na stránce 
+Zato společnosti Teplárny Brno a.s. disponuje celkem 132 nabíjecími stanicemi. Z těchto 132 stanic tvoří většínu -- 120 
+nabíječky se střídavým proudem o výkonu 22 kWh, a zbylých 12 nabíjecích stanic je stejnosměrných s výkonem 150 kW. 
+Data společnosti Teplárny Brno a.s byly získány pomocí informací z mapy na stránce 
 \href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
 Soubor \texttt{charging\_stations\_others.xlsx} stanice, které jsou vlastněny menšími firmami.
 V zásadě Brno disponuje nabíjecími stanicemi s výkonem od 3.7 kW (AC) až po 108 kW (DC), a nabíjecích bodů je 
@@ -232,11 +235,11 @@ nabíjecích stanic v Brně.
 \subsubsection{Nabíjení pomocí střídavého proudu (AC)}
 Křivka nabíjecího výkonu na obrázku \ref{figure:ac-charging-efficency} při využití střídavého proudu je rozdělena do tří fází.
 
-První fáze pokrývá počáteční nabíjení akumulátoru od nízké úrovně nabití (0–20 \% kapacity). V této fázi od 0 \%
+První fáze pokrývá počáteční nabíjení akumulátoru od nízké úrovně nabití (0 -- 20 \% kapacity). V této fázi od 0 \%
 kapacity akumulátoru výkon prudce stoupá na maximum a následně se udržuje na této úrovni. Je to proto, že se akumulátor
 adaptuje na nabíjecí proud a minimalizuje tepelné ztráty.
 
-Ve druhé fázi, která pokrývá střední část nabíjení (20–80 \% kapacity akumulátoru), je výkon nabíjení konstantní a
+Ve druhé fázi, která pokrývá střední část nabíjení (20 -- 80 \% kapacity akumulátoru), je výkon nabíjení konstantní a
 dosahuje svého maxima. Tato fáze je klíčová, protože zde dochází k nejefektivnějšímu využití nabíjecí stanice.
 
 Třetí fáze, od 80 \% do plné kapacity, zahrnuje postupné snižování výkonu. To je způsobeno tím, že se akumulátor blíží
@@ -400,7 +403,7 @@ Po dokončení nabíjení může elektromobil:
     \item nebo dokončit nabíjení, uvolnit nabíječku a opustit systém.
 \end{itemize}
 
-Při přechodu z první fáze nabíjení (0–20 \%) do druhé fáze (20–80 \%) je důležité poznamenat, že elektromobil už nemusí znovu čekat ve frontě na nabíječku, protože ji má stále obsazenou. Rovnou tedy přechází do fáze nabíjení z 20 na 80 \% kapacity baterie. Po této fázi uvolní nabíječku a systém opustí.
+Při přechodu z první fáze nabíjení (0 -- 20 \%) do druhé fáze (20 -- 80 \%) je důležité poznamenat, že elektromobil už nemusí znovu čekat ve frontě na nabíječku, protože ji má stále obsazenou. Rovnou tedy přechází do fáze nabíjení z 20 na 80 \% kapacity baterie. Po této fázi uvolní nabíječku a systém opustí.
 
 Třetí fáze nabíjení, tedy z 80 na 100 \% kapacity baterie, simuluje elektromobily, které do systému přijedou s kapacitou baterie vyšší než 80 \% a chtějí se nabít na plnou kapacitu. Tyto elektromobily postupují stejným způsobem jako ostatní, avšak jejich proces začíná přímo touto třetí fází.
 
@@ -408,7 +411,7 @@ Třetí fáze nabíjení, tedy z 80 na 100 \% kapacity baterie, simuluje elektro
 \begin{figure}[H]
     \centering
     \scalebox{0.135}{
-        %\includegraphics{ims-petri-net.eps}
+        \includegraphics{ims-petri-net.eps}
     }
     \caption{Petriho síť elektromobility v Brně}
     \label{figure:ims-petri-net}
