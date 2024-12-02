@@ -588,11 +588,11 @@ Výsledky naznačují, že pokud se má zvládnout rostoucí počet elektromobil
 
 \subsubsection{Simulace nabíjení při rozšířené infrastruktuře}
 
-Na základě informací z článku \cite{ev_growth}, který uvádí, že město Brno plánuje do roku 2030 vybudovat síť 1 000 nabíjecích bodů, jsme se rozhodli analyzovat, jak by takové rozšíření infrastruktury ovlivnilo efektivitu nabíjení elektromobilů v nejvytíženějším denním režimu, tedy od 7:00 do 21:00. Provedli jsme tri experimenty, každý s odlišným rozšířením nabíjecích stanic.
+Na základě informací z článku \cite{ev_growth}, který uvádí, že město Brno plánuje do roku 2030 vybudovat síť 1000 nabíjecích bodů, jsme se rozhodli analyzovat, jak by takové rozšíření infrastruktury ovlivnilo efektivitu nabíjení elektromobilů v nejvytíženějším denním režimu, tedy od 7:00 do 21:00. Provedli jsme tri experimenty, každý s odlišným rozšířením nabíjecích stanic.
 
 
 \paragraph{Experiment 1: Zvýšení počtu AC nabíječek\\\\}
-V tomto experimentu jsme se zaměřili na navýšení počtu \textbf{AC nabíječek} na celkových 1 000 bodů. Pro 11 kW a 12 kW nabíječky bylo přidáno po 300 bodů a pro 22 kW nabíječky 400 bodů (\texttt{./sim d -tc 20000 -p 0.25 -ac11 300 -ac12 300 -ac22 400}). Cílem bylo zjistit, jak by toto navýšení ovlivnilo fungování systému a zvládání poptávky v denním režimu (od 7:00 do 21:00).
+V tomto experimentu jsme se zaměřili na navýšení počtu \textbf{AC nabíječek} na celkových 1000 bodů. Pro 11 kW a 12 kW nabíječky bylo přidáno po 300 bodů a pro 22 kW nabíječky 400 bodů (\texttt{./sim d -tc 20000 -p 0.25 -ac11 300 -ac12 300 -ac22 400}). Cílem bylo zjistit, jak by toto navýšení ovlivnilo fungování systému a zvládání poptávky v denním režimu (od 7:00 do 21:00).
 
 Simulace ukázala, že během dne bylo vygenerováno 5 039 elektromobilů a všechna tato vozidla se připojila k nabíjecím stanicím. Nabít a opustit systém se ale podařilo pouze 4 490 vozidlům, což odpovídá 89 \% všech generovaných aut.
 
@@ -604,7 +604,7 @@ Na druhou stranu, navýšení počtu AC nabíječek zajistilo, že se během sim
 
 
 \paragraph{Experiment 2: Zvýšení počtu AC a DC nabíječek\\\\}
-Ve druhém experimentu jsme kombinovali navýšení počtu \textbf{AC i DC nabíječek}, přičemž celkový počet bodů (AC a DC dohromady) byl opět 1 000. V tomto scénáři byly parametry nastaveny na 200 bodů pro 11 kW a 12 kW stanice, 250 bodů pro 22 kW stanice, 150 bodů pro DC 50 kW stanice a 100 bodů pro DC 108 kW a 150 kW stanice (\texttt{./sim d -tc 20000 -p 0.25 -ac11 200 -ac12 200 -ac22 250 -dc50 150 -dc108 100 -dc150 100}). Tento experiment zkoumal, zda kombinace rychlejších DC a pomalejších AC nabíječek dokáže zlepšit dostupnost infrastruktury ve srovnání s pouhým zvýšením počtu AC nabíječek.
+Ve druhém experimentu jsme kombinovali navýšení počtu \textbf{AC i DC nabíječek}, přičemž celkový počet bodů (AC a DC dohromady) byl opět 1000. V tomto scénáři byly parametry nastaveny na 200 bodů pro 11 kW a 12 kW stanice, 250 bodů pro 22 kW stanice, 150 bodů pro DC 50 kW stanice a 100 bodů pro DC 108 kW a 150 kW stanice (\texttt{./sim d -tc 20000 -p 0.25 -ac11 200 -ac12 200 -ac22 250 -dc50 150 -dc108 100 -dc150 100}). Tento experiment zkoumal, zda kombinace rychlejších DC a pomalejších AC nabíječek dokáže zlepšit dostupnost infrastruktury ve srovnání s pouhým zvýšením počtu AC nabíječek.
 
 Program simuloval celkem 5 059 elektromobilů, přičemž všechna vozidla zahájila proces nabíjení. Systém úspěšně opustilo plně nabito 4 666 vozidel, což odpovídá 92 \% všech generovaných elektromobilů. Průměrná doba potřebná k dokončení nabíjení činila 127 minut, což je o 29 minut méně než v prvním experimentu, kde bylo zvýšeno pouze množství AC nabíječek. Tento výsledek ukazuje, že kombinace rychlejších DC nabíječek a pomalejších AC nabíječek umožňuje zlepšit efektivitu nabíjení.
 
@@ -652,16 +652,16 @@ mohla rozšířená infrastruktura zlepšit dostupnost a rychlost nabíjení.
 
 Simulace ukázaly, že aktuální stav nabíjecí sítě v Brně je dostatečný pro současný počet elektromobilů. Systém zvládá
 poptávku bez větších problémů -- nevznikají dlouhé fronty a většina vozidel je nabita v rozumném čase. Nicméně při
-předpokládaném nárůstu počtu elektromobilů na 20 tisíc do roku 2030 se ukázaly zásadní slabiny. Hlavním problémem
+předpokládaném nárůstu počtu elektromobilů na 20 tisíc do roku~2030 se ukázaly zásadní slabiny. Hlavním problémem
 jsou pomalejší AC nabíječky, které nedokážou zvládnout vyšší počet vozidel a způsobují zdržení a fronty.
 
 Pro zlepšení situace byly provedeny dva experimenty s rozšířením nabíjecí sítě, přičemž počet nabíjecích bodů byl
-zvolen na základě článku \cite{ev_growth}, který uvádí, že Teplárny Brno plánují do roku 2030 vybudovat 1 000 nabíjecích
+zvolen na základě článku \cite{ev_growth}, který uvádí, že Teplárny Brno plánují do roku~2030 vybudovat 1000 nabíjecích
 bodů. Experimenty se zaměřily na dvě varianty rozšíření infrastruktury:
 
 \begin{description}
-    \item[\textbf{Zvýšení počtu AC nabíječek}] V prvním experimentu byl počet AC nabíjecích bodů navýšen na 1 000. Toto rozšíření eliminovalo fronty, což ukazuje na dostatečnou kapacitu stanic. Průměrná doba strávená v systému však byla 82,88 minut s odchylkou 60,19 minut, což je pro uživatele stále příliš dlouhé a nevyhovující.
-    \item[\textbf{Kombinace AC a DC nabíječek}] Druhý experiment kombinoval navýšení počtu pomalejších AC nabíječek a rychlejších DC nabíječek, přičemž celkový počet bodů zůstal na 1 000. Tato kombinace přinesla výrazně lepší výsledky. Průměrná doba strávená v systému byla 61,83 minut s odchylkou 58,57 minut. DC nabíječky se ukázaly jako klíčové pro efektivní zvládnutí vyšší poptávky a významně zlepšily plynulost celého systému. Přibližně 70 \% elektromobilů strávilo v systému méně než 80 minut, což představuje značné zlepšení oproti prvnímu experimentu.
+    \item[\textbf{Zvýšení počtu AC nabíječek}] V prvním experimentu byl počet AC nabíjecích bodů navýšen na 1000. Toto rozšíření eliminovalo fronty, což ukazuje na dostatečnou kapacitu stanic. Průměrná doba strávená v systému však byla 82,88 minut s odchylkou 60,19 minut, což je pro uživatele stále příliš dlouhé a nevyhovující.
+    \item[\textbf{Kombinace AC a DC nabíječek}] Druhý experiment kombinoval navýšení počtu pomalejších AC nabíječek a rychlejších DC nabíječek, přičemž celkový počet bodů zůstal na 1000. Tato kombinace přinesla výrazně lepší výsledky. Průměrná doba strávená v systému byla 61,83 minut s odchylkou 58,57 minut. DC nabíječky se ukázaly jako klíčové pro efektivní zvládnutí vyšší poptávky a významně zlepšily plynulost celého systému. Přibližně 70 \% elektromobilů strávilo v systému méně než 80 minut, což představuje značné zlepšení oproti prvnímu experimentu.
 \end{description}
 
 Z výsledků experimentů vyplývá, že samotné navýšení počtu AC nabíječek nestačí. Rychlejší DC nabíječky výrazně snižují
@@ -672,7 +672,7 @@ minimalizovat čekací doby.
 Třetí experiment byl navržen tak, aby reflektoval aktuální stav nabíjecí infrastruktury v Brně, avšak zohledňoval
 vyšší počet elektromobilů, který odpovídá předpokládanému stavu v roce 2030. Tento experiment simuloval vyšší zatížení
 systému při navýšení počtu nabíjecích bodů na základě různých typů nabíječek. Výsledky ukazují, že navržená konfigurace
-umožňuje efektivní provoz s mírou úspěšnosti 93,59 \% nabitých vozidel.
+umožňuje efektivní provoz s mírou úspěšnosti 93,59 \% nabitých vozidel.\\
 
 \textbf{Doporučená konfigurace nabíjecích bodů:}
 
