@@ -38,22 +38,28 @@ extern std::vector<std::pair<double, double>> ev_stats_ac11_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_ac12_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_0_20;
+extern std::vector<std::pair<double, double>> ev_stats_dc80_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_0_20;
 extern std::vector<std::pair<double, double>> ev_stats_dc150_0_20;
+extern std::vector<std::pair<double, double>> ev_stats_dc160_0_20;
 
 extern std::vector<std::pair<double, double>> ev_stats_ac11_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_ac12_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_20_80;
+extern std::vector<std::pair<double, double>> ev_stats_dc80_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_20_80;
 extern std::vector<std::pair<double, double>> ev_stats_dc150_20_80;
+extern std::vector<std::pair<double, double>> ev_stats_dc160_20_80;
 
 extern std::vector<std::pair<double, double>> ev_stats_ac11_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_ac12_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_ac22_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_dc50_80_100;
+extern std::vector<std::pair<double, double>> ev_stats_dc80_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_dc108_80_100;
 extern std::vector<std::pair<double, double>> ev_stats_dc150_80_100;
+extern std::vector<std::pair<double, double>> ev_stats_dc160_80_100;
 
 extern Histogram time_spend_in_system;
 
@@ -64,8 +70,10 @@ extern double chance_11_kw_ac_station;
 extern double chance_12_kw_ac_station;
 extern double chance_22_kw_ac_station;
 extern double chance_50_kw_dc_station;
+extern double chance_80_kw_dc_station;
 extern double chance_108_kw_dc_station;
 extern double chance_150_kw_dc_station;
+extern double chance_160_kw_dc_station;
 
 
 /**
@@ -75,8 +83,10 @@ extern Store CHAR_STATION_AC_11KW;
 extern Store CHAR_STATION_AC_12KW;
 extern Store CHAR_STATION_AC_22KW;
 extern Store CHAR_STATION_DC_50KW;
+extern Store CHAR_STATION_DC_80KW;
 extern Store CHAR_STATION_DC_108KW;
 extern Store CHAR_STATION_DC_150KW;
+extern Store CHAR_STATION_DC_160KW;
 
 /**
  * @class ElectricVehicle

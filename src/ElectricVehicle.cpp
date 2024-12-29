@@ -61,6 +61,12 @@ std::vector<std::pair<double, double>> ev_stats_ac22_0_20;
 std::vector<std::pair<double, double>> ev_stats_dc50_0_20;
 
 /**
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 1, and Uses 80kW DC Charger [0 - 20%]
+ *         and That Leaves The System.
+ */
+std::vector<std::pair<double, double>> ev_stats_dc80_0_20;
+
+/**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 1, and Uses 108kW DC Charger [0 - 20%]
  *         and That Leaves The System.
  */
@@ -71,6 +77,12 @@ std::vector<std::pair<double, double>> ev_stats_dc108_0_20;
  *         and That Leaves The System.
  */
 std::vector<std::pair<double, double>> ev_stats_dc150_0_20;
+
+/**
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 1, and Uses 160kW DC Charger [0 - 20%]
+ *         and That Leaves The System.
+ */
+std::vector<std::pair<double, double>> ev_stats_dc160_0_20;
 
 /**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 2, and Uses 11kW AC Charger [20 - 80%]
@@ -96,6 +108,12 @@ std::vector<std::pair<double, double>> ev_stats_ac22_20_80;
 std::vector<std::pair<double, double>> ev_stats_dc50_20_80;
 
 /**
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 2, and Uses 80kW DC Charger [20 - 80%]
+ *         and That Leaves The System.
+ */
+std::vector<std::pair<double, double>> ev_stats_dc80_20_80;
+
+/**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 2, and Uses 108kW DC Charger [20 - 80%]
  *         and That Leaves The System.
  */
@@ -106,6 +124,12 @@ std::vector<std::pair<double, double>> ev_stats_dc108_20_80;
  *         and That Leaves The System.
  */
 std::vector<std::pair<double, double>> ev_stats_dc150_20_80;
+
+/**
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 2, and Uses 160kW DC Charger [20 - 80%]
+ *         and That Leaves The System.
+ */
+std::vector<std::pair<double, double>> ev_stats_dc160_20_80;
 
 /**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 3, and Uses 11kW AC Charger [80 - 100%]
@@ -131,6 +155,12 @@ std::vector<std::pair<double, double>> ev_stats_ac22_80_100;
 std::vector<std::pair<double, double>> ev_stats_dc50_80_100;
 
 /**
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 3, and Uses 80kW DC Charger [80 - 100%]
+ *         and That Leaves The System.
+ */
+std::vector<std::pair<double, double>> ev_stats_dc80_80_100;
+
+/**
  * @struct Contains Information About Each Electric Vehicle Starts In Stage 3, and Uses 108kW DC Charger [80 - 100%]
  *         and That Leaves The System.
  */
@@ -141,6 +171,12 @@ std::vector<std::pair<double, double>> ev_stats_dc108_80_100;
  *         and That Leaves The System.
  */
 std::vector<std::pair<double, double>> ev_stats_dc150_80_100;
+
+/**
+ * @struct Contains Information About Each Electric Vehicle Starts In Stage 3, and Uses 160kW DC Charger [80 - 100%]
+ *         and That Leaves The System.
+ */
+std::vector<std::pair<double, double>> ev_stats_dc160_80_100;
 
 
 /************************************************/
@@ -154,9 +190,13 @@ Store CHAR_STATION_AC_22KW("Charging Station 22kW", NUM_22_KW_AC_STATIONS);
 
 Store CHAR_STATION_DC_50KW("Charging Station 50kW", NUM_50_KW_DC_STATIONS);
 
+Store CHAR_STATION_DC_80KW("Charging Station 80kW", NUM_80_KW_DC_STATIONS);
+
 Store CHAR_STATION_DC_108KW("Charging Station 108kW", NUM_108_KW_DC_STATIONS);
 
 Store CHAR_STATION_DC_150KW("Charging Station 150kW", NUM_150_KW_DC_STATIONS);
+
+Store CHAR_STATION_DC_160KW("Charging Station 160kW", NUM_160_KW_DC_STATIONS);
 
 
 /************************************************/
@@ -200,13 +240,21 @@ void ElectricVehicle::choose_battery_station(void)
     {
         pow_station = POW_STATION_DC_50_KW; 
     }
+    else if (station < chance_80_kw_dc_station)        // Chance of Choosing DC 80 kW
+    {
+        pow_station = POW_STATION_DC_80_KW;
+    }
     else if (station < chance_108_kw_dc_station)       // Chance of Choosing DC 108 kW
     {
         pow_station = POW_STATION_DC_108_KW; 
     }
-    else                                                // Chance of Choosing DC 150 kW
+    else if (station < chance_150_kw_dc_station)       // Chance of Choosing DC 150 kW
     {
         pow_station = POW_STATION_DC_150_KW;
+    }
+    else                                               // Chance of Choosing DC 160 kW
+    {
+        pow_station = POW_STATION_DC_160_KW;
     }
 }
 
@@ -218,8 +266,10 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
     double t_charging_0_20_on_ac12     = 0.0;
     double t_charging_0_20_on_ac22     = 0.0;
     double t_charging_0_20_on_dc50     = 0.0;
+    double t_charging_0_20_on_dc80     = 0.0;
     double t_charging_0_20_on_dc108    = 0.0;
     double t_charging_0_20_on_dc150    = 0.0;
+    double t_charging_0_20_on_dc160    = 0.0;
 
     if (POW_STATION_AC_11_KW == pow_station)
     {
@@ -319,6 +369,30 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* The Vehicle Continues To Charge At More Than 20 % */
         continue_charge_battery_in_stage_20_80();
     }
+    else if (POW_STATION_DC_80_KW == pow_station)
+    {
+        /* Will Take Up One Place In The Store or Will Wait */
+        Enter(CHAR_STATION_DC_80KW, 1);
+
+        num_cars_on_station++;
+
+        time_spend_charging = Uniform(0, MAX_TIME_80_KW_DC_STATIONS_0_20);
+
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 80kW Charger In Stage 1 (0-20%) */
+        t_charging_0_20_on_dc80 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 1, Use t_start_charging For Next Charging In Stage 2 [20-80%]*/
+        ev_stats_dc80_0_20.emplace_back(t_start_charging, t_charging_0_20_on_dc80);
+
+        /* The Vehicle Continues To Charge At More Than 20 % */
+        continue_charge_battery_in_stage_20_80();
+    }
     else if (POW_STATION_DC_108_KW == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
@@ -343,7 +417,7 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* The Vehicle Continues To Charge At More Than 20 % */
         continue_charge_battery_in_stage_20_80();
     }
-    else
+    else if (POW_STATION_DC_150_KW == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_150KW, 1);
@@ -367,6 +441,30 @@ void ElectricVehicle::charge_battery_in_stage_0_20(void)
         /* The Vehicle Continues To Charge At More Than 20 % */
         continue_charge_battery_in_stage_20_80();
     }
+    else
+    {
+        /* Will Take Up One Place In The Store or Will Wait */
+        Enter(CHAR_STATION_DC_160KW, 1);
+
+        num_cars_on_station++;
+
+        time_spend_charging = Uniform(0, MAX_TIME_160_KW_DC_STATIONS_0_20);
+
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 160kW Charger In Stage 1 (0-20%) */
+        t_charging_0_20_on_dc160 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 1, Use t_start_charging For Next Charging In Stage 2 [20-80%]*/
+        ev_stats_dc160_0_20.emplace_back(t_start_charging, t_charging_0_20_on_dc160);
+
+        /* The Vehicle Continues To Charge At More Than 20 % */
+        continue_charge_battery_in_stage_20_80();
+    }
     
 }
 
@@ -378,8 +476,10 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
     double t_charging_20_80_on_ac12     = 0.0;
     double t_charging_20_80_on_ac22     = 0.0;
     double t_charging_20_80_on_dc50     = 0.0;
+    double t_charging_20_80_on_dc80     = 0.0;
     double t_charging_20_80_on_dc108    = 0.0;
     double t_charging_20_80_on_dc150    = 0.0;
+    double t_charging_20_80_on_dc160    = 0.0;
 
     /**
      * @warning The Vehicle Has Already Taken Up Space In The Store, So There
@@ -475,6 +575,27 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
 
         num_charged_cars_per_period++;
     }
+    else if (POW_STATION_DC_80_KW == pow_station)
+    {
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        time_spend_charging = Uniform(0, MAX_TIME_80_KW_DC_STATIONS_20_80);
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 80kW Charger In Stage 2 (20-80%) */
+        t_charging_20_80_on_dc80 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        ev_stats_dc80_20_80.emplace_back(t_start_charging, t_charging_20_80_on_dc80);
+
+        /* Leave The Space In Charging Station */
+        Leave(CHAR_STATION_DC_80KW, 1);
+
+        num_charged_cars_per_period++;
+    }
     else if (POW_STATION_DC_108_KW == pow_station)
     {
         /* Statistics - Current Time When Charging Started */
@@ -496,7 +617,7 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
 
         num_charged_cars_per_period++;
     }
-    else
+    else if (POW_STATION_DC_150_KW == pow_station)
     {
         /* Statistics - Current Time When Charging Started */
         t_start_charging = Time;
@@ -517,6 +638,27 @@ void ElectricVehicle::continue_charge_battery_in_stage_20_80(void)
 
         num_charged_cars_per_period++;
     }
+    else
+    {
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        time_spend_charging = Uniform(0, MAX_TIME_160_KW_DC_STATIONS_0_20);
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 160kW Charger In Stage 2 (20-80%) */
+        t_charging_20_80_on_dc160 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        ev_stats_dc160_20_80.emplace_back(t_start_charging, t_charging_20_80_on_dc160);
+
+        /* Leave The Space In Charging Station */
+        Leave(CHAR_STATION_DC_160KW, 1);
+
+        num_charged_cars_per_period++;
+    }
 }
 
 void ElectricVehicle::charge_battery_in_stage_20_80(void)
@@ -527,8 +669,10 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
     double t_charging_20_80_on_ac12     = 0.0;
     double t_charging_20_80_on_ac22     = 0.0;
     double t_charging_20_80_on_dc50     = 0.0;
+    double t_charging_20_80_on_dc80     = 0.0;
     double t_charging_20_80_on_dc108    = 0.0;
     double t_charging_20_80_on_dc150    = 0.0;
+    double t_charging_20_80_on_dc160    = 0.0;
 
     if (POW_STATION_AC_11_KW == pow_station)
     {
@@ -637,6 +781,32 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
 
         num_charged_cars_per_period++;
     }
+    else if (POW_STATION_DC_80_KW == pow_station)
+    {
+        /* Will Take Up One Place In The Store or Will Wait */
+        Enter(CHAR_STATION_DC_80KW, 1);
+
+        num_cars_on_station++;
+
+        time_spend_charging = Uniform(0, MAX_TIME_80_KW_DC_STATIONS_20_80);
+
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 80kW Charger In Stage 2 (20-80%) */
+        t_charging_20_80_on_dc80 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        ev_stats_dc80_20_80.emplace_back(t_start_charging, t_charging_20_80_on_dc80);
+
+        /* Leave The Space In Charging Station */
+        Leave(CHAR_STATION_DC_80KW, 1);
+
+        num_charged_cars_per_period++;
+    }
     else if (POW_STATION_DC_108_KW == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
@@ -663,7 +833,7 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
 
         num_charged_cars_per_period++;
     }
-    else
+    else if (POW_STATION_DC_150_KW == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_150KW, 1);
@@ -689,6 +859,32 @@ void ElectricVehicle::charge_battery_in_stage_20_80(void)
 
         num_charged_cars_per_period++;
     }
+    else
+    {
+        /* Will Take Up One Place In The Store or Will Wait */
+        Enter(CHAR_STATION_DC_160KW, 1);
+
+        num_cars_on_station++;
+
+        time_spend_charging = Uniform(0, MAX_TIME_160_KW_DC_STATIONS_20_80);
+
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 160kW Charger In Stage 2 (20-80%) */
+        t_charging_20_80_on_dc160 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        ev_stats_dc160_20_80.emplace_back(t_start_charging, t_charging_20_80_on_dc160);
+
+        /* Leave The Space In Charging Station */
+        Leave(CHAR_STATION_DC_160KW, 1);
+
+        num_charged_cars_per_period++;
+    }
 }
 
 void ElectricVehicle::charge_battery_in_stage_80_100(void)
@@ -699,8 +895,10 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
     double t_charging_80_100_on_ac12     = 0.0;
     double t_charging_80_100_on_ac22     = 0.0;
     double t_charging_80_100_on_dc50     = 0.0;
+    double t_charging_80_100_on_dc80     = 0.0;
     double t_charging_80_100_on_dc108    = 0.0;
     double t_charging_80_100_on_dc150    = 0.0;
+    double t_charging_80_100_on_dc160    = 0.0;
 
     if (POW_STATION_AC_11_KW == pow_station)
     {
@@ -811,6 +1009,32 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
 
         num_charged_cars_per_period++;
     }
+    else if (POW_STATION_DC_80_KW == pow_station)
+    {
+        /* Will Take Up One Place In The Store or Will Wait */
+        Enter(CHAR_STATION_DC_80KW, 1);
+
+        num_cars_on_station++;
+
+        time_spend_charging = Uniform(0, MAX_TIME_80_KW_DC_STATIONS_80_100);
+
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 80kW Charger In Stage 3 (80-100%) */
+        t_charging_80_100_on_dc80 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        ev_stats_dc80_80_100.emplace_back(t_start_charging, t_charging_80_100_on_dc80);
+
+        /* Leave The Space In Charging Station */
+        Leave(CHAR_STATION_DC_80KW, 1);
+
+        num_charged_cars_per_period++;
+    }
     else if (POW_STATION_DC_108_KW == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
@@ -838,7 +1062,7 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         num_charged_cars_per_period++;
 
     }
-    else
+    else if (POW_STATION_DC_150_KW == pow_station)
     {
         /* Will Take Up One Place In The Store or Will Wait */
         Enter(CHAR_STATION_DC_150KW, 1);
@@ -863,7 +1087,32 @@ void ElectricVehicle::charge_battery_in_stage_80_100(void)
         Leave(CHAR_STATION_DC_150KW, 1);
 
         num_charged_cars_per_period++;
+    }
+    else
+    {
+        /* Will Take Up One Place In The Store or Will Wait */
+        Enter(CHAR_STATION_DC_160KW, 1);
 
+        num_cars_on_station++;
+
+        time_spend_charging = Uniform(0, MAX_TIME_160_KW_DC_STATIONS_80_100);
+
+        /* Statistics - Current Time When Charging Started */
+        t_start_charging = Time;
+
+        /* Charging */
+        Wait(time_spend_charging);
+
+        /* Statistics - Time of Charging on DC 160kW Charger In Stage 3 (80-100%) */
+        t_charging_80_100_on_dc160 = Time - t_start_charging;
+
+        /* Statistics - Store Time Spend on Charging in Stage 2*/
+        ev_stats_dc160_80_100.emplace_back(t_start_charging, t_charging_80_100_on_dc160);
+
+        /* Leave The Space In Charging Station */
+        Leave(CHAR_STATION_DC_160KW, 1);
+
+        num_charged_cars_per_period++;
     }
 }
 
