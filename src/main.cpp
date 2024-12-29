@@ -192,7 +192,7 @@ void update_stations_chance()
     chance_12_kw_ac_station = chance_11_kw_ac_station + (ac12_chargers / count);
     chance_22_kw_ac_station = chance_12_kw_ac_station + (ac22_chargers / count);
     chance_50_kw_dc_station = chance_22_kw_ac_station + (dc50_chargers / count);
-    chance_80_kw_dc_station = chance_50_kw_ac_station + (dc80_chargers / count);
+    chance_80_kw_dc_station = chance_50_kw_dc_station + (dc80_chargers / count);
     chance_108_kw_dc_station = chance_80_kw_dc_station + (dc108_chargers / count);
     chance_150_kw_dc_station = chance_108_kw_dc_station + (dc150_chargers / count);
     chance_160_kw_dc_station = chance_150_kw_dc_station + (dc160_chargers / count);
@@ -254,7 +254,7 @@ double calculate_total_average() {
     double phase_20_80_avg = calculate_phase_average(
             ev_stats_ac11_20_80, ev_stats_ac12_20_80, ev_stats_ac22_20_80, ev_stats_dc50_20_80, ev_stats_dc80_20_80, ev_stats_dc108_20_80, ev_stats_dc150_20_80, ev_stats_dc160_20_80);
     double phase_80_100_avg = calculate_phase_average(
-            ev_stats_ac11_80_100, ev_stats_ac12_80_100, ev_stats_ac22_80_100, ev_stats_dc50_80_100, ev_stats_dc80_80_100, ev_stats_dc108_80_100, ev_stats_dc150_80_10, ev_stats_dc160_80_100);
+            ev_stats_ac11_80_100, ev_stats_ac12_80_100, ev_stats_ac22_80_100, ev_stats_dc50_80_100, ev_stats_dc80_80_100, ev_stats_dc108_80_100, ev_stats_dc150_80_100, ev_stats_dc160_80_100);
 
     return phase_0_20_avg + phase_20_80_avg + phase_80_100_avg;
 }

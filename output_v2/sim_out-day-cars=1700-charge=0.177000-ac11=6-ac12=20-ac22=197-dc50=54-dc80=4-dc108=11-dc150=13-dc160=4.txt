@@ -1,5 +1,5 @@
 +----------------------------------------------------------+
-| STORE Charging Station 11kWh                             |
+| STORE Charging Station 11kW                              |
 +----------------------------------------------------------+
 |  Capacity = 6  (1 used, 5 free)                          |
 |  Time interval = 0 - 840                                 |
@@ -10,7 +10,7 @@
 +----------------------------------------------------------+
 
 +----------------------------------------------------------+
-| STORE Charging Station 12kWh                             |
+| STORE Charging Station 12kW                              |
 +----------------------------------------------------------+
 |  Capacity = 20  (4 used, 16 free)                        |
 |  Time interval = 0 - 840                                 |
@@ -21,47 +21,69 @@
 +----------------------------------------------------------+
 
 +----------------------------------------------------------+
-| STORE Charging Station 22kWh                             |
+| STORE Charging Station 22kW                              |
 +----------------------------------------------------------+
 |  Capacity = 197  (13 used, 184 free)                     |
 |  Time interval = 0 - 840                                 |
-|  Number of Enter operations = 175                        |
+|  Number of Enter operations = 173                        |
 |  Minimal used capacity = 1                               |
 |  Maximal used capacity = 18                              |
-|  Average used capacity = 10.9231                         |
+|  Average used capacity = 10.7489                         |
 +----------------------------------------------------------+
 
 +----------------------------------------------------------+
-| STORE Charging Station 50kWh                             |
+| STORE Charging Station 50kW                              |
 +----------------------------------------------------------+
 |  Capacity = 54  (3 used, 51 free)                        |
 |  Time interval = 0 - 840                                 |
-|  Number of Enter operations = 57                         |
+|  Number of Enter operations = 55                         |
 |  Minimal used capacity = 0                               |
-|  Maximal used capacity = 7                               |
-|  Average used capacity = 2.07792                         |
+|  Maximal used capacity = 6                               |
+|  Average used capacity = 2.04005                         |
 +----------------------------------------------------------+
 
 +----------------------------------------------------------+
-| STORE Charging Station 108kWh                            |
+| STORE Charging Station 80kW                              |
 +----------------------------------------------------------+
-|  Capacity = 11  (0 used, 11 free)                        |
+|  Capacity = 4  (0 used, 4 free)                          |
 |  Time interval = 0 - 840                                 |
 |  Number of Enter operations = 5                          |
 |  Minimal used capacity = 0                               |
 |  Maximal used capacity = 1                               |
-|  Average used capacity = 0.071871                        |
+|  Average used capacity = 0.111094                        |
 +----------------------------------------------------------+
 
 +----------------------------------------------------------+
-| STORE Charging Station 150kWh                            |
+| STORE Charging Station 108kW                             |
 +----------------------------------------------------------+
-|  Capacity = 17  (0 used, 17 free)                        |
+|  Capacity = 11  (0 used, 11 free)                        |
 |  Time interval = 0 - 840                                 |
-|  Number of Enter operations = 19                         |
+|  Number of Enter operations = 4                          |
 |  Minimal used capacity = 0                               |
-|  Maximal used capacity = 3                               |
-|  Average used capacity = 0.230039                        |
+|  Maximal used capacity = 1                               |
+|  Average used capacity = 0.0485749                       |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 150kW                             |
++----------------------------------------------------------+
+|  Capacity = 13  (0 used, 13 free)                        |
+|  Time interval = 0 - 840                                 |
+|  Number of Enter operations = 12                         |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 2                               |
+|  Average used capacity = 0.184079                        |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 160kW                             |
++----------------------------------------------------------+
+|  Capacity = 4  (0 used, 4 free)                          |
+|  Time interval = 0 - 840                                 |
+|  Number of Enter operations = 7                          |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 1                               |
+|  Average used capacity = 0.0419041                       |
 +----------------------------------------------------------+
 
 +----------------------------------------------------------+
@@ -71,16 +93,16 @@
 +----------------------------------------------------------+
 |  Min = 0.0701474               Max = 188.166             |
 |  Number of records = 260                                 |
-|  Average value = 48.1932                                 |
-|  Standard deviation = 38.3051                            |
+|  Average value = 47.7787                                 |
+|  Standard deviation = 38.3199                            |
 +----------------------------------------------------------+
 |    from    |     to     |     n    |   rel    |   sum    |
 +------------+------------+----------+----------+----------+
 |      0.000 |     20.000 |       80 | 0.307692 | 0.307692 |
-|     20.000 |     40.000 |       44 | 0.169231 | 0.476923 |
-|     40.000 |     60.000 |       53 | 0.203846 | 0.680769 |
-|     60.000 |     80.000 |       29 | 0.111538 | 0.792308 |
-|     80.000 |    100.000 |       27 | 0.103846 | 0.896154 |
+|     20.000 |     40.000 |       46 | 0.176923 | 0.484615 |
+|     40.000 |     60.000 |       52 | 0.200000 | 0.684615 |
+|     60.000 |     80.000 |       29 | 0.111538 | 0.796154 |
+|     80.000 |    100.000 |       26 | 0.100000 | 0.896154 |
 |    100.000 |    120.000 |       20 | 0.076923 | 0.973077 |
 |    120.000 |    140.000 |        1 | 0.003846 | 0.976923 |
 |    140.000 |    160.000 |        2 | 0.007692 | 0.984615 |

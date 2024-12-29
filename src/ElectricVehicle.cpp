@@ -24,7 +24,7 @@
 /************************************************/
 /*                   Statistics                 */
 /************************************************/
-Histogram time_spend_in_system("Total time in the system", 0, 20, 20);
+Histogram time_spend_in_system("Total time in the system", 0, 20, 12);
 
 /**
  * @brief Number of Charged Cars Per Period (Day/Night).

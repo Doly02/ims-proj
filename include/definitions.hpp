@@ -126,7 +126,7 @@ typedef enum
  * @brief   Chance That Car Will Choose 80kWh DC Charging Station.
  * @details 4 / 309 = 0.013
  */
-#define CHANCE_80_KW_DC_STATIONS           (CHANCE_50_KW_AC_STATIONS + 0.013)
+#define CHANCE_80_KW_DC_STATIONS           (CHANCE_50_KW_DC_STATIONS + 0.013)
 
 /**
  * @brief   Chance That Car Will Choose 108kWh DC Charging Station.
