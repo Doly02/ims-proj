@@ -41,15 +41,19 @@ int ac11_chargers = NUM_11_KW_AC_STATIONS;
 int ac12_chargers = NUM_12_KW_AC_STATIONS;
 int ac22_chargers = NUM_22_KW_AC_STATIONS;
 int dc50_chargers = NUM_50_KW_DC_STATIONS;
+int dc80_chargers = NUM_80_KW_DC_STATIONS;
 int dc108_chargers = NUM_108_KW_DC_STATIONS;
 int dc150_chargers = NUM_150_KW_DC_STATIONS;
+int dc160_chargers = NUM_160_KW_DC_STATIONS;
 
 double chance_11_kw_ac_station = CHANCE_11_KW_AC_STATIONS;
 double chance_12_kw_ac_station = CHANCE_12_KW_AC_STATIONS;
 double chance_22_kw_ac_station = CHANCE_22_KW_AC_STATIONS;
 double chance_50_kw_dc_station = CHANCE_50_KW_DC_STATIONS;
+double chance_80_kw_dc_station = CHANCE_80_KW_DC_STATIONS;
 double chance_108_kw_dc_station = CHANCE_108_KW_DC_STATIONS;
 double chance_150_kw_dc_station = CHANCE_150_KW_DC_STATIONS;
+double chance_160_kw_dc_station = CHANCE_160_KW_DC_STATIONS;
 
 bool is_day = false;
 bool is_24_hours = false;
@@ -59,7 +63,7 @@ bool is_24_hours = false;
 /************************************************/
 void print_usage(void)
 {
-    printf("Usage: ./sim [d|n|24h] [-tc [number]] [-p [number]] [-ac11 [number]] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc108 [number]] [-dc150 [number]] [-h]\n");
+    printf("Usage: ./sim [d|n|24h] [-tc [number]] [-p [number]] [-ac11 [number]] [-ac12 [number]] [-ac22 [number]] [-dc50 [number]] [-dc80 [number]] [-dc108 [number]] [-dc150 [number]] [-dc160 [number]] [-h]\n");
     printf("Options:\n");
     printf("  -tc [number]         : Specify The Number of Cars in The City\n");
     printf("  -p [number]          : Specify The Percentage of Cars to Charge During the Period (value must be between 0 and 1, e.g., 0.25 for 25%%)\n");
@@ -67,8 +71,10 @@ void print_usage(void)
     printf("  -ac12  [number]      : Specify The Number of AC 12 kWh Chargers\n");
     printf("  -ac22  [number]      : Specify The Number of AC 22 kWh Chargers\n");
     printf("  -dc50  [number]      : Specify The Number of DC 50 kWh Chargers\n");
+    printf("  -dc80  [number]      : Specify The Number of DC 80 kWh Chargers\n");
     printf("  -dc108 [number]      : Specify The Number of DC 108 kWh Chargers\n");
     printf("  -dc150 [number]      : Specify The Number of DC 150 kWh Chargers\n");
+    printf("  -dc160 [number]      : Specify The Number of DC 160 kWh Chargers\n");
     printf("  -h                   : Display Usage Message\n");
 }
 
@@ -137,6 +143,10 @@ bool parse_args(int argc, char *argv[])
         {
             dc50_chargers = atoi(argv[++i]);
         }
+        else if (strcmp(argv[i], "-dc80") == 0 && i + 1 < argc)
+        {
+            dc80_chargers = atoi(argv[++i]);
+        }
         else if (strcmp(argv[i], "-dc108") == 0 && i + 1 < argc)
         {
             dc108_chargers = atoi(argv[++i]);
@@ -144,6 +154,10 @@ bool parse_args(int argc, char *argv[])
         else if (strcmp(argv[i], "-dc150") == 0 && i + 1 < argc)
         {
             dc150_chargers = atoi(argv[++i]);
+        }
+        else if (strcmp(argv[i], "-dc160") == 0 && i + 1 < argc)
+        {
+            dc160_chargers = atoi(argv[++i]);
         }
         else
         {
@@ -163,22 +177,25 @@ void update_store_values()
     CHAR_STATION_AC_12KW.SetCapacity(ac12_chargers);
     CHAR_STATION_AC_22KW.SetCapacity(ac22_chargers);
     CHAR_STATION_DC_50KW.SetCapacity(dc50_chargers);
+    CHAR_STATION_DC_80KW.SetCapacity(dc80_chargers);
     CHAR_STATION_DC_108KW.SetCapacity(dc108_chargers);
     CHAR_STATION_DC_150KW.SetCapacity(dc150_chargers);
+    CHAR_STATION_DC_160KW.SetCapacity(dc160_chargers);
 }
 
 /* Update Chances to Choose the Stations Based on Parsed Arguments */
 void update_stations_chance() 
 {
-    double count = ac11_chargers + ac12_chargers + ac22_chargers + dc50_chargers + dc108_chargers + dc150_chargers;
+    double count = ac11_chargers + ac12_chargers + ac22_chargers + dc50_chargers + dc80_chargers + dc108_chargers + dc150_chargers + dc160_chargers;
     
     chance_11_kw_ac_station = ac11_chargers / count;
     chance_12_kw_ac_station = chance_11_kw_ac_station + (ac12_chargers / count);
     chance_22_kw_ac_station = chance_12_kw_ac_station + (ac22_chargers / count);
     chance_50_kw_dc_station = chance_22_kw_ac_station + (dc50_chargers / count);
-    chance_108_kw_dc_station = chance_50_kw_dc_station + (dc108_chargers / count);
+    chance_80_kw_dc_station = chance_50_kw_dc_station + (dc80_chargers / count);
+    chance_108_kw_dc_station = chance_80_kw_dc_station + (dc108_chargers / count);
     chance_150_kw_dc_station = chance_108_kw_dc_station + (dc150_chargers / count);
-    
+    chance_160_kw_dc_station = chance_150_kw_dc_station + (dc160_chargers / count);
 }
 
 std::string get_params(void)
@@ -199,8 +216,10 @@ std::string get_params(void)
     params = params + "ac12=" + std::to_string(ac12_chargers) + "-";
     params = params + "ac22=" + std::to_string(ac22_chargers) + "-";
     params = params + "dc50=" + std::to_string(dc50_chargers) + "-";
+    params = params + "dc80=" + std::to_string(dc80_chargers) + "-";
     params = params + "dc108=" + std::to_string(dc108_chargers) + "-";
-    params = params + "dc150=" + std::to_string(dc150_chargers);
+    params = params + "dc150=" + std::to_string(dc150_chargers) + "-";
+    params = params + "dc160=" + std::to_string(dc160_chargers);
     return params;
 }
 
@@ -211,12 +230,14 @@ double calculate_phase_average(
         const std::vector<std::pair<double, double>>& stats3,
         const std::vector<std::pair<double, double>>& stats4,
         const std::vector<std::pair<double, double>>& stats5,
-        const std::vector<std::pair<double, double>>& stats6
+        const std::vector<std::pair<double, double>>& stats6,
+        const std::vector<std::pair<double, double>>& stats7,
+        const std::vector<std::pair<double, double>>& stats8
 ) {
     double total_time = 0.0;
     int total_count = 0;
 
-    for (const auto& stats : {stats1, stats2, stats3, stats4, stats5, stats6}) {
+    for (const auto& stats : {stats1, stats2, stats3, stats4, stats5, stats6, stats7, stats8}) {
         for (const auto& stat : stats) {
             total_time += stat.second;
         }
@@ -229,11 +250,11 @@ double calculate_phase_average(
 /* Calculate total charging time average of car */
 double calculate_total_average() {
     double phase_0_20_avg = calculate_phase_average(
-            ev_stats_ac11_0_20, ev_stats_ac12_0_20, ev_stats_ac22_0_20, ev_stats_dc50_0_20, ev_stats_dc108_0_20, ev_stats_dc150_0_20);
+            ev_stats_ac11_0_20, ev_stats_ac12_0_20, ev_stats_ac22_0_20, ev_stats_dc50_0_20, ev_stats_dc80_0_20, ev_stats_dc108_0_20, ev_stats_dc150_0_20, ev_stats_dc160_0_20);
     double phase_20_80_avg = calculate_phase_average(
-            ev_stats_ac11_20_80, ev_stats_ac12_20_80, ev_stats_ac22_20_80, ev_stats_dc50_20_80, ev_stats_dc108_20_80, ev_stats_dc150_20_80);
+            ev_stats_ac11_20_80, ev_stats_ac12_20_80, ev_stats_ac22_20_80, ev_stats_dc50_20_80, ev_stats_dc80_20_80, ev_stats_dc108_20_80, ev_stats_dc150_20_80, ev_stats_dc160_20_80);
     double phase_80_100_avg = calculate_phase_average(
-            ev_stats_ac11_80_100, ev_stats_ac12_80_100, ev_stats_ac22_80_100, ev_stats_dc50_80_100, ev_stats_dc108_80_100, ev_stats_dc150_80_100);
+            ev_stats_ac11_80_100, ev_stats_ac12_80_100, ev_stats_ac22_80_100, ev_stats_dc50_80_100, ev_stats_dc80_80_100, ev_stats_dc108_80_100, ev_stats_dc150_80_100, ev_stats_dc160_80_100);
 
     return phase_0_20_avg + phase_20_80_avg + phase_80_100_avg;
 }
@@ -312,8 +333,10 @@ int main(int argc, char *argv[])
     CHAR_STATION_AC_12KW.Output();
     CHAR_STATION_AC_22KW.Output();
     CHAR_STATION_DC_50KW.Output();
+    CHAR_STATION_DC_80KW.Output();
     CHAR_STATION_DC_108KW.Output();
     CHAR_STATION_DC_150KW.Output();
+    CHAR_STATION_DC_160KW.Output();
 
     if (is_24_hours)
     {
@@ -351,24 +374,30 @@ int main(int argc, char *argv[])
     print_ev_stats(ev_stats_ac12_0_20, "AC 12kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_ac22_0_20, "AC 22kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc50_0_20, "DC 50kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_dc80_0_20, "DC 80kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc108_0_20, "DC 108kWh Charger (0-20%)", out_file);
     print_ev_stats(ev_stats_dc150_0_20, "DC 150kWh Charger (0-20%)", out_file);
+    print_ev_stats(ev_stats_dc160_0_20, "DC 160kWh Charger (0-20%)", out_file);
 
     /* Statistics For 2. Phase (20-80%) */
     print_ev_stats(ev_stats_ac11_20_80, "AC 11kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_ac12_20_80, "AC 12kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_ac22_20_80, "AC 22kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_dc50_20_80, "DC 50kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_dc80_20_80, "DC 80kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_dc108_20_80, "DC 108kWh Charger (20-80%)", out_file);
     print_ev_stats(ev_stats_dc150_20_80, "DC 150kWh Charger (20-80%)", out_file);
+    print_ev_stats(ev_stats_dc160_20_80, "DC 160kWh Charger (20-80%)", out_file);
 
     /* Statistics For 3. Phase (20-80%) */
     print_ev_stats(ev_stats_ac11_80_100, "AC 11kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_ac12_80_100, "AC 12kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_ac22_80_100, "AC 22kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_dc50_80_100, "DC 50kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_dc80_80_100, "DC 80kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_dc108_80_100, "DC 108kWh Charger (80-100%)", out_file);
     print_ev_stats(ev_stats_dc150_80_100, "DC 150kWh Charger (80-100%)", out_file);
+    print_ev_stats(ev_stats_dc160_80_100, "DC 160kWh Charger (80-100%)", out_file);
 
 
 

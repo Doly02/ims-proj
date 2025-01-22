@@ -1,0 +1,172 @@
++----------------------------------------------------------+
+| STORE Charging Station 11kW                              |
++----------------------------------------------------------+
+|  Capacity = 6  (6 used, 0 free)                          |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 80                         |
+|  Minimal used capacity = 1                               |
+|  Maximal used capacity = 6                               |
+|  Average used capacity = 5.92126                         |
++----------------------------------------------------------+
+  Input queue 'Charging Station 11kW.Q'
++----------------------------------------------------------+
+| QUEUE Q                                                  |
++----------------------------------------------------------+
+|  Time interval = 0 - 1440                                |
+|  Incoming  102                                           |
+|  Outcoming  73                                           |
+|  Current length = 29                                     |
+|  Maximal length = 49                                     |
+|  Average length = 28.5272                                |
+|  Minimal time = 3.58909                                  |
+|  Maximal time = 807.861                                  |
+|  Average time = 334.915                                  |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 12kW                              |
++----------------------------------------------------------+
+|  Capacity = 20  (20 used, 0 free)                        |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 263                        |
+|  Minimal used capacity = 1                               |
+|  Maximal used capacity = 20                              |
+|  Average used capacity = 19.666                          |
++----------------------------------------------------------+
+  Input queue 'Charging Station 12kW.Q'
++----------------------------------------------------------+
+| QUEUE Q                                                  |
++----------------------------------------------------------+
+|  Time interval = 0 - 1440                                |
+|  Incoming  337                                           |
+|  Outcoming  243                                          |
+|  Current length = 94                                     |
+|  Maximal length = 162                                    |
+|  Average length = 97.4179                                |
+|  Minimal time = 11.9916                                  |
+|  Maximal time = 719.245                                  |
+|  Average time = 379.039                                  |
+|  Standard deviation = 177.957                            |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 22kW                              |
++----------------------------------------------------------+
+|  Capacity = 197  (39 used, 158 free)                     |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 3549                       |
+|  Minimal used capacity = 1                               |
+|  Maximal used capacity = 197                             |
+|  Average used capacity = 146.979                         |
++----------------------------------------------------------+
+  Input queue 'Charging Station 22kW.Q'
++----------------------------------------------------------+
+| QUEUE Q                                                  |
++----------------------------------------------------------+
+|  Time interval = 0 - 1440                                |
+|  Incoming  3017                                          |
+|  Outcoming  3017                                         |
+|  Current length = 0                                      |
+|  Maximal length = 458                                    |
+|  Average length = 140.369                                |
+|  Minimal time = 0.389416                                 |
+|  Maximal time = 141.008                                  |
+|  Average time = 66.9974                                  |
+|  Standard deviation = 37.9966                            |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 50kW                              |
++----------------------------------------------------------+
+|  Capacity = 54  (5 used, 49 free)                        |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 1019                       |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 53                              |
+|  Average used capacity = 22.7615                         |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 80kW                              |
++----------------------------------------------------------+
+|  Capacity = 4  (0 used, 4 free)                          |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 77                         |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 4                               |
+|  Average used capacity = 1.16485                         |
++----------------------------------------------------------+
+  Input queue 'Charging Station 80kW.Q'
++----------------------------------------------------------+
+| QUEUE Q                                                  |
++----------------------------------------------------------+
+|  Time interval = 0 - 1440                                |
+|  Incoming  6                                             |
+|  Outcoming  6                                            |
+|  Current length = 0                                      |
+|  Maximal length = 1                                      |
+|  Average length = 0.0152372                              |
+|  Minimal time = 0.578262                                 |
+|  Maximal time = 5.38213                                  |
+|  Average time = 3.65693                                  |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 108kW                             |
++----------------------------------------------------------+
+|  Capacity = 11  (2 used, 9 free)                         |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 197                        |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 9                               |
+|  Average used capacity = 1.8773                          |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 150kW                             |
++----------------------------------------------------------+
+|  Capacity = 13  (0 used, 13 free)                        |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 222                        |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 7                               |
+|  Average used capacity = 1.54719                         |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| STORE Charging Station 160kW                             |
++----------------------------------------------------------+
+|  Capacity = 4  (0 used, 4 free)                          |
+|  Time interval = 0 - 1440                                |
+|  Number of Enter operations = 69                         |
+|  Minimal used capacity = 0                               |
+|  Maximal used capacity = 3                               |
+|  Average used capacity = 0.411779                        |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+| HISTOGRAM Total time in the system                       |
++----------------------------------------------------------+
+| STATISTIC                                                |
++----------------------------------------------------------+
+|  Min = 0.0163934               Max = 833.956             |
+|  Number of records = 5404                                |
+|  Average value = 108.318                                 |
+|  Standard deviation = 110.033                            |
++----------------------------------------------------------+
+|    from    |     to     |     n    |   rel    |   sum    |
++------------+------------+----------+----------+----------+
+|      0.000 |     20.000 |      868 | 0.160622 | 0.160622 |
+|     20.000 |     40.000 |      633 | 0.117135 | 0.277757 |
+|     40.000 |     60.000 |      612 | 0.113249 | 0.391007 |
+|     60.000 |     80.000 |      420 | 0.077720 | 0.468727 |
+|     80.000 |    100.000 |      459 | 0.084937 | 0.553664 |
+|    100.000 |    120.000 |      472 | 0.087343 | 0.641007 |
+|    120.000 |    140.000 |      430 | 0.079571 | 0.720577 |
+|    140.000 |    160.000 |      401 | 0.074204 | 0.794782 |
+|    160.000 |    180.000 |      315 | 0.058290 | 0.853072 |
+|    180.000 |    200.000 |      257 | 0.047557 | 0.900629 |
+|    200.000 |    220.000 |      160 | 0.029608 | 0.930237 |
+|    220.000 |    240.000 |       94 | 0.017395 | 0.947631 |
++------------+------------+----------+----------+----------+
+
