@@ -620,7 +620,9 @@ Třetí experiment byl navržen tak, aby co nejvěrněji reflektoval současnou 
 získaných ze simulace popsané v podkapitole \ref{actual-state}. Experiment však zohledňoval vyšší počet vozidel a
 vyšší poptávku po nabíjení, které lze očekávat v budoucnosti. Simulace byla spuštěna s následujícím příkazem:
 
-\texttt{./sim d -tc 20000 -p 0.25 -ac11 100 -ac12 150 -ac22 400 -dc50 400 -dc108 150 -dc150 150}
+\begin{center}
+    \texttt{./sim d -tc 20000 -p 0.25 -ac11 100 -ac12 150 -ac22 400 -dc50 400 -dc108 150 -dc150 150}
+\end{center}
 
 Jak je patrné, došlo k významnému zvýšení počtu AC i DC nabíječek, což odpovídá předpokládanému nárůstu dostupné
 nabíjecí infrastruktury. V rámci simulace bylo vygenerováno celkem 4975 vozidel. Všechna tato vozidla zahájila proces
@@ -645,12 +647,15 @@ nastaveny na 150 bodů, což se ukázalo jako optimální kompromis mezi cenou a
 Tento experiment ukazuje, že vhodným zvýšením kapacity nabíjecí infrastruktury je možné se co nejvíce přiblížit
 efektivitě současného stavu i při vyšším zatížení v budoucnosti.
 
-\subsection{Rozšíření modelu\\\\}
-Pro další experimenty byl model rozšířen o nové typy nabíjecích stanic, byly přidány nabíječky s výkonem 80 kW a 160 kW, 
-podle nejaktuálnějších dat. Tyto nabíječky byly zahrnuty do experimentů, s aktuálním stavem celého Brněnského ekosystému,
-jejich kompletní výsledky, si můžete prohlédnou v podadresaři \texttt{output_v2/}.
+\newpage
 
-\paragraph{Celodenní režim (\texttt{24h}) s rozšířenou infrastrukturou o 80kWh a 160kWh nabíječky:}
+\subsection{Rozšíření modelu\\}
+Pro další experimenty byl model rozšířen o nové typy nabíjecích stanic, byly přidány nabíječky s výkonem 80~kW a 160~kW, 
+podle nejaktuálnějších dat. Tyto nabíječky byly zahrnuty do experimentů s aktuálním stavem celého Brněnského ekosystému.
+Jejich kompletní výsledky si můžete prohlédnout v podadresáři \texttt{output\_v2/}.
+
+\subsection{Experimenty s rozšířením\\}
+\paragraph{Celodenní režim s rozšířenou infrastrukturou:}
 Tento experiment vylepšuje experiment číslo \ref{dataset-processing}, model byl vylepšen o 80kWh a 160kWh nabíječky. Při aktuálním stavu systému, výsledky ukazují, že
 při standardních počtěch nabíjecích stanic v Brně viz tabulka \ref{table:charging-stations-distribution-improved}, přijelo za celý den k nabíjecím stanicím 310 elektromobilů,
 z toho 307 vozidel zahájilo nabíjení. Průměčná doba nabíjení dosáhla hodnoty 107,66 minut a medián doby nabíjení činí 53,2952 se směrodatnou
@@ -681,10 +686,22 @@ je aktuální systém dostačující.
         160 kW DC &  160 kW  & stejnosměrný proud   & 4  \\
         \hline
     \end{tabular}
-    \caption{Rozdělení typu veřejných nabíjecích stanic v Brně podle výkonu a typu proudu}
+    \caption{Rozšířené rozdělení typu veřejných nabíjecích stanic v Brně podle výkonu a typu proudu}
     \label{table:charging-stations-distribution-improved}
     \vspace{0.5cm} % Space after table
 \end{table}
+
+\subsection{Rozšířená Petriho síť}
+\begin{figure}[H]
+    \centering
+    \scalebox{0.095}{
+        \includegraphics{ims-petri-improved.eps}
+    }
+    \caption{Upravená Petriho síť elektromobility v Brně}
+    \label{figure:ims-petri-net-improved}
+\end{figure}
+
+\newpage
 
 \paragraph{Celodenní režim (\texttt{24h}) s rozšířenou infrastrukturou o 80kWh a 160kWh nabíječky a odhadovaným budoucím zájmem o nabíjení:}
 V předchozím experimentu jsme tedy dokázali, že aktuální infrastruktura vyhovuje poptávce, jak ale bude vypadat situace, kdy 
@@ -692,7 +709,9 @@ infrastruktura se nebude rozvíjet -- tedy zůstane na současných hodnotách, 
 do roku 2030, kdy se očekává, že počet elektromobilů se v tomto roce může pohybovat v okolí Brna kolem 20 tisíc. Předpokládejme, že
 zájem o nabíjení na veřejných stanicích se zvýší na 25\%. Model této situace byl spuštěn s následujícím příkazem:
 
-\texttt{./sim 24h -tc 20000 -p 0.25}
+\begin{center}
+    \texttt{./sim 24h -tc 20000 -p 0.25}
+\end{center}
 
 Výsledky ukazují, že v tomto scénáři bylo vygenerováno 5599 elektromobilů, z nichž 5476 zahájilo nabíjení a pouze 5404 automobilů bylo nabito, což odpovídá přibližně 96,5 \% 
 všech generovaných elektromobilů. Průměrná doba nabíjení činila 105,66 minut, co je, ale více zarážející je medián s hodnotou 108.318 minut se směrodatnou odchylkou 110 minut, 
