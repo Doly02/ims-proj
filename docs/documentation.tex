@@ -66,7 +66,7 @@ Autoři této simulační studie do předmětu IMS (Modelování a simulace) jso
 \section{Cíle projektu}
 Cílem projektu bylo vytvořit model, který bude schopen simulovat chování nabíjení elektromobilů 
 v Brně. Model zahrnuje informace o elektromobilech a nabíjecích stanicích vyskytující se
-v Brně. Doménou modelu bude schopenost simulovat zátěž sítě nabíjecích stanic na základě zájmu o využítí 
+v Brně. Doménou modelu je schopnost simulovat zátěž sítě nabíjecích stanic na základě zájmu o využítí 
 stanic, celkové struktuře této sítě a to v závislosti na části dne. Chování modelu, lze ovlivnit
 jeho parametry volání, mezi které patří počet elektromobilů nacházející se ve městě, kolik 
 procent z nich využíva veřejné stanice denně, počet stanic (lze specifikovat více druhů viz. 
@@ -77,8 +77,8 @@ vozidel v Brně.
 \section{Validita modelu}
 Model byl otestován s aktuálním stavem sítě a zájmem o nabíjení na veřejných stanicicích a pomocí 
 experimentů, kde bylo zkoumáno, aktuální složení sítě a odhadovaným množstvím elektromobilů v Brně
-v roce 2030. K realizaci modulu byly využity jak veřejná data - viz. \ref{sec:zdroje} neveřejná data, 
-konkrétní data ani zdroje nemohou být publikovány. Tyto informace byly použity k vytvoření představy 
+v roce 2030. K realizaci modulu byly využity jak veřejná data - viz. kapitola \ref{sec:zdroje} a neveřejná data, 
+kde konkrétní data ani zdroje nemohou být publikovány. Tyto informace byly použity k vytvoření představy 
 o aktuálním stavu elektromobily v Brně a k ověření správnosti modelu. 
 
 \section{Rozbor tématu a použitých metod/technologií}
@@ -184,8 +184,8 @@ Z tohoto rozsahu se vycházi i výběr nabíjecích stanic se střídavým proud
 V Brně je celkem 305 veřejných nabíjecích stanic, vyplývající z dat z webu www.data.brno.cz\cite{data_brno},
 na této stránce je i vytvořený dataset s mapou, kde jsou všechna data zaznamenána a zpřístupněna veřejnosti.
 My jsme tento dataset využili a zpracovaná data, lze najít ve složce \texttt{data/}. V souboru \texttt{charging\_stations\_cez.json}
-obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, \texttt{charging\_stations\_PRE.pdf} obsahuje
-list stanic skupiny PRE (Pražská energetika), mezi další velké hráče na poli elektromobility v Brně patří společnosti
+obsahuje seznam všech veřejných nabíjecích stanic společnosti ČEZ, dalším poskytovatelem je organizace PRE (Pražská energetika),
+list stanic této skupiny lze najít na stránkách \href{https://chargepre.smatrics.com/cs/}{https://chargepre.smatrics.com/cs/}, mezi další velké hráče na poli elektromobility v Brně patří společnosti
 Teplárny Brno a.s. a E.ON. Dvě 11 kW stanice, devětadvacet 22 kW stanic se střídavým proudem a jedenáct 50 kW stanic 
 a 5 stanic o výkonu 150 kW se stejnosměrným proudem, poskytuje E.ON, jak vyplývá z dat dostupných na webu 
 \href{https://www.eon-drive.cz/mapa/}{www.eon-drive.cz/mapa/}. Zato společnosti Teplárny Brno a.s. disponuje celkem 
@@ -194,7 +194,7 @@ a zbylých 12 nabíjecích stanic je stejnosměrných s výkonem 150 kW. Data sp
 z mapy na stránce \href{https://www.emobilitabrno.cz/cs/verejne-dobijecky}{www.emobilitabrno.cz/cs/verejne-dobijecky}.
 Soubor \texttt{charging\_stations\_others.xlsx} stanice, které jsou vlastněny menšími firmami.
 V zásadě Brno disponuje nabíjecími stanicemi s výkonem od 3.7 kW (AC) až po 150 kW (DC), a nabíjecích bodů je 
-celkově 305. \cite{eon_data, emobilita_data}
+celkově 305. \cite{eon_data, emobilita_data, pre_stations}
 
 % TODO: popis jak jsme vyuzili dataset a jak jsme ho zpracovali
 \subsubsection{Zpracování datasetu}
