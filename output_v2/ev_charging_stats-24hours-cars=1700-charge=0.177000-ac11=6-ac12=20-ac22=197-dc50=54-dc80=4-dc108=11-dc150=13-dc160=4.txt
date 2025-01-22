@@ -1,0 +1,464 @@
+Statistics for AC 11kWh Charger (0-20%):
+--------------------------------------
+--------------------------------------
+Average Charging Time: 0 mins
+======================================
+Statistics for AC 12kWh Charger (0-20%):
+--------------------------------------
+Start Time: 612.212498, Charging Time: 68.299907
+--------------------------------------
+Average Charging Time: 68.299907 mins
+======================================
+Statistics for AC 22kWh Charger (0-20%):
+--------------------------------------
+Start Time: 42.314167, Charging Time: 1.464996
+Start Time: 51.924565, Charging Time: 34.107418
+Start Time: 94.583235, Charging Time: 14.644115
+Start Time: 101.857739, Charging Time: 13.603360
+Start Time: 176.630451, Charging Time: 4.073060
+Start Time: 155.867262, Charging Time: 37.767750
+Start Time: 180.624056, Charging Time: 15.479077
+Start Time: 202.255560, Charging Time: 8.803061
+Start Time: 256.146405, Charging Time: 2.378053
+Start Time: 317.958002, Charging Time: 19.215825
+Start Time: 387.935343, Charging Time: 1.753637
+Start Time: 399.416268, Charging Time: 15.485424
+Start Time: 412.351725, Charging Time: 25.020659
+Start Time: 479.773223, Charging Time: 17.055875
+Start Time: 525.066611, Charging Time: 6.663439
+Start Time: 534.062187, Charging Time: 16.482536
+Start Time: 528.342850, Charging Time: 33.443079
+Start Time: 616.788162, Charging Time: 1.620217
+Start Time: 745.230379, Charging Time: 1.470543
+Start Time: 777.428650, Charging Time: 16.734556
+Start Time: 759.546165, Charging Time: 35.197427
+Start Time: 824.933019, Charging Time: 30.624477
+Start Time: 945.523155, Charging Time: 36.668996
+Start Time: 959.683635, Charging Time: 36.604407
+Start Time: 1301.733618, Charging Time: 2.664811
+--------------------------------------
+Average Charging Time: 17.161072 mins
+======================================
+Statistics for DC 50kWh Charger (0-20%):
+--------------------------------------
+Start Time: 47.736453, Charging Time: 0.459586
+Start Time: 25.492063, Charging Time: 24.256825
+Start Time: 63.712906, Charging Time: 6.173558
+Start Time: 414.578339, Charging Time: 3.687817
+Start Time: 401.722075, Charging Time: 32.210252
+Start Time: 526.018742, Charging Time: 16.302144
+Start Time: 592.422804, Charging Time: 30.934402
+--------------------------------------
+Average Charging Time: 16.289226 mins
+======================================
+Statistics for DC 80kWh Charger (0-20%):
+--------------------------------------
+--------------------------------------
+Average Charging Time: 0.000000 mins
+======================================
+Statistics for DC 108kWh Charger (0-20%):
+--------------------------------------
+--------------------------------------
+Average Charging Time: 0.000000 mins
+======================================
+Statistics for DC 150kWh Charger (0-20%):
+--------------------------------------
+Start Time: 388.768346, Charging Time: 6.648115
+Start Time: 400.601099, Charging Time: 9.134298
+Start Time: 418.490285, Charging Time: 5.800038
+Start Time: 792.376140, Charging Time: 6.923899
+--------------------------------------
+Average Charging Time: 7.126588 mins
+======================================
+Statistics for DC 160kWh Charger (0-20%):
+--------------------------------------
+--------------------------------------
+Average Charging Time: 0.000000 mins
+======================================
+Statistics for AC 11kWh Charger (20-80%):
+--------------------------------------
+Start Time: 0.000000, Charging Time: 97.374985
+Start Time: 601.805314, Charging Time: 44.726519
+Start Time: 685.471297, Charging Time: 58.445175
+Start Time: 556.927973, Charging Time: 188.166013
+Start Time: 724.635697, Charging Time: 228.458659
+Start Time: 1245.787292, Charging Time: 81.359387
+--------------------------------------
+Average Charging Time: 116.421790 mins
+======================================
+Statistics for AC 12kWh Charger (20-80%):
+--------------------------------------
+Start Time: 107.591477, Charging Time: 65.743476
+Start Time: 78.996502, Charging Time: 147.423264
+Start Time: 105.728341, Charging Time: 180.945558
+Start Time: 182.304817, Charging Time: 159.253867
+Start Time: 548.467131, Charging Time: 40.179737
+Start Time: 461.197629, Charging Time: 129.952569
+Start Time: 526.166331, Charging Time: 71.474034
+Start Time: 450.616693, Charging Time: 170.757623
+Start Time: 475.335889, Charging Time: 183.684201
+Start Time: 632.799504, Charging Time: 80.991349
+Start Time: 746.187931, Charging Time: 92.953437
+Start Time: 680.512405, Charging Time: 161.458661
+Start Time: 663.075923, Charging Time: 207.504035
+Start Time: 829.625172, Charging Time: 142.856935
+Start Time: 810.973547, Charging Time: 192.303253
+Start Time: 991.157263, Charging Time: 196.231563
+Start Time: 1176.762737, Charging Time: 60.614690
+--------------------------------------
+Average Charging Time: 134.372250 mins
+======================================
+Statistics for AC 22kWh Charger (20-80%):
+--------------------------------------
+Start Time: 8.431073, Charging Time: 26.314321
+Start Time: 30.584613, Charging Time: 15.209135
+Start Time: 18.878179, Charging Time: 36.786947
+Start Time: 13.582466, Charging Time: 44.748664
+Start Time: 3.210234, Charging Time: 67.487013
+Start Time: 43.779164, Charging Time: 30.976090
+Start Time: 22.043390, Charging Time: 60.096791
+Start Time: 61.763437, Charging Time: 31.343505
+Start Time: 5.550612, Charging Time: 88.753588
+Start Time: 86.031984, Charging Time: 14.611712
+Start Time: 6.255897, Charging Time: 107.814359
+Start Time: 114.474049, Charging Time: 2.902115
+Start Time: 108.692623, Charging Time: 9.271015
+Start Time: 28.358398, Charging Time: 94.472972
+Start Time: 125.534431, Charging Time: 8.399454
+Start Time: 142.776747, Charging Time: 2.262430
+Start Time: 56.976042, Charging Time: 89.507945
+Start Time: 99.778406, Charging Time: 56.374340
+Start Time: 60.436499, Charging Time: 101.201112
+Start Time: 143.308585, Charging Time: 19.137019
+Start Time: 109.227351, Charging Time: 54.734221
+Start Time: 162.909038, Charging Time: 5.668035
+Start Time: 156.617218, Charging Time: 14.287223
+Start Time: 120.774322, Charging Time: 53.391648
+Start Time: 158.524175, Charging Time: 15.867235
+Start Time: 119.156215, Charging Time: 62.374626
+Start Time: 197.743212, Charging Time: 1.259194
+Start Time: 160.293778, Charging Time: 41.806324
+Start Time: 162.243807, Charging Time: 41.907596
+Start Time: 150.078515, Charging Time: 55.108855
+Start Time: 115.461099, Charging Time: 101.287864
+Start Time: 114.310880, Charging Time: 105.690237
+Start Time: 148.444682, Charging Time: 76.965963
+Start Time: 173.178736, Charging Time: 57.481105
+Start Time: 185.067478, Charging Time: 52.333432
+Start Time: 211.058620, Charging Time: 32.190201
+Start Time: 243.182642, Charging Time: 1.354965
+Start Time: 175.217277, Charging Time: 70.046423
+Start Time: 166.105788, Charging Time: 82.877626
+Start Time: 193.635013, Charging Time: 62.881480
+Start Time: 167.911746, Charging Time: 94.538784
+Start Time: 202.752335, Charging Time: 64.122254
+Start Time: 196.103133, Charging Time: 75.413041
+Start Time: 224.380815, Charging Time: 51.353012
+Start Time: 277.974008, Charging Time: 2.426442
+Start Time: 250.114153, Charging Time: 33.712881
+Start Time: 180.703511, Charging Time: 104.655555
+Start Time: 281.398964, Charging Time: 4.338954
+Start Time: 220.816721, Charging Time: 67.578907
+Start Time: 293.617252, Charging Time: 4.043589
+Start Time: 228.214587, Charging Time: 83.773526
+Start Time: 223.541269, Charging Time: 107.228194
+Start Time: 244.616754, Charging Time: 88.630373
+Start Time: 245.739195, Charging Time: 91.542747
+Start Time: 258.524458, Charging Time: 90.865508
+Start Time: 294.565629, Charging Time: 59.175350
+Start Time: 313.773396, Charging Time: 49.346767
+Start Time: 337.187850, Charging Time: 28.987103
+Start Time: 352.315547, Charging Time: 24.909079
+Start Time: 337.173827, Charging Time: 40.646359
+Start Time: 330.452648, Charging Time: 54.285248
+Start Time: 311.092485, Charging Time: 80.089194
+Start Time: 317.387463, Charging Time: 75.539315
+Start Time: 392.370070, Charging Time: 2.253934
+Start Time: 363.932821, Charging Time: 31.227447
+Start Time: 292.133187, Charging Time: 112.998223
+Start Time: 332.112211, Charging Time: 75.339212
+Start Time: 357.585266, Charging Time: 51.672574
+Start Time: 317.049114, Charging Time: 105.890739
+Start Time: 327.924126, Charging Time: 95.371369
+Start Time: 320.026926, Charging Time: 112.211950
+Start Time: 400.635067, Charging Time: 36.397888
+Start Time: 373.085184, Charging Time: 69.285180
+Start Time: 397.545247, Charging Time: 50.979556
+Start Time: 354.753246, Charging Time: 95.660829
+Start Time: 418.916131, Charging Time: 32.763536
+Start Time: 442.829820, Charging Time: 11.873213
+Start Time: 389.688980, Charging Time: 70.715393
+Start Time: 393.062841, Charging Time: 76.556955
+Start Time: 414.901692, Charging Time: 55.653725
+Start Time: 431.667345, Charging Time: 46.540152
+Start Time: 437.372384, Charging Time: 49.237590
+Start Time: 485.040664, Charging Time: 6.625884
+Start Time: 486.421902, Charging Time: 6.729484
+Start Time: 432.216959, Charging Time: 71.275781
+Start Time: 477.666494, Charging Time: 28.309264
+Start Time: 486.865366, Charging Time: 21.075164
+Start Time: 435.240903, Charging Time: 73.358840
+Start Time: 403.662335, Charging Time: 106.429221
+Start Time: 421.031908, Charging Time: 93.324406
+Start Time: 502.543399, Charging Time: 15.695690
+Start Time: 472.601934, Charging Time: 48.060437
+Start Time: 503.358252, Charging Time: 24.387529
+Start Time: 488.089085, Charging Time: 41.892212
+Start Time: 535.134260, Charging Time: 1.462701
+Start Time: 519.641731, Charging Time: 30.464264
+Start Time: 518.198257, Charging Time: 37.048550
+Start Time: 529.155920, Charging Time: 26.300960
+Start Time: 553.276363, Charging Time: 4.154606
+Start Time: 561.785929, Charging Time: 2.042549
+Start Time: 528.165185, Charging Time: 39.633216
+Start Time: 496.829098, Charging Time: 75.998400
+Start Time: 570.185833, Charging Time: 17.891337
+Start Time: 475.844644, Charging Time: 114.284141
+Start Time: 541.586252, Charging Time: 51.675033
+Start Time: 531.730050, Charging Time: 65.176399
+Start Time: 593.717069, Charging Time: 3.636433
+Start Time: 548.989151, Charging Time: 58.240666
+Start Time: 550.544723, Charging Time: 60.904790
+Start Time: 505.953624, Charging Time: 107.382220
+Start Time: 607.237012, Charging Time: 16.060370
+Start Time: 615.926368, Charging Time: 23.222948
+Start Time: 612.891762, Charging Time: 28.647190
+Start Time: 526.548986, Charging Time: 116.628808
+Start Time: 531.426099, Charging Time: 114.709229
+Start Time: 617.609971, Charging Time: 30.139498
+Start Time: 624.717755, Charging Time: 25.245779
+Start Time: 632.189923, Charging Time: 19.215904
+Start Time: 569.314245, Charging Time: 83.201125
+Start Time: 546.681574, Charging Time: 108.533903
+Start Time: 597.614207, Charging Time: 71.144518
+Start Time: 649.207428, Charging Time: 21.340234
+Start Time: 638.136790, Charging Time: 44.437764
+Start Time: 631.353368, Charging Time: 51.879263
+Start Time: 681.536060, Charging Time: 5.866574
+Start Time: 604.988058, Charging Time: 83.983999
+Start Time: 583.822431, Charging Time: 109.929235
+Start Time: 669.957578, Charging Time: 24.763896
+Start Time: 598.918237, Charging Time: 113.049315
+Start Time: 681.323343, Charging Time: 33.960823
+Start Time: 630.331243, Charging Time: 89.824717
+Start Time: 618.408379, Charging Time: 107.992239
+Start Time: 641.044801, Charging Time: 98.578807
+Start Time: 716.440652, Charging Time: 31.917867
+Start Time: 699.101319, Charging Time: 50.705059
+Start Time: 740.288454, Charging Time: 12.777809
+Start Time: 746.700922, Charging Time: 8.134532
+Start Time: 748.743241, Charging Time: 7.762653
+Start Time: 691.629929, Charging Time: 76.660073
+Start Time: 727.135079, Charging Time: 65.990934
+Start Time: 696.778940, Charging Time: 101.559997
+Start Time: 794.163206, Charging Time: 40.543635
+Start Time: 793.897635, Charging Time: 48.509310
+Start Time: 786.157076, Charging Time: 58.915662
+Start Time: 738.977407, Charging Time: 110.519015
+Start Time: 765.633010, Charging Time: 84.854760
+Start Time: 738.093095, Charging Time: 115.821593
+Start Time: 756.177555, Charging Time: 99.425335
+Start Time: 845.712595, Charging Time: 16.308900
+Start Time: 794.743592, Charging Time: 92.689746
+Start Time: 818.410356, Charging Time: 80.838036
+Start Time: 855.557496, Charging Time: 47.130905
+Start Time: 820.285667, Charging Time: 86.086892
+Start Time: 807.736894, Charging Time: 102.681031
+Start Time: 805.605082, Charging Time: 105.376948
+Start Time: 851.011034, Charging Time: 75.429974
+Start Time: 904.737459, Charging Time: 73.243939
+Start Time: 926.202676, Charging Time: 57.886509
+Start Time: 958.122610, Charging Time: 28.048837
+Start Time: 982.192151, Charging Time: 16.763259
+Start Time: 898.192696, Charging Time: 104.218850
+Start Time: 996.288041, Charging Time: 15.864350
+Start Time: 921.487027, Charging Time: 98.912576
+Start Time: 966.984956, Charging Time: 67.790658
+Start Time: 968.267711, Charging Time: 75.933984
+Start Time: 1043.651600, Charging Time: 19.448585
+Start Time: 1098.175753, Charging Time: 5.138520
+Start Time: 1064.658691, Charging Time: 87.318902
+Start Time: 1057.544653, Charging Time: 102.146215
+Start Time: 1201.589889, Charging Time: 24.403804
+Start Time: 1288.250978, Charging Time: 57.136468
+Start Time: 1304.398429, Charging Time: 70.626530
+Start Time: 1390.425645, Charging Time: 43.529574
+Start Time: 1389.464855, Charging Time: 47.221217
+--------------------------------------
+Average Charging Time: 55.339691 mins
+======================================
+Statistics for DC 50kWh Charger (20-80%):
+--------------------------------------
+Start Time: 14.814463, Charging Time: 40.938511
+Start Time: 16.162079, Charging Time: 40.107559
+Start Time: 49.748887, Charging Time: 23.365699
+Start Time: 48.196040, Charging Time: 27.937585
+Start Time: 32.986105, Charging Time: 47.202206
+Start Time: 73.818642, Charging Time: 7.651165
+Start Time: 94.240438, Charging Time: 17.420845
+Start Time: 69.886464, Charging Time: 51.516254
+Start Time: 94.518583, Charging Time: 44.128666
+Start Time: 125.709966, Charging Time: 26.357015
+Start Time: 95.189871, Charging Time: 56.885485
+Start Time: 198.864304, Charging Time: 1.791950
+Start Time: 179.428335, Charging Time: 51.057887
+Start Time: 305.866011, Charging Time: 0.884745
+Start Time: 335.591559, Charging Time: 1.938765
+Start Time: 321.957438, Charging Time: 44.972332
+Start Time: 352.902778, Charging Time: 52.859267
+Start Time: 410.930176, Charging Time: 14.801704
+Start Time: 433.932326, Charging Time: 1.998276
+Start Time: 418.849758, Charging Time: 28.310152
+Start Time: 393.734290, Charging Time: 54.607340
+Start Time: 430.177319, Charging Time: 29.440441
+Start Time: 418.266156, Charging Time: 53.341856
+Start Time: 485.498502, Charging Time: 4.498456
+Start Time: 453.342361, Charging Time: 46.344400
+Start Time: 493.110703, Charging Time: 11.516192
+Start Time: 510.029378, Charging Time: 1.139428
+Start Time: 542.320886, Charging Time: 15.778969
+Start Time: 542.680309, Charging Time: 24.279430
+Start Time: 536.590070, Charging Time: 56.901493
+Start Time: 582.347799, Charging Time: 13.969105
+Start Time: 556.510907, Charging Time: 50.943202
+Start Time: 606.957473, Charging Time: 20.772600
+Start Time: 646.400215, Charging Time: 11.021616
+Start Time: 613.338908, Charging Time: 47.699805
+Start Time: 619.644613, Charging Time: 51.725538
+Start Time: 623.357205, Charging Time: 53.701865
+Start Time: 682.274324, Charging Time: 12.257074
+Start Time: 699.756016, Charging Time: 14.482781
+Start Time: 704.820379, Charging Time: 9.818237
+Start Time: 696.888501, Charging Time: 18.499271
+Start Time: 707.503710, Charging Time: 38.196974
+Start Time: 759.422576, Charging Time: 9.349233
+Start Time: 735.866292, Charging Time: 44.129508
+Start Time: 745.964073, Charging Time: 59.970387
+Start Time: 818.275690, Charging Time: 25.657891
+Start Time: 828.635129, Charging Time: 58.176328
+Start Time: 838.614312, Charging Time: 58.257598
+Start Time: 1108.702942, Charging Time: 44.966823
+--------------------------------------
+Average Charging Time: 31.093263 mins
+======================================
+Statistics for DC 80kWh Charger (20-80%):
+--------------------------------------
+Start Time: 12.520135, Charging Time: 26.230338
+Start Time: 141.431695, Charging Time: 19.775401
+Start Time: 403.351487, Charging Time: 10.856126
+Start Time: 760.039511, Charging Time: 26.807248
+--------------------------------------
+Average Charging Time: 20.917278 mins
+======================================
+Statistics for DC 108kWh Charger (20-80%):
+--------------------------------------
+Start Time: 350.403730, Charging Time: 20.964301
+Start Time: 432.925859, Charging Time: 10.558153
+Start Time: 671.027456, Charging Time: 1.571792
+--------------------------------------
+Average Charging Time: 11.031415 mins
+======================================
+Statistics for DC 150kWh Charger (20-80%):
+--------------------------------------
+Start Time: 142.679861, Charging Time: 20.017860
+Start Time: 355.394620, Charging Time: 18.750064
+Start Time: 374.829461, Charging Time: 20.005356
+Start Time: 395.416461, Charging Time: 7.636604
+Start Time: 409.735398, Charging Time: 1.739418
+Start Time: 424.290323, Charging Time: 10.445652
+Start Time: 424.179853, Charging Time: 14.382522
+Start Time: 482.658937, Charging Time: 16.596253
+Start Time: 751.722388, Charging Time: 0.070147
+Start Time: 764.171416, Charging Time: 8.723136
+Start Time: 799.300039, Charging Time: 6.725012
+Start Time: 817.057775, Charging Time: 1.028368
+--------------------------------------
+Average Charging Time: 10.510033 mins
+======================================
+Statistics for DC 160kWh Charger (20-80%):
+--------------------------------------
+Start Time: 114.956339, Charging Time: 8.115876
+Start Time: 238.807511, Charging Time: 12.457451
+Start Time: 432.205675, Charging Time: 2.142170
+Start Time: 477.567731, Charging Time: 0.932889
+Start Time: 660.466801, Charging Time: 5.579452
+Start Time: 688.286054, Charging Time: 4.652718
+Start Time: 711.576882, Charging Time: 1.318894
+--------------------------------------
+Average Charging Time: 5.028493 mins
+======================================
+Statistics for AC 11kWh Charger (80-100%):
+--------------------------------------
+Start Time: 415.034035, Charging Time: 77.723852
+Start Time: 689.255181, Charging Time: 80.180689
+--------------------------------------
+Average Charging Time: 78.952270 mins
+======================================
+Statistics for AC 12kWh Charger (80-100%):
+--------------------------------------
+Start Time: 222.965164, Charging Time: 94.978438
+Start Time: 452.129793, Charging Time: 19.609466
+Start Time: 381.073563, Charging Time: 91.138172
+--------------------------------------
+Average Charging Time: 68.575359 mins
+======================================
+Statistics for AC 22kWh Charger (80-100%):
+--------------------------------------
+Start Time: 4.409664, Charging Time: 10.372858
+Start Time: 37.625574, Charging Time: 5.588343
+Start Time: 17.443318, Charging Time: 74.217400
+Start Time: 281.778108, Charging Time: 13.923264
+Start Time: 280.753668, Charging Time: 72.760938
+Start Time: 389.584497, Charging Time: 8.437245
+Start Time: 454.957132, Charging Time: 7.666873
+Start Time: 418.407493, Charging Time: 54.019846
+Start Time: 475.042079, Charging Time: 10.900127
+Start Time: 483.416504, Charging Time: 59.693950
+Start Time: 568.231209, Charging Time: 0.670436
+Start Time: 529.083216, Charging Time: 45.336158
+Start Time: 619.354432, Charging Time: 5.873091
+Start Time: 610.761443, Charging Time: 16.103440
+Start Time: 598.404891, Charging Time: 69.793583
+Start Time: 642.201128, Charging Time: 70.102162
+Start Time: 743.521186, Charging Time: 19.186362
+Start Time: 791.744919, Charging Time: 2.839030
+Start Time: 819.102414, Charging Time: 75.299802
+Start Time: 921.524964, Charging Time: 42.227811
+--------------------------------------
+Average Charging Time: 33.250636 mins
+======================================
+Statistics for DC 50kWh Charger (80-100%):
+--------------------------------------
+Start Time: 41.487283, Charging Time: 20.729863
+Start Time: 139.591348, Charging Time: 30.417066
+Start Time: 187.742655, Charging Time: 34.214789
+Start Time: 383.772368, Charging Time: 38.963117
+Start Time: 490.522454, Charging Time: 32.436512
+Start Time: 581.504371, Charging Time: 27.066487
+Start Time: 755.994318, Charging Time: 44.803290
+Start Time: 1113.877814, Charging Time: 33.510053
+--------------------------------------
+Average Charging Time: 32.767647 mins
+======================================
+Statistics for DC 80kWh Charger (80-100%):
+--------------------------------------
+Start Time: 104.436748, Charging Time: 9.649563
+--------------------------------------
+Average Charging Time: 9.649563 mins
+======================================
+Statistics for DC 108kWh Charger (80-100%):
+--------------------------------------
+Start Time: 756.418893, Charging Time: 7.708694
+--------------------------------------
+Average Charging Time: 7.708694 mins
+======================================
+Statistics for DC 150kWh Charger (80-100%):
+--------------------------------------
+--------------------------------------
+Average Charging Time: 0.000000 mins
+======================================
+Statistics for DC 160kWh Charger (80-100%):
+--------------------------------------
+--------------------------------------
+Average Charging Time: 0.000000 mins
+======================================
