@@ -38,7 +38,7 @@ To build and run `sim`, you will need the following:
 ## Installation
 1. Clone the repository to your local machine.
 2. Navigate to the project directory.
-3. Run `make` to build the client application. This will create the `ipk24chat-client` executable.
+3. Run `make` to build the client application. This will create the `ims-proj` executable.
 4. (Optional) Run `make test` to build and run the unit tests. Ensure you have Google Test installed.
 5. (Optional) Run `make debug` to build the application with debug flags enabled.
 
@@ -46,7 +46,7 @@ Please refer to the Makefile for additional targets and commands.
 
 ## Project organization 
 ```
-ipk-proj-1/
+ims-proj/
 │
 ├── include/                # Header files for class declarations.
 │   
